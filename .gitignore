@@ -1,0 +1,11 @@
+target/
+node_modules/
+.direnv/
+dist/
+.cargo
+.hc*
+*.dna
+*.happ
+storybook-static/
+locales/
+result*

@@ -1,0 +1,15 @@
+[workspace]
+members = ["crates/*"]
+resolver = "2"
+
+[workspace.dependencies]
+serde = "1.0.193"
+hdi = "0.4.2"
+hdk = "0.3.2"
+holochain = "0.3.2"
+
+[profile.dev]
+opt-level = "z"
+
+[profile.release]
+opt-level = "z"

@@ -1,0 +1,24 @@
+---
+manifest_version: "1"
+name: profiles-test
+
+integrity:
+  network_seed: 00000000-0000-0000-0000-000000000000
+  properties: ~
+  origin_time: 2022-02-11T23:05:19.470323Z
+  zomes:
+    - name: profiles_integrity
+      bundled: ../target/wasm32-unknown-unknown/release/hc_zome_profiles_integrity.wasm
+    - name: linked_devices_integrity
+      bundled: NIXBUNDLED
+
+coordinator:
+  zomes:
+    - name: profiles
+      bundled: ../target/wasm32-unknown-unknown/release/hc_zome_profiles_coordinator.wasm
+      dependencies:
+        - name: profiles_integrity
+    - name: linked_devices
+      bundled: NIXBUNDLED
+      dependencies:
+        - name: linked_devices_integrity

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en-GB">
+	<head>
+		<meta charset="utf-8" />
+		<style>
+			body {
+				background: black;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body class="sl-theme-dark">
+		<profiles-test style="height: 100%; display: flex"></profiles-test>
+
+		<script type="module">
+			import {
+				LinkedDevicesClient,
+				LinkedDevicesStore,
+			} from '@darksoil-studio/linked-devices-zome';
+			import '@darksoil-studio/linked-devices-zome/dist/elements/link-devices-recipient.js';
+			import '@darksoil-studio/linked-devices-zome/dist/elements/linked-devices-context.js';
+			import { onSubmit } from '@tnesh-stack/elements';
+			import { AppWebsocket } from '@holochain/client';
+			import '@shoelace-style/shoelace/dist/themes/dark.css';
+			import { LitElement, html } from 'lit';
+
+			import '../src/elements/agent-avatar.ts';
+			import '../src/elements/agent-mention.ts';
+			import '../src/elements/all-profiles.ts';
+			import '../src/elements/my-profile.ts';
+			import '../src/elements/profile-prompt.ts';
+			import '../src/elements/profiles-context.ts';
+			import '../src/elements/search-profile.ts';
+			import '../src/elements/search-profiles.ts';
+			import '../src/elements/textarea-with-mentions.ts';
+			import { ProfilesClient, ProfilesStore } from '../src/index.ts';
+
+			class ProfilesTest extends LitElement {
+				static get properties() {
+					return {
+						loaded: {
+							type: Boolean,
+						},
+					};
+				}
+
+				async firstUpdated() {
+					try {
+						const client = await AppWebsocket.connect();
+
+						const service = new ProfilesClient(client, 'profiles-test');
+
+						this.linkedDevicesStore = new LinkedDevicesStore(
+							new LinkedDevicesClient(client, 'profiles-test'),
+						);
+
+						this.store = new ProfilesStore(service, {
+							avatarMode: 'avatar-required',
+							additionalFields: [
+								{
+									name: 'location',
+									label: 'Location',
+									required: true,
+								},
+								{
+									name: 'bio',
+									label: 'Bio',
+									required: false,
+								},
+							],
+						});
+						this.loaded = true;
+					} catch (e) {
+						console.error(e);
+					}
+				}
+
+				onSubmit(f) {
+					this.shadowRoot.querySelector('form').reset();
+					setTimeout(() => {
+						this.shadowRoot.querySelector('textarea-with-mentions').value =
+							f.hi;
+					}, 400);
+				}
+
+				render() {
+					if (!this.loaded) return html`<span>Loading...</span>`;
+					if (this.linkAgent)
+						return html`
+							<linked-devices-context .store=${this.linkedDevicesStore}>
+								<profiles-context .store=${this.store}>
+									<link-devices-recipient
+										style="flex: 1"
+										@device-linked=${() => {
+											this.linkAgent = false;
+											this.requestUpdate();
+										}}
+									>
+									</link-devices-recipient>
+								</profiles-context>
+							</linked-devices-context>
+						`;
+					return html`
+						<linked-devices-context .store=${this.linkedDevicesStore}>
+							<profiles-context .store=${this.store}>
+								<profile-prompt
+									@profile-created=${e => console.log(e)}
+								>
+								<div style="flex-direction: row; display:flex; flex-wrap: wrap">
+									<form ${onSubmit(f => this.onSubmit(f))}>
+										<textarea-with-mentions
+											name="hi"
+											label="hey"
+										></textarea-with-mentions>
+										<input type="submit" />
+									</form>
+									<all-profiles></all-profiles>
+									<my-profile style="height: 200px; width: 200px;"></my-profile>
+									<agent-avatar .agentPubKey=${this.store.client.client.myPubKey}>
+										<div
+											style="background-color: lightgreen; width: 12px; height: 12px; border-radius: 50%"
+											slot="badge"
+										></div>
+									</agent-avatar>
+									<search-profile
+										name="author"
+										required
+										@profile-selected=${e => console.log(e)}
+									></search-profile>
+									<search-profiles name="hosts" required></search-profiles>
+									<agent-avatar
+										.agentPubKey=${this.store.client.client.myPubKey}
+										.showOnHover=${false}
+										.copyOnClick=${false}
+									>
+									</agent-avatar>
+									<agent-mention
+										.agentPubKey=${this.store.client.client.myPubKey}
+									>
+									</agent-mention>
+									<div>
+										<sl-button @click=${() => {
+											this.linkAgent = true;
+											this.requestUpdate();
+										}}>Link Device
+										</sl-button>
+									</div>
+
+								</profile-prompt>
+							</profiles-context>
+						</linked-devices-context>
+					`;
+				}
+			}
+
+			customElements.define('profiles-test', ProfilesTest);
+		</script>
+	</body>
+</html>

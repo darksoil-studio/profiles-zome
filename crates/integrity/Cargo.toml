@@ -1,0 +1,22 @@
+[package]
+authors = [
+  "guillem.cordoba@gmail.com"
+]
+description = "Profiles zome for any Holochain app"
+documentation = "https://darksoil.studio/profiles-zome"
+edition = "2021"
+homepage = "https://darksoil.studio/profiles-zome"
+name = "profiles_integrity"
+repository = "https://github.com/darksoil-studio/profiles-zome"
+version = "0.300.0"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+name = "profiles_integrity"
+
+[dependencies]
+derive_more = "0"
+serde = "1"
+
+hdi = { workspace = true }
+linked_devices_types = { git = "https://github.com/darksoil-studio/linked-devices", branch = "main-0.3" }
