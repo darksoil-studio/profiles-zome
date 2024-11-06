@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Signal"],"fn":["post_commit"]};
