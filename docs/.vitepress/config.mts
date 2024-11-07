@@ -16,7 +16,7 @@ export default withMermaid({
 			include: ['mermaid'],
 		},
 	},
-	base: '/profiles',
+	base: '/profiles-zome',
 	title: '@darksoil-studio/profiles-zome',
 	description: 'Profiles zome for hApps',
 	themeConfig: {
