@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./chunks/framework.BbRsG_Ut.js";const d=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"template-setup.md","filePath":"template-setup.md"}'),p={name:"template-setup.md"};function s(r,o,c,n,m,l){return a(),t("div")}const i=e(p,[["render",s]]);export{d as __pageData,i as default};
