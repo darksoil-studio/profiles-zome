@@ -45,7 +45,7 @@
     "lit": "^3.0.2"
   },
   "devDependencies": {
-    "@custom-elements-manifest/analyzer": "^0.5.7",
+    "@custom-elements-manifest/analyzer": "^0.10.3",
     "@lit/localize-tools": "^0.6.3",
     "tslib": "^2.0.0",
     "typescript": "^5.4.0",
