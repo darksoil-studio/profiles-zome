@@ -22,15 +22,15 @@ nix run github:darksoil-studio/tnesh-stack#hc-scaffold-app -- web-app
   description = "Template for Holochain app development";
 
   inputs = {
-    holonix.url = "github:holochain/holonix/main-0.3";
+    holonix.url = "github:holochain/holonix/main-0.4";
 
     nixpkgs.follows = "holonix/nixpkgs";
     flake-parts.follows = "holonix/flake-parts";
 
-    tnesh-stack.url = "github:darksoil-studio/tnesh-stack/main-0.3";
+    tnesh-stack.url = "github:darksoil-studio/tnesh-stack/main-0.4";
 
     # Holochain dependencies (zomes, DNAs and hApps)
-    profiles-zome.url = "github:darksoil-studio/profiles-zome/main-0.3"; # [!code ++]
+    profiles-zome.url = "github:darksoil-studio/profiles-zome/main-0.4"; # [!code ++]
     # Add more repositories here...
   };
 
@@ -136,14 +136,14 @@ Now you should be able build your dna with `nix build .#MY_DNA` from the top lev
 4. Install the UI for this module and its necessary dependencies with:
 
 ```bash
-pnpm install github:darksoil-studio/profiles-zome/main-0.3?path:ui
+pnpm install github:darksoil-studio/profiles-zome/main-0.4?path:ui
 ```
 
 > [!WARNING]
 > Careful! If you are using PNPM workspaces (which is the case for the apps generated with the TNESH stack scaffolding tool) you need to specify which workspace you want to install those dependencies to, and run the command from the root folder of the repository. In the case of the apps generated with the TNESH stack scaffolding tool:
 >
 >```bash
->pnpm -F ui install @darksoil-studio/profiles-zome/main-0.3?path:ui
+>pnpm -F ui install @darksoil-studio/profiles-zome/main-0.4?path:ui
 >```
 
 5. Connect to Holochain with the `AppClient`, and create the `ProfilesStore` with it:

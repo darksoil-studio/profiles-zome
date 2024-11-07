@@ -1,4 +1,10 @@
 import {
+	AgentPubKey,
+	AppClient,
+	Record,
+	decodeHashFromBase64,
+} from '@holochain/client';
+import {
 	AgentPubKeyMap,
 	ZomeMock,
 	decodeEntry,
@@ -7,12 +13,6 @@ import {
 	fakeRecord,
 	pickBy,
 } from '@tnesh-stack/utils';
-import {
-	AgentPubKey,
-	AppClient,
-	Record,
-	decodeHashFromBase64,
-} from '@holochain/client';
 
 import { ProfilesClient } from './profiles-client.js';
 import { Profile } from './types.js';
@@ -59,7 +59,7 @@ export class ProfilesZomeMock extends ZomeMock implements AppClient {
 		public agentsProfiles: AgentPubKeyMap<Record>,
 		myPubKey?: AgentPubKey,
 	) {
-		super('lobby', 'profiles', myPubKey);
+		super('lobby', 'profiles', 'test-app', myPubKey);
 	}
 
 	async create_profile(profile: Profile): Promise<Record> {

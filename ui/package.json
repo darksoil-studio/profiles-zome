@@ -1,6 +1,6 @@
 {
   "name": "@darksoil-studio/profiles-zome",
-  "version": "0.300.0",
+  "version": "0.400.0-rc",
   "description": "Frontend module for the Holochain hc_zome_profiles zomes",
   "author": "guillem.cordoba@gmail.com",
   "license": "MIT",
@@ -32,11 +32,11 @@
     "prepare": "pnpm build"
   },
   "dependencies": {
-    "@darksoil-studio/linked-devices-zome": "github:darksoil-studio/linked-devices#f5a1122c062f30c7ece91f0c555774c8065b0691&path:ui",
-    "@tnesh-stack/elements": "^0.300.0",
-    "@tnesh-stack/signals": "^0.300.0",
-    "@tnesh-stack/utils": "^0.300.0",
-    "@holochain/client": "^0.17.1",
+    "@darksoil-studio/linked-devices-zome": "github:darksoil-studio/linked-devices#d081fdf2b911585d828aafe06c972a24fcf66fde&path:ui",
+    "@tnesh-stack/elements": "^0.400.0-rc",
+    "@tnesh-stack/signals": "^0.400.0-rc",
+    "@tnesh-stack/utils": "^0.400.0-rc",
+    "@holochain/client": "^0.18.0-rc",
     "@lit/context": "^1.0.1",
     "@lit/localize": "^0.12.0",
     "@mdi/js": "^7.1.96",
