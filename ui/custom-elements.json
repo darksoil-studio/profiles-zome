@@ -400,7 +400,7 @@
             },
             {
               "kind": "method",
-              "name": "search_agents",
+              "name": "search_profiles",
               "parameters": [
                 {
                   "name": "nickname_filter",
@@ -2376,6 +2376,7 @@
             {
               "kind": "method",
               "name": "onProfileSelected",
+              "privacy": "private",
               "parameters": [
                 {
                   "name": "profileHash",

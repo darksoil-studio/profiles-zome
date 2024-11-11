@@ -10,7 +10,6 @@ import {
 	hashProperty,
 	sharedStyles,
 	wrapPathInSvg,
-	wrapPathInSvgWithoutPrefix,
 } from '@tnesh-stack/elements';
 import '@tnesh-stack/elements/dist/elements/display-error.js';
 import '@tnesh-stack/elements/dist/elements/holo-identicon.js';

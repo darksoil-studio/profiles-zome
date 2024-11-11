@@ -210,7 +210,7 @@ export class ProfilesZomeMock extends ZomeMock implements AppClient {
 		return record;
 	}
 
-	search_agents(nickname_filter: string) {
+	search_profiles(nickname_filter: string) {
 		const links = this.prefix.get(nickname_filter.slice(0, 3)) || [];
 		return Array.from(links.values())
 			.filter(l => (l.tag as any as string).startsWith(nickname_filter))

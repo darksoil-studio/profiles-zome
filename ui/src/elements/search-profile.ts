@@ -1,3 +1,11 @@
+import { ActionHash, AgentPubKey } from '@holochain/client';
+import { consume } from '@lit/context';
+import { localized, msg } from '@lit/localize';
+import '@shoelace-style/shoelace/dist/components/dropdown/dropdown.js';
+import SlInput from '@shoelace-style/shoelace/dist/components/input/input.js';
+import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
+import '@shoelace-style/shoelace/dist/components/menu/menu.js';
+import '@shoelace-style/shoelace/dist/components/skeleton/skeleton.js';
 import {
 	FormField,
 	FormFieldController,
@@ -7,14 +15,6 @@ import {
 import '@tnesh-stack/elements/dist/elements/display-error.js';
 import { SignalWatcher, toPromise } from '@tnesh-stack/signals';
 import { EntryRecord } from '@tnesh-stack/utils';
-import { ActionHash, AgentPubKey } from '@holochain/client';
-import { consume } from '@lit/context';
-import { localized, msg } from '@lit/localize';
-import '@shoelace-style/shoelace/dist/components/dropdown/dropdown.js';
-import SlInput from '@shoelace-style/shoelace/dist/components/input/input.js';
-import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
-import '@shoelace-style/shoelace/dist/components/menu/menu.js';
-import '@shoelace-style/shoelace/dist/components/skeleton/skeleton.js';
 import { LitElement, css, html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 
@@ -133,7 +133,10 @@ export class SearchProfile
 	@state()
 	searchFilter = '';
 
-	onProfileSelected(profileHash: ActionHash, profile: EntryRecord<Profile>) {
+	private onProfileSelected(
+		profileHash: ActionHash,
+		profile: EntryRecord<Profile>,
+	) {
 		this.value = profileHash;
 
 		// If the consumer says so, clear the field
