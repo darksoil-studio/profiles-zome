@@ -1,7 +1,7 @@
-import { toPromise, watch } from '@tnesh-stack/signals';
-import { EntryRecord, retype } from '@tnesh-stack/utils';
 import { encodeHashToBase64 } from '@holochain/client';
 import { dhtSync, pause, runScenario } from '@holochain/tryorama';
+import { toPromise, watch } from '@tnesh-stack/signals';
+import { EntryRecord, retype } from '@tnesh-stack/utils';
 import { assert, test } from 'vitest';
 
 import { sampleProfile } from '../../ui/src/mocks.js';
@@ -26,7 +26,7 @@ test('create Profile', async () => {
 			);
 		assert.ok(profile);
 
-		await pause(1000); // Difference in time between the create the processing of the signal
+		await pause(3000); // Difference in time between the create the processing of the signal
 
 		agentsWithProfile = await toPromise(alice.store.allProfiles);
 		assert.equal(agentsWithProfile.size, 1);

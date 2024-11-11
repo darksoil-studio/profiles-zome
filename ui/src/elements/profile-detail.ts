@@ -1,11 +1,11 @@
-import { hashProperty, sharedStyles } from '@tnesh-stack/elements';
-import '@tnesh-stack/elements/dist/elements/display-error.js';
-import { AsyncResult, SignalWatcher } from '@tnesh-stack/signals';
-import { EntryRecord } from '@tnesh-stack/utils';
 import { ActionHash, AgentPubKey } from '@holochain/client';
 import { consume } from '@lit/context';
 import { localized, msg } from '@lit/localize';
 import '@shoelace-style/shoelace/dist/components/skeleton/skeleton.js';
+import { hashProperty, sharedStyles } from '@tnesh-stack/elements';
+import '@tnesh-stack/elements/dist/elements/display-error.js';
+import { AsyncResult, SignalWatcher } from '@tnesh-stack/signals';
+import { EntryRecord } from '@tnesh-stack/utils';
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
@@ -41,9 +41,7 @@ export class ProfileDetail extends SignalWatcher(LitElement) {
 	@property()
 	store!: ProfilesStore;
 
-	/** Private properties */
-
-	getAdditionalFields(profile: Profile): Record<string, string> {
+	private getAdditionalFields(profile: Profile): Record<string, string> {
 		const fields: Record<string, string> = {};
 
 		for (const [key, value] of Object.entries(profile.fields)) {
@@ -55,11 +53,13 @@ export class ProfileDetail extends SignalWatcher(LitElement) {
 		return fields;
 	}
 
-	profile(): AsyncResult<EntryRecord<Profile> | undefined> {
+	private profile(): AsyncResult<EntryRecord<Profile> | undefined> {
 		if (this.profileHash) {
 			return this.store.profiles.get(this.profileHash).latestVersion.get();
 		} else if (this.agentPubKey) {
-			const agentProfile = this.store.agentProfile.get(this.agentPubKey).get();
+			const agentProfile = this.store.profileForAgent
+				.get(this.agentPubKey)
+				.get();
 			if (agentProfile.status !== 'completed') return agentProfile;
 			if (agentProfile.value === undefined) {
 				return {
@@ -75,7 +75,7 @@ export class ProfileDetail extends SignalWatcher(LitElement) {
 		}
 	}
 
-	renderAdditionalField(fieldId: string, fieldValue: string) {
+	private renderAdditionalField(fieldId: string, fieldValue: string) {
 		return html`
 			<div class="column" style="margin-top: 16px">
 				<span style="margin-bottom: 8px; ">
@@ -90,7 +90,7 @@ export class ProfileDetail extends SignalWatcher(LitElement) {
 		`;
 	}
 
-	renderProfile(profile: EntryRecord<Profile> | undefined) {
+	private renderProfile(profile: EntryRecord<Profile> | undefined) {
 		if (!profile)
 			return html`<div
 				class="column"

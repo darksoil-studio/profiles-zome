@@ -1,5 +1,7 @@
 use hdi::prelude::*;
 
+use crate::Profile;
+
 pub fn validate_create_link_path_to_profile(
     _action: CreateLink,
     _base_address: AnyLinkableHash,
@@ -8,21 +10,17 @@ pub fn validate_create_link_path_to_profile(
 ) -> ExternResult<ValidateCallbackResult> {
     // TODO: validate path base address?
 
-    // Check the entry type for the given action hash
-    let action_hash =
-        target_address
-            .into_action_hash()
-            .ok_or(wasm_error!(WasmErrorInner::Guest(
-                "No action hash associated with link".to_string()
-            )))?;
-    let record = must_get_valid_record(action_hash)?;
-    let _profile: crate::Profile = record
-        .entry()
-        .to_app_option()
-        .map_err(|e| wasm_error!(e))?
-        .ok_or(wasm_error!(WasmErrorInner::Guest(
-            "Linked action must reference an entry".to_string()
-        )))?;
+    let Some(profile_hash) = target_address.into_action_hash() else {
+        return Ok(ValidateCallbackResult::Invalid(
+            "No action hash associated with link".to_string(),
+        ));
+    };
+    let record = must_get_valid_record(profile_hash)?;
+    let Ok(Some(_profile)) = record.entry().to_app_option::<Profile>() else {
+        return Ok(ValidateCallbackResult::Invalid(
+            "Linked action must reference an entry".to_string(),
+        ));
+    };
     Ok(ValidateCallbackResult::Valid)
 }
 pub fn validate_delete_link_path_to_profile(

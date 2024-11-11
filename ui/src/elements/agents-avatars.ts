@@ -1,9 +1,17 @@
-import { sharedStyles } from '@tnesh-stack/elements';
-import { SignalWatcher } from '@tnesh-stack/signals';
-import { ActionHash, AgentPubKey } from '@holochain/client';
+import {
+	ActionHash,
+	AgentPubKey,
+	HoloHash,
+	decodeHashFromBase64,
+	encodeHashToBase64,
+} from '@holochain/client';
 import { localized } from '@lit/localize';
+import { hashesProperty, sharedStyles } from '@tnesh-stack/elements';
+import { SignalWatcher } from '@tnesh-stack/signals';
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+
+import './agent-avatar.js';
 
 /**
  * @element agents-avatars
@@ -11,7 +19,7 @@ import { customElement, property } from 'lit/decorators.js';
 @localized()
 @customElement('agents-avatars')
 export class AgentsAvatars extends SignalWatcher(LitElement) {
-	@property()
+	@property(hashesProperty('agents'))
 	agents: AgentPubKey[] = [];
 
 	@property()
@@ -39,7 +47,10 @@ export class AgentsAvatars extends SignalWatcher(LitElement) {
 	static styles = [
 		css`
 			.avatar-group agent-avatar:not(:first-of-type) {
-				margin-left: -0.5rem;
+				margin-left: -0.6rem;
+			}
+			.avatar-group sl-avatar {
+				margin-left: -0.6rem;
 			}
 		`,
 		sharedStyles,

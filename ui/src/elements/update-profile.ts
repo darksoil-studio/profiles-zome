@@ -1,11 +1,11 @@
-import { sharedStyles } from '@tnesh-stack/elements';
-import '@tnesh-stack/elements/dist/elements/display-error.js';
-import { AsyncResult, SignalWatcher } from '@tnesh-stack/signals';
-import { EntryRecord } from '@tnesh-stack/utils';
 import { ActionHash } from '@holochain/client';
 import { consume } from '@lit/context';
 import { localized, msg } from '@lit/localize';
 import '@shoelace-style/shoelace/dist/components/spinner/spinner.js';
+import { sharedStyles } from '@tnesh-stack/elements';
+import '@tnesh-stack/elements/dist/elements/display-error.js';
+import { AsyncResult, SignalWatcher } from '@tnesh-stack/signals';
+import { EntryRecord } from '@tnesh-stack/utils';
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
@@ -42,7 +42,7 @@ export class UpdateProfile extends SignalWatcher(LitElement) {
 		);
 	}
 
-	myProfile(): AsyncResult<EntryRecord<Profile> | undefined> {
+	private myProfile(): AsyncResult<EntryRecord<Profile> | undefined> {
 		const myProfile = this.store.myProfile.get();
 		if (myProfile.status !== 'completed') return myProfile;
 		if (!myProfile.value) {

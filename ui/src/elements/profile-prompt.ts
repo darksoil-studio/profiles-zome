@@ -19,6 +19,7 @@ import './create-profile.js';
 
 /**
  * @element profile-prompt
+ * @slot default - The content of the app
  * @slot hero - Will be displayed above the create-profile form when the user is prompted with it
  */
 @localized()
@@ -41,9 +42,9 @@ export class ProfilePrompt extends SignalWatcher(LitElement) {
 	/** Private properties */
 
 	@state()
-	view: 'question' | 'create-profile' | 'link-device' = 'question';
+	private view: 'question' | 'create-profile' | 'link-device' = 'question';
 
-	renderContent() {
+	private renderContent() {
 		if (!this.linkedDevicesStore) {
 			return html` <create-profile></create-profile> `;
 		}
@@ -84,7 +85,7 @@ export class ProfilePrompt extends SignalWatcher(LitElement) {
 						const linkedDevice = e.detail.agentPubKey;
 
 						const profileForLinkedDeviceLinks =
-							await this.store.client.getAgentProfile(linkedDevice);
+							await this.store.client.getProfileForAgent(linkedDevice);
 
 						if (profileForLinkedDeviceLinks.length > 0) {
 							const latestLink = profileForLinkedDeviceLinks.sort(

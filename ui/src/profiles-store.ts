@@ -53,7 +53,7 @@ export class ProfilesStore {
 		liveLinksSignal(
 			this.client,
 			agent,
-			() => this.client.getAgentProfile(agent),
+			() => this.client.getProfileForAgent(agent),
 			'AgentToProfile',
 		),
 	);
@@ -61,7 +61,7 @@ export class ProfilesStore {
 	/**
 	 * Fetches the profile for the given agent
 	 */
-	agentProfile = new MemoHoloHashMap(
+	profileForAgent = new MemoHoloHashMap(
 		(agent: AgentPubKey) =>
 			new AsyncComputed(() => {
 				const links = this.agentToProfileLinks.get(agent).get();
@@ -109,5 +109,5 @@ export class ProfilesStore {
 	}));
 
 	// Fetches the profile for the active agent
-	myProfile = this.agentProfile.get(this.client.client.myPubKey);
+	myProfile = this.profileForAgent.get(this.client.client.myPubKey);
 }

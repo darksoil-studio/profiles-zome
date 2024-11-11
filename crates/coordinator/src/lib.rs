@@ -59,10 +59,8 @@ fn signal_action(action: SignedActionHashed) -> ExternResult<()> {
             Ok(())
         }
         Action::DeleteLink(delete_link) => {
-            let record =
-                get(delete_link.link_add_address, GetOptions::default())?.ok_or(wasm_error!(
-                    WasmErrorInner::Guest("Failed to fetch CreateLink action".to_string())
-                ))?;
+            let record = get(delete_link.link_add_address, GetOptions::default())?
+                .ok_or(wasm_error!("Failed to fetch CreateLink action"))?;
             match record.action() {
                 Action::CreateLink(create_link) => {
                     if let Ok(Some(link_type)) =
@@ -76,9 +74,7 @@ fn signal_action(action: SignedActionHashed) -> ExternResult<()> {
                     }
                     Ok(())
                 }
-                _ => Err(wasm_error!(WasmErrorInner::Guest(
-                    "Create Link should exist".to_string()
-                ))),
+                _ => Err(wasm_error!("Create Link should exist")),
             }
         }
         Action::Create(_create) => {

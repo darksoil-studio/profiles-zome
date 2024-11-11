@@ -1,8 +1,3 @@
-import { hashProperty, sharedStyles } from '@tnesh-stack/elements';
-import '@tnesh-stack/elements/dist/elements/display-error.js';
-import '@tnesh-stack/elements/dist/elements/holo-identicon.js';
-import { AsyncResult, SignalWatcher } from '@tnesh-stack/signals';
-import { EntryRecord } from '@tnesh-stack/utils';
 import { ActionHash, AgentPubKey } from '@holochain/client';
 import { consume } from '@lit/context';
 import { localized, msg } from '@lit/localize';
@@ -10,6 +5,11 @@ import '@shoelace-style/shoelace/dist/components/avatar/avatar.js';
 import '@shoelace-style/shoelace/dist/components/skeleton/skeleton.js';
 import '@shoelace-style/shoelace/dist/components/tag/tag.js';
 import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
+import { hashProperty, sharedStyles } from '@tnesh-stack/elements';
+import '@tnesh-stack/elements/dist/elements/display-error.js';
+import '@tnesh-stack/elements/dist/elements/holo-identicon.js';
+import { AsyncResult, SignalWatcher } from '@tnesh-stack/signals';
+import { EntryRecord } from '@tnesh-stack/utils';
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
@@ -50,7 +50,7 @@ export class AgentMention extends SignalWatcher(LitElement) {
 	@property()
 	store!: ProfilesStore;
 
-	renderAvatar(profile: EntryRecord<Profile> | undefined) {
+	private renderAvatar(profile: EntryRecord<Profile> | undefined) {
 		if (!profile || !profile.entry.fields.avatar) {
 			return html` <div
 				style=${styleMap({
@@ -79,7 +79,7 @@ export class AgentMention extends SignalWatcher(LitElement) {
 		`;
 	}
 
-	renderProfile(profile: EntryRecord<Profile> | undefined) {
+	private renderProfile(profile: EntryRecord<Profile> | undefined) {
 		return html`
 			<div class="row" style="align-items: center">
 				${this.renderAvatar(profile)}
@@ -88,11 +88,13 @@ export class AgentMention extends SignalWatcher(LitElement) {
 		`;
 	}
 
-	profile(): AsyncResult<EntryRecord<Profile> | undefined> {
+	private profile(): AsyncResult<EntryRecord<Profile> | undefined> {
 		if (this.profileHash) {
 			return this.store.profiles.get(this.profileHash).latestVersion.get();
 		} else if (this.agentPubKey) {
-			const agentProfile = this.store.agentProfile.get(this.agentPubKey).get();
+			const agentProfile = this.store.profileForAgent
+				.get(this.agentPubKey)
+				.get();
 			if (agentProfile.status !== 'completed') return agentProfile;
 			if (agentProfile.value === undefined) {
 				return {
@@ -107,7 +109,8 @@ export class AgentMention extends SignalWatcher(LitElement) {
 			);
 		}
 	}
-	renderContent() {
+
+	private renderContent() {
 		const profile = this.profile();
 		switch (profile.status) {
 			case 'pending':
