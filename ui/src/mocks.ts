@@ -118,8 +118,8 @@ export class ProfilesZomeMock extends ZomeMock implements AppClient {
 
 			const lastLinks2 = this.agentsForProfile.get(agent) || [];
 			const createLink2 = await fakeCreateLinkAction(
-				agent,
 				record.signed_action.hashed.hash,
+				agent,
 			);
 			const linkRecord2 = await fakeRecord(createLink2);
 			this.agentsForProfile.set(record.signed_action.hashed.hash, [
