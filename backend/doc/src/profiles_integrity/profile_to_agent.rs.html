@@ -62,13 +62,10 @@
 <a href="#60" id="60">60</a>
 <a href="#61" id="61">61</a>
 <a href="#62" id="62">62</a>
-<a href="#63" id="63">63</a>
-<a href="#64" id="64">64</a>
-<a href="#65" id="65">65</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>hdi::prelude::<span class="kw-2">*</span>;
 <span class="kw">use </span>linked_devices_types::validate_agents_have_linked_devices;
 
-<span class="kw">use </span><span class="kw">crate</span>::linked_devices::linked_devices_integrity_zome_name;
+<span class="kw">use crate</span>::{linked_devices::linked_devices_integrity_zome_name, Profile};
 
 <span class="kw">pub fn </span>validate_create_link_profile_to_agent(
     action_hash: ActionHash,
@@ -77,26 +74,23 @@
     target_address: AnyLinkableHash,
     _tag: LinkTag,
 ) -&gt; ExternResult&lt;ValidateCallbackResult&gt; {
-    <span class="kw">let </span>_agent = target_address
-        .into_agent_pub_key()
-        .ok_or(<span class="macro">wasm_error!</span>(WasmErrorInner::Guest(
-            <span class="string">"No AgentPubKey associated with the base of an AgentToProfile link"</span>.to_string()
-        )))<span class="question-mark">?</span>;
+    <span class="kw">let </span><span class="prelude-val">Some</span>(_agent) = target_address.into_agent_pub_key() <span class="kw">else </span>{
+        <span class="kw">return </span><span class="prelude-val">Ok</span>(ValidateCallbackResult::Invalid(
+            <span class="string">"No AgentPubKey associated with the base of an AgentToProfile link"</span>.to_string(),
+        ));
+    };
     <span class="comment">// Check the entry type for the given action hash
-    </span><span class="kw">let </span>profile_hash =
-        base_address
-            .into_action_hash()
-            .ok_or(<span class="macro">wasm_error!</span>(WasmErrorInner::Guest(
-                <span class="string">"No action hash associated with link"</span>.to_string()
-            )))<span class="question-mark">?</span>;
+    </span><span class="kw">let </span><span class="prelude-val">Some</span>(profile_hash) = base_address.into_action_hash() <span class="kw">else </span>{
+        <span class="kw">return </span><span class="prelude-val">Ok</span>(ValidateCallbackResult::Invalid(
+            <span class="string">"No action hash associated with link"</span>.to_string(),
+        ));
+    };
     <span class="kw">let </span>record = must_get_valid_record(profile_hash.clone())<span class="question-mark">?</span>;
-    <span class="kw">let </span>_profile: <span class="kw">crate</span>::Profile = record
-        .entry()
-        .to_app_option()
-        .map_err(|e| <span class="macro">wasm_error!</span>(e))<span class="question-mark">?
-        </span>.ok_or(<span class="macro">wasm_error!</span>(WasmErrorInner::Guest(
-            <span class="string">"Linked action must reference an entry"</span>.to_string()
-        )))<span class="question-mark">?</span>;
+    <span class="kw">let </span><span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(_profile)) = record.entry().to_app_option::&lt;Profile&gt;() <span class="kw">else </span>{
+        <span class="kw">return </span><span class="prelude-val">Ok</span>(ValidateCallbackResult::Invalid(
+            <span class="string">"Linked action must reference an entry"</span>.to_string(),
+        ));
+    };
 
     <span class="kw">if </span>action.author.eq(record.action().author()) {
         <span class="kw">return </span><span class="prelude-val">Ok</span>(ValidateCallbackResult::Valid);

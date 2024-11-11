@@ -122,7 +122,7 @@
 
 <span class="doccomment">/// Returns the links targeting the profiles for the given agent, must be one or 0
 </span><span class="attr">#[hdk_extern]
-</span><span class="kw">pub fn </span>get_agent_profile(agent_pub_key: AgentPubKey) -&gt; ExternResult&lt;Vec&lt;Link&gt;&gt; {
+</span><span class="kw">pub fn </span>get_profile_for_agent(agent_pub_key: AgentPubKey) -&gt; ExternResult&lt;Vec&lt;Link&gt;&gt; {
     get_links(
         GetLinksInputBuilder::try_new(agent_pub_key, LinkTypes::AgentToProfile.try_into_filter()<span class="question-mark">?</span>)<span class="question-mark">?
             </span>.build(),

@@ -136,10 +136,6 @@
 <a href="#134" id="134">134</a>
 <a href="#135" id="135">135</a>
 <a href="#136" id="136">136</a>
-<a href="#137" id="137">137</a>
-<a href="#138" id="138">138</a>
-<a href="#139" id="139">139</a>
-<a href="#140" id="140">140</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//!
 //! Profiles zome for any Holochain app.
 //!
@@ -201,10 +197,8 @@
             <span class="prelude-val">Ok</span>(())
         }
         Action::DeleteLink(delete_link) =&gt; {
-            <span class="kw">let </span>record =
-                get(delete_link.link_add_address, GetOptions::default())<span class="question-mark">?</span>.ok_or(<span class="macro">wasm_error!</span>(
-                    WasmErrorInner::Guest(<span class="string">"Failed to fetch CreateLink action"</span>.to_string())
-                ))<span class="question-mark">?</span>;
+            <span class="kw">let </span>record = get(delete_link.link_add_address, GetOptions::default())<span class="question-mark">?
+                </span>.ok_or(<span class="macro">wasm_error!</span>(<span class="string">"Failed to fetch CreateLink action"</span>))<span class="question-mark">?</span>;
             <span class="kw">match </span>record.action() {
                 Action::CreateLink(create_link) =&gt; {
                     <span class="kw">if let </span><span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(link_type)) =
@@ -218,9 +212,7 @@
                     }
                     <span class="prelude-val">Ok</span>(())
                 }
-                <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(<span class="macro">wasm_error!</span>(WasmErrorInner::Guest(
-                    <span class="string">"Create Link should exist"</span>.to_string()
-                ))),
+                <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(<span class="macro">wasm_error!</span>(<span class="string">"Create Link should exist"</span>)),
             }
         }
         Action::Create(_create) =&gt; {
