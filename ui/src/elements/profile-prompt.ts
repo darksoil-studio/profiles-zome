@@ -2,7 +2,7 @@ import {
 	LinkedDevicesStore,
 	linkedDevicesStoreContext,
 } from '@darksoil-studio/linked-devices-zome';
-import '@darksoil-studio/linked-devices-zome/dist/elements/link-devices-requestor.js';
+import '@darksoil-studio/linked-devices-zome/dist/elements/link-device-requestor.js';
 import { consume } from '@lit/context';
 import { localized, msg } from '@lit/localize';
 import { mdiArrowLeft } from '@mdi/js';
@@ -80,7 +80,7 @@ export class ProfilePrompt extends SignalWatcher(LitElement) {
 					<sl-icon slot="prefix" .src=${wrapPathInSvg(mdiArrowLeft)}></sl-icon>
 					${msg('Back')}</sl-button
 				>
-				<link-devices-requestor
+				<link-device-requestor
 					@device-linked=${async (e: CustomEvent) => {
 						const linkedDevice = e.detail.agentPubKey;
 
@@ -97,7 +97,7 @@ export class ProfilePrompt extends SignalWatcher(LitElement) {
 							);
 						}
 					}}
-				></link-devices-requestor>
+				></link-device-requestor>
 			</div>`;
 
 		return html`
