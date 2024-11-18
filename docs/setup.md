@@ -12,7 +12,7 @@ nix run github:darksoil-studio/profiles-zome#scaffold
 This will do the following:
   - Add the flake input for that repository in your `flake.nix`.
   - Add the appropriate zome packages to the `dna.nix` that you select.
-  - Add the UI package for @darksoil-studio/linkes-devices-zome as a dependency of your UI package.
+  - Add the UI package for @darksoil-studio/profiles-zome as a dependency of your UI package.
   - Add the `<profiles-context>` element at the top level of your application.
 
 > [!NOTE]
