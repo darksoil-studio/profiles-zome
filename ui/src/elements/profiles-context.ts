@@ -11,12 +11,12 @@ import { ProfilesStore } from '../profiles-store.js';
 
 @customElement('profiles-context')
 export class ProfilesContext extends SignalWatcher(LitElement) {
-	@consume({ context: appClientContext, subscribe: true })
-	client!: AppClient;
-
 	@provide({ context: profilesStoreContext })
 	@property({ type: Object })
 	store!: ProfilesStore;
+
+	@consume({ context: appClientContext, subscribe: true })
+	client!: AppClient;
 
 	@property()
 	role!: string;
