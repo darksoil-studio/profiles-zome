@@ -2086,18 +2086,18 @@
           "members": [
             {
               "kind": "field",
-              "name": "client",
-              "type": {
-                "text": "AppClient"
-              }
-            },
-            {
-              "kind": "field",
               "name": "store",
               "type": {
                 "text": "ProfilesStore"
               },
               "attribute": "store"
+            },
+            {
+              "kind": "field",
+              "name": "client",
+              "type": {
+                "text": "AppClient"
+              }
             },
             {
               "kind": "field",
