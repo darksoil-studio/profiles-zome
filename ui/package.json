@@ -32,8 +32,8 @@
     "prepare": "pnpm build"
   },
   "dependencies": {
-    "@darksoil-studio/linked-devices-zome": "github:darksoil-studio/linked-devices#39dc726ad15f8033ae5ae74cbd1fac894b9e6eeb&path:ui",
-    "@tnesh-stack/elements": "^0.300.3",
+    "@darksoil-studio/linked-devices-zome": "github:darksoil-studio/linked-devices-zome#0d612dcfeb73830e387461bab6f985a06f75927d&path:ui",
+    "@tnesh-stack/elements": "^0.300.5",
     "@tnesh-stack/signals": "^0.300.0",
     "@tnesh-stack/utils": "^0.300.0",
     "@holochain/client": "^0.17.1",

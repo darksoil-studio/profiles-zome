@@ -19,15 +19,12 @@
 		<profiles-test style="height: 100%; display: flex"></profiles-test>
 
 		<script type="module">
-			import {
-				LinkedDevicesClient,
-				LinkedDevicesStore,
-			} from '@darksoil-studio/linked-devices-zome';
 			import '@darksoil-studio/linked-devices-zome/dist/elements/link-device-recipient.js';
 			import '@darksoil-studio/linked-devices-zome/dist/elements/linked-devices-context.js';
 			import { AppWebsocket } from '@holochain/client';
 			import '@shoelace-style/shoelace/dist/themes/dark.css';
 			import { onSubmit } from '@tnesh-stack/elements';
+			import '@tnesh-stack/elements/dist/elements/app-client-context.js';
 			import { LitElement, html } from 'lit';
 
 			import '../src/elements/agent-avatar.ts';
@@ -52,13 +49,9 @@
 
 				async firstUpdated() {
 					try {
-						const client = await AppWebsocket.connect();
+						this.client = await AppWebsocket.connect();
 
-						const service = new ProfilesClient(client, 'profiles-test');
-
-						this.linkedDevicesStore = new LinkedDevicesStore(
-							new LinkedDevicesClient(client, 'profiles-test'),
-						);
+						const service = new ProfilesClient(this.client, 'profiles-test');
 
 						this.store = new ProfilesStore(service, {
 							avatarMode: 'avatar-required',
@@ -89,72 +82,76 @@
 					}, 400);
 				}
 
-				render() {
-					if (!this.loaded) return html`<span>Loading...</span>`;
+				renderContent() {
 					if (this.linkAgent)
 						return html`
-							<linked-devices-context .store=${this.linkedDevicesStore}>
-								<profiles-context .store=${this.store}>
-									<link-device-recipient
-										style="flex: 1"
-										@device-linked=${() => {
-											this.linkAgent = false;
-											this.requestUpdate();
-										}}
-									>
-									</link-device-recipient>
-								</profiles-context>
-							</linked-devices-context>
+							<link-device-recipient
+								style="flex: 1"
+								@device-linked=${() => {
+									this.linkAgent = false;
+									this.requestUpdate();
+								}}
+							>
+							</link-device-recipient>
 						`;
 					return html`
-						<linked-devices-context .store=${this.linkedDevicesStore}>
-							<profiles-context .store=${this.store}>
-								<profile-prompt
-									@profile-created=${e => console.log(e)}
+						<profile-prompt @profile-created=${e => console.log(e)}>
+							<div style="flex-direction: row; display:flex; flex-wrap: wrap">
+								<form ${onSubmit(f => this.onSubmit(f))}>
+									<textarea-with-mentions
+										name="hi"
+										label="hey"
+									></textarea-with-mentions>
+									<input type="submit" />
+								</form>
+								<all-profiles></all-profiles>
+								<my-profile style="height: 200px; width: 200px;"></my-profile>
+								<agent-avatar .agentPubKey=${this.store.client.client.myPubKey}>
+									<div
+										style="background-color: lightgreen; width: 12px; height: 12px; border-radius: 50%"
+										slot="badge"
+									></div>
+								</agent-avatar>
+								<search-profile
+									name="author"
+									required
+									@profile-selected=${e => console.log(e)}
+								></search-profile>
+								<search-profiles name="hosts" required></search-profiles>
+								<agent-avatar
+									.agentPubKey=${this.store.client.client.myPubKey}
+									.showOnHover=${false}
+									.copyOnClick=${false}
 								>
-								<div style="flex-direction: row; display:flex; flex-wrap: wrap">
-									<form ${onSubmit(f => this.onSubmit(f))}>
-										<textarea-with-mentions
-											name="hi"
-											label="hey"
-										></textarea-with-mentions>
-										<input type="submit" />
-									</form>
-									<all-profiles></all-profiles>
-									<my-profile style="height: 200px; width: 200px;"></my-profile>
-									<agent-avatar .agentPubKey=${this.store.client.client.myPubKey}>
-										<div
-											style="background-color: lightgreen; width: 12px; height: 12px; border-radius: 50%"
-											slot="badge"
-										></div>
-									</agent-avatar>
-									<search-profile
-										name="author"
-										required
-										@profile-selected=${e => console.log(e)}
-									></search-profile>
-									<search-profiles name="hosts" required></search-profiles>
-									<agent-avatar
-										.agentPubKey=${this.store.client.client.myPubKey}
-										.showOnHover=${false}
-										.copyOnClick=${false}
-									>
-									</agent-avatar>
-									<agent-mention
-										.agentPubKey=${this.store.client.client.myPubKey}
-									>
-									</agent-mention>
-									<div>
-										<sl-button @click=${() => {
+								</agent-avatar>
+								<agent-mention
+									.agentPubKey=${this.store.client.client.myPubKey}
+								>
+								</agent-mention>
+								<div>
+									<sl-button
+										@click=${() => {
 											this.linkAgent = true;
 											this.requestUpdate();
-										}}>Link Device
-										</sl-button>
-									</div>
+										}}
+										>Link Device
+									</sl-button>
+								</div>
+							</div>
+						</profile-prompt>
+					`;
+				}
 
-								</profile-prompt>
-							</profiles-context>
-						</linked-devices-context>
+				render() {
+					if (!this.loaded) return html`<span>Loading...</span>`;
+					return html`
+						<app-client-context .client=${this.client}>
+							<linked-devices-context role="profiles-test">
+								<profiles-context .store=${this.store}>
+									${this.renderContent()}
+								</profiles-context>
+							</linked-devices-context>
+						</app-client-context>
 					`;
 				}
 			}
