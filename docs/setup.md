@@ -33,5 +33,5 @@ And then they are ready be used inside the `<profiles-context>` just like any ot
 
 # Example
 
-You can see a full working example of the UI working in [here](https://github.com/darksoil-studio/profiles/blob/main/ui/demo/index.html).
+You can see a full working example of the UI working in [here](https://github.com/darksoil-studio/profiles-zome/blob/main/ui/demo/index.html).
 
