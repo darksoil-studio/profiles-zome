@@ -2086,11 +2086,35 @@
           "members": [
             {
               "kind": "field",
+              "name": "client",
+              "type": {
+                "text": "AppClient"
+              }
+            },
+            {
+              "kind": "field",
               "name": "store",
               "type": {
                 "text": "ProfilesStore"
               },
               "attribute": "store"
+            },
+            {
+              "kind": "field",
+              "name": "role",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "role"
+            },
+            {
+              "kind": "field",
+              "name": "zome",
+              "type": {
+                "text": "string"
+              },
+              "default": "'profiles'",
+              "attribute": "zome"
             }
           ],
           "attributes": [
@@ -2100,6 +2124,21 @@
                 "text": "ProfilesStore"
               },
               "fieldName": "store"
+            },
+            {
+              "name": "role",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "role"
+            },
+            {
+              "name": "zome",
+              "type": {
+                "text": "string"
+              },
+              "default": "'profiles'",
+              "fieldName": "zome"
             }
           ],
           "mixins": [
@@ -2131,6 +2170,238 @@
           "declaration": {
             "name": "ProfilesContext",
             "module": "src/elements/profiles-context.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/search-agent.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SearchAgent",
+          "members": [
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name of the field if this element is used inside a form\nRequired only if the element is used inside a form",
+              "attribute": "name"
+            },
+            {
+              "kind": "field",
+              "name": "defaultValue",
+              "type": {
+                "text": "AgentPubKey | undefined"
+              },
+              "description": "The default value of the field if this element is used inside a form",
+              "attribute": "defaultValue"
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether this field is required if this element is used inside a form",
+              "attribute": "required"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether this field is disabled if this element is used inside a form",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "clearOnSelect",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether to clear the field when an agent is selected.",
+              "attribute": "clear-on-select"
+            },
+            {
+              "kind": "field",
+              "name": "store",
+              "type": {
+                "text": "ProfilesStore"
+              },
+              "description": "Profiles store for this element, not required if you embed this element inside a <profiles-context>",
+              "attribute": "store"
+            },
+            {
+              "kind": "field",
+              "name": "excludedProfiles",
+              "type": {
+                "text": "ActionHash[]"
+              },
+              "default": "[]",
+              "description": "Profiles that won't be listed in the search",
+              "attribute": "excludedProfiles"
+            },
+            {
+              "kind": "field",
+              "name": "fieldLabel",
+              "type": {
+                "text": "string"
+              },
+              "description": "Label for the agent searching field.",
+              "attribute": "field-label"
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity"
+            },
+            {
+              "kind": "method",
+              "name": "reset"
+            },
+            {
+              "kind": "field",
+              "name": "searchFilter",
+              "type": {
+                "text": "string"
+              },
+              "default": "''"
+            },
+            {
+              "kind": "method",
+              "name": "onProfileSelected",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "profileHash",
+                  "type": {
+                    "text": "ActionHash"
+                  }
+                },
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "EntryRecord<Profile>"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "description": "Fired when the user selects some agent. Detail will have this shape: { agentPubKey: HoloHash }",
+              "name": "profile-selected"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "clear-on-select",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether to clear the field when an agent is selected.",
+              "fieldName": "clearOnSelect",
+              "attribute": "clear-on-select"
+            },
+            {
+              "name": "field-label",
+              "type": {
+                "text": "string"
+              },
+              "description": "Label for the agent searching field.",
+              "fieldName": "fieldLabel",
+              "attribute": "field-label"
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name of the field if this element is used inside a form\nRequired only if the element is used inside a form",
+              "fieldName": "name"
+            },
+            {
+              "name": "defaultValue",
+              "type": {
+                "text": "AgentPubKey | undefined"
+              },
+              "description": "The default value of the field if this element is used inside a form",
+              "fieldName": "defaultValue"
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether this field is required if this element is used inside a form",
+              "fieldName": "required"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether this field is disabled if this element is used inside a form",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "store",
+              "type": {
+                "text": "ProfilesStore"
+              },
+              "description": "Profiles store for this element, not required if you embed this element inside a <profiles-context>",
+              "fieldName": "store"
+            },
+            {
+              "name": "excludedProfiles",
+              "type": {
+                "text": "ActionHash[]"
+              },
+              "default": "[]",
+              "description": "Profiles that won't be listed in the search",
+              "fieldName": "excludedProfiles"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@tnesh-stack/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "search-agent",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SearchAgent",
+          "declaration": {
+            "name": "SearchAgent",
+            "module": "src/elements/search-agent.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "search-agent",
+          "declaration": {
+            "name": "SearchAgent",
+            "module": "src/elements/search-agent.ts"
           }
         }
       ]
