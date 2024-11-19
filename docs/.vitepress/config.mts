@@ -17,7 +17,7 @@ export default withMermaid({
 		},
 	},
 	base: '/profiles-zome',
-	title: '@darksoil-studio/profiles-zome',
+	title: 'Profiles Zome',
 	description: 'Profiles zome for hApps',
 	themeConfig: {
 		// https://vitepress.dev/reference/default-theme-config
