@@ -59,7 +59,9 @@
                 --remote-zome-git-url github:darksoil-studio/profiles-zome \
                 --remote-zome-git-branch main-0.3 \
                 --remote-npm-package-name @darksoil-studio/profiles-zome \
-                --remote-npm-package-path ui"
+                --remote-npm-package-path ui \
+                --context-element profiles-context\
+                --context-element-import @darksoil-studio/profiles-zome/dist/elements/profiles-context.js"
           '';
         };
       };
