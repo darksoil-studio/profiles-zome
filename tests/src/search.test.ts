@@ -1,6 +1,6 @@
+import { dhtSync, pause, runScenario } from '@holochain/tryorama';
 import { toPromise, watch } from '@tnesh-stack/signals';
 import { EntryRecord } from '@tnesh-stack/utils';
-import { dhtSync, pause, runScenario } from '@holochain/tryorama';
 import { assert, test } from 'vitest';
 
 import { sampleProfile } from '../../ui/src/mocks.js';
@@ -20,7 +20,7 @@ test('create Profile and search', async () => {
 		// Alice creates a Post
 		const profile: EntryRecord<Profile> =
 			await alice.store.client.createProfile(
-				await sampleProfile(alice.store.client, {
+				sampleProfile({
 					nickname: 'alice',
 				}),
 			);
