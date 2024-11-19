@@ -240,10 +240,7 @@ export class ProfilesZomeMock extends ZomeMock implements AppClient {
 	}
 }
 
-export async function sampleProfile(
-	client: ProfilesClient,
-	partialProfile: Partial<Profile> = {},
-): Promise<Profile> {
+export function sampleProfile(partialProfile: Partial<Profile> = {}): Profile {
 	return {
 		...{
 			nickname: 'alice',

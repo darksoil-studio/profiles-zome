@@ -2,7 +2,7 @@ import { ActionHash } from '@holochain/client';
 import { consume } from '@lit/context';
 import { localized, msg } from '@lit/localize';
 import '@shoelace-style/shoelace/dist/components/spinner/spinner.js';
-import { sharedStyles } from '@tnesh-stack/elements';
+import { notifyError, sharedStyles } from '@tnesh-stack/elements';
 import '@tnesh-stack/elements/dist/elements/display-error.js';
 import { AsyncResult, SignalWatcher } from '@tnesh-stack/signals';
 import { EntryRecord } from '@tnesh-stack/utils';
@@ -29,17 +29,22 @@ export class UpdateProfile extends SignalWatcher(LitElement) {
 	store!: ProfilesStore;
 
 	async updateProfile(previousProfileHash: ActionHash, profile: Profile) {
-		await this.store.client.updateProfile(previousProfileHash, profile);
+		try {
+			await this.store.client.updateProfile(previousProfileHash, profile);
 
-		this.dispatchEvent(
-			new CustomEvent('profile-updated', {
-				detail: {
-					profile,
-				},
-				bubbles: true,
-				composed: true,
-			}),
-		);
+			this.dispatchEvent(
+				new CustomEvent('profile-updated', {
+					detail: {
+						profile,
+					},
+					bubbles: true,
+					composed: true,
+				}),
+			);
+		} catch (e) {
+			notifyError(msg('Error updating the profile.'));
+			console.error(e);
+		}
 	}
 
 	private myProfile(): AsyncResult<EntryRecord<Profile> | undefined> {

@@ -1,8 +1,8 @@
 import { LinkedDevicesStore } from '@darksoil-studio/linked-devices-zome';
-import { toPromise, watch } from '@tnesh-stack/signals';
-import { EntryRecord } from '@tnesh-stack/utils';
 import { encodeHashToBase64 } from '@holochain/client';
 import { dhtSync, pause, runScenario } from '@holochain/tryorama';
+import { toPromise, watch } from '@tnesh-stack/signals';
+import { EntryRecord } from '@tnesh-stack/utils';
 import { assert, expect, test } from 'vitest';
 
 import { sampleProfile } from '../../ui/src/mocks.js';
@@ -20,9 +20,7 @@ test('create Profile and link devices', async () => {
 
 		// Alice creates their profile
 		const profile: EntryRecord<Profile> =
-			await alice.store.client.createProfile(
-				await sampleProfile(alice.store.client),
-			);
+			await alice.store.client.createProfile(sampleProfile());
 		assert.ok(profile);
 
 		await pause(1000); // Difference in time between the create the processing of the signal

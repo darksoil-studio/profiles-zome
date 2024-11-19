@@ -50,7 +50,6 @@ pub struct UpdateProfileInput {
 #[hdk_extern]
 pub fn update_profile(input: UpdateProfileInput) -> ExternResult<Record> {
     let action_hash = update_entry(input.previous_profile_hash.clone(), &input.updated_profile)?;
-    let my_pub_key = agent_info()?.agent_latest_pubkey;
 
     let maybe_previous_profile_record =
         get(input.previous_profile_hash.clone(), Default::default())?;
@@ -92,7 +91,7 @@ pub fn update_profile(input: UpdateProfileInput) -> ExternResult<Record> {
 
         create_link(
             path.path_entry_hash()?,
-            my_pub_key,
+            action_hash.clone(),
             LinkTypes::PathToProfile,
             LinkTag::new(
                 input
@@ -110,6 +109,7 @@ pub fn update_profile(input: UpdateProfileInput) -> ExternResult<Record> {
 
     Ok(record)
 }
+
 #[hdk_extern]
 pub fn get_original_profile(original_profile_hash: ActionHash) -> ExternResult<Option<Record>> {
     get(original_profile_hash, Default::default())
