@@ -78,8 +78,8 @@ importers:
   tests:
     dependencies:
       '@darksoil-studio/linked-devices-zome':
-        specifier: github:darksoil-studio/linked-devices-zome#9e5175a10835c1f56ac1b6e98cbed3f8dd6f188e&path:ui
-        version: https://codeload.github.com/darksoil-studio/linked-devices-zome/tar.gz/9e5175a10835c1f56ac1b6e98cbed3f8dd6f188e#path:ui(@types/react@18.3.12)
+        specifier: github:darksoil-studio/linked-devices-zome#5bf7466cc8091d1a69b3c4be07a2f2367c1eb65e&path:ui
+        version: https://codeload.github.com/darksoil-studio/linked-devices-zome/tar.gz/5bf7466cc8091d1a69b3c4be07a2f2367c1eb65e#path:ui(@types/react@18.3.12)
       '@holochain/client':
         specifier: ^0.17.1
         version: 0.17.1
@@ -105,8 +105,8 @@ importers:
   ui:
     dependencies:
       '@darksoil-studio/linked-devices-zome':
-        specifier: github:darksoil-studio/linked-devices-zome#9e5175a10835c1f56ac1b6e98cbed3f8dd6f188e&path:ui
-        version: https://codeload.github.com/darksoil-studio/linked-devices-zome/tar.gz/9e5175a10835c1f56ac1b6e98cbed3f8dd6f188e#path:ui(@types/react@18.3.12)
+        specifier: github:darksoil-studio/linked-devices-zome#5bf7466cc8091d1a69b3c4be07a2f2367c1eb65e&path:ui
+        version: https://codeload.github.com/darksoil-studio/linked-devices-zome/tar.gz/5bf7466cc8091d1a69b3c4be07a2f2367c1eb65e#path:ui(@types/react@18.3.12)
       '@holochain/client':
         specifier: ^0.17.1
         version: 0.17.1
@@ -352,8 +352,8 @@ packages:
   '@dabh/diagnostics@2.0.3':
     resolution: {integrity: sha512-hrlQOIi7hAfzsMqlGSFyVucrx38O+j6wiGOf//H2ecvIEqYN4ADBSS2iLMh5UFyDunCNniUIPk/q3riFv45xRA==}
 
-  '@darksoil-studio/linked-devices-zome@https://codeload.github.com/darksoil-studio/linked-devices-zome/tar.gz/9e5175a10835c1f56ac1b6e98cbed3f8dd6f188e#path:ui':
-    resolution: {path: ui, tarball: https://codeload.github.com/darksoil-studio/linked-devices-zome/tar.gz/9e5175a10835c1f56ac1b6e98cbed3f8dd6f188e}
+  '@darksoil-studio/linked-devices-zome@https://codeload.github.com/darksoil-studio/linked-devices-zome/tar.gz/5bf7466cc8091d1a69b3c4be07a2f2367c1eb65e#path:ui':
+    resolution: {path: ui, tarball: https://codeload.github.com/darksoil-studio/linked-devices-zome/tar.gz/5bf7466cc8091d1a69b3c4be07a2f2367c1eb65e}
     version: 0.1.0
 
   '@docsearch/css@3.6.2':
@@ -3161,7 +3161,7 @@ snapshots:
       enabled: 2.0.0
       kuler: 2.0.0
 
-  '@darksoil-studio/linked-devices-zome@https://codeload.github.com/darksoil-studio/linked-devices-zome/tar.gz/9e5175a10835c1f56ac1b6e98cbed3f8dd6f188e#path:ui(@types/react@18.3.12)':
+  '@darksoil-studio/linked-devices-zome@https://codeload.github.com/darksoil-studio/linked-devices-zome/tar.gz/5bf7466cc8091d1a69b3c4be07a2f2367c1eb65e#path:ui(@types/react@18.3.12)':
     dependencies:
       '@holochain/client': 0.17.1
       '@lit/context': 1.1.3
