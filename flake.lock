@@ -1687,11 +1687,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1730894017,
-        "narHash": "sha256-IMxJzvpk8m487maynFuyU2z4YVJzrY1msbsCtEBdpTw=",
+        "lastModified": 1732791722,
+        "narHash": "sha256-+pYjqAjPQtKAmK+e8XolXLeRxoyGHs+HyNaxr9YkE0c=",
         "owner": "holochain",
         "repo": "holonix",
-        "rev": "79f9f81e42d87debbd5395a89482dbc9558ef6c1",
+        "rev": "70197b03ee2c6017ae44cfcc2503dea3fd8ea7cb",
         "type": "github"
       },
       "original": {
@@ -2381,11 +2381,11 @@
         "tnesh-stack": "tnesh-stack_3"
       },
       "locked": {
-        "lastModified": 1732265536,
-        "narHash": "sha256-2G14FwOB6Oxyo6IRIDwd6NTiEZzwGt440HyGK5bG1jE=",
+        "lastModified": 1732656666,
+        "narHash": "sha256-zwKZi6JyrRnOPbR6+yzn3b6sLUWILRB0urwnQwBzCVM=",
         "owner": "darksoil-studio",
         "repo": "linked-devices-zome",
-        "rev": "5bf7466cc8091d1a69b3c4be07a2f2367c1eb65e",
+        "rev": "fc49638587176b4301fef2ad71c0a438b152cea0",
         "type": "github"
       },
       "original": {
@@ -2933,11 +2933,11 @@
         "webkitgtknixpkgs": "webkitgtknixpkgs"
       },
       "locked": {
-        "lastModified": 1731926361,
-        "narHash": "sha256-hcyS3i2sjrTIYxiGE6vFR/e1sW9ITqBdmPd4flOCzrA=",
+        "lastModified": 1732270195,
+        "narHash": "sha256-bbUDUX97R2+0EnBvSZfJboapNDMo7NX0AuJDgFox8D0=",
         "owner": "darksoil-studio",
         "repo": "p2p-shipyard",
-        "rev": "13f9f66a7a07f836e2e82b1914dc20fec1d7fa80",
+        "rev": "2574eaaca8d677568ba004cca38c23cc494e1252",
         "type": "github"
       },
       "original": {
@@ -3013,11 +3013,11 @@
         "webkitgtknixpkgs": "webkitgtknixpkgs_3"
       },
       "locked": {
-        "lastModified": 1731926361,
-        "narHash": "sha256-hcyS3i2sjrTIYxiGE6vFR/e1sW9ITqBdmPd4flOCzrA=",
+        "lastModified": 1732270195,
+        "narHash": "sha256-bbUDUX97R2+0EnBvSZfJboapNDMo7NX0AuJDgFox8D0=",
         "owner": "darksoil-studio",
         "repo": "p2p-shipyard",
-        "rev": "13f9f66a7a07f836e2e82b1914dc20fec1d7fa80",
+        "rev": "2574eaaca8d677568ba004cca38c23cc494e1252",
         "type": "github"
       },
       "original": {
