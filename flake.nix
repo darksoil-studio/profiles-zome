@@ -43,8 +43,7 @@
           ];
           packages = [
             (inputs'.holonix.packages.holochain.override {
-              cargoExtraArgs =
-                " --features unstable-functions,unstable-dpki,unstable-countersigning";
+              cargoExtraArgs = " --features unstable-functions";
             })
             inputs'.p2p-shipyard.packages.hc-pilot
             inputs'.playground.packages.hc-playground
