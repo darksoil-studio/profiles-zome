@@ -1,9 +1,4 @@
 import {
-	AgentPubKey,
-	AppClient,
-	Record,
-	decodeHashFromBase64,
-} from '@holochain/client';
 	ActionHash,
 	AgentPubKey,
 	AppClient,
