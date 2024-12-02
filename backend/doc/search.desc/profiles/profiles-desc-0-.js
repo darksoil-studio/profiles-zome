@@ -1,0 +1,1 @@
+searchState.loadedDescShard("profiles", 0, "Profiles zome for any Holochain app.\nReturns the argument unchanged.\nCalls <code>U::from(self)</code>.")
