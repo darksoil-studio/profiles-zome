@@ -67,7 +67,7 @@ export class ProfilesZomeMock extends ZomeMock implements AppClient {
 	prefix: Map<string, Link[]> = new Map();
 
 	constructor(agentsProfiles: AgentPubKeyMap<Profile>, myPubKey?: AgentPubKey) {
-		super('lobby', 'profiles', myPubKey);
+		super('lobby', 'profiles', 'profilestest', myPubKey);
 
 		this.initProfiles(agentsProfiles);
 	}
