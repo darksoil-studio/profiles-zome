@@ -62,6 +62,8 @@ export async function setup(scenario: Scenario) {
 }
 
 export async function setup3(scenario: Scenario) {
+	scenario.dpkiNetworkSeed = undefined;
+
 	const testHappUrl =
 		dirname(fileURLToPath(import.meta.url)) +
 		'/../../workdir/profiles-test.happ';
