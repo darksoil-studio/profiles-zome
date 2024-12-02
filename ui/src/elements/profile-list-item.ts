@@ -1,9 +1,9 @@
-import { hashProperty, sharedStyles } from '@tnesh-stack/elements';
-import { AsyncResult, SignalWatcher } from '@tnesh-stack/signals';
-import { EntryRecord } from '@tnesh-stack/utils';
 import { ActionHash, AgentPubKey } from '@holochain/client';
 import { consume } from '@lit/context';
 import { localized, msg } from '@lit/localize';
+import { hashProperty, sharedStyles } from '@tnesh-stack/elements';
+import { AsyncResult, SignalWatcher } from '@tnesh-stack/signals';
+import { EntryRecord } from '@tnesh-stack/utils';
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
@@ -38,11 +38,13 @@ export class ProfileListItem extends SignalWatcher(LitElement) {
 	@property()
 	store!: ProfilesStore;
 
-	profile(): AsyncResult<EntryRecord<Profile> | undefined> {
+	private profile(): AsyncResult<EntryRecord<Profile> | undefined> {
 		if (this.profileHash) {
 			return this.store.profiles.get(this.profileHash).latestVersion.get();
 		} else if (this.agentPubKey) {
-			const agentProfile = this.store.agentProfile.get(this.agentPubKey).get();
+			const agentProfile = this.store.profileForAgent
+				.get(this.agentPubKey)
+				.get();
 			if (agentProfile.status !== 'completed') return agentProfile;
 			if (agentProfile.value === undefined) {
 				return {

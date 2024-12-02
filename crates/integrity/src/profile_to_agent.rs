@@ -1,7 +1,7 @@
 use hdi::prelude::*;
 use linked_devices_types::validate_agents_have_linked_devices;
 
-use crate::linked_devices::linked_devices_integrity_zome_name;
+use crate::{linked_devices::linked_devices_integrity_zome_name, Profile};
 
 pub fn validate_create_link_profile_to_agent(
     action_hash: ActionHash,
@@ -10,26 +10,23 @@ pub fn validate_create_link_profile_to_agent(
     target_address: AnyLinkableHash,
     _tag: LinkTag,
 ) -> ExternResult<ValidateCallbackResult> {
-    let _agent = target_address
-        .into_agent_pub_key()
-        .ok_or(wasm_error!(WasmErrorInner::Guest(
-            "No AgentPubKey associated with the base of an AgentToProfile link".to_string()
-        )))?;
+    let Some(_agent) = target_address.into_agent_pub_key() else {
+        return Ok(ValidateCallbackResult::Invalid(
+            "No AgentPubKey associated with the base of an AgentToProfile link".to_string(),
+        ));
+    };
     // Check the entry type for the given action hash
-    let profile_hash =
-        base_address
-            .into_action_hash()
-            .ok_or(wasm_error!(WasmErrorInner::Guest(
-                "No action hash associated with link".to_string()
-            )))?;
+    let Some(profile_hash) = base_address.into_action_hash() else {
+        return Ok(ValidateCallbackResult::Invalid(
+            "No action hash associated with link".to_string(),
+        ));
+    };
     let record = must_get_valid_record(profile_hash.clone())?;
-    let _profile: crate::Profile = record
-        .entry()
-        .to_app_option()
-        .map_err(|e| wasm_error!(e))?
-        .ok_or(wasm_error!(WasmErrorInner::Guest(
-            "Linked action must reference an entry".to_string()
-        )))?;
+    let Ok(Some(_profile)) = record.entry().to_app_option::<Profile>() else {
+        return Ok(ValidateCallbackResult::Invalid(
+            "Linked action must reference an entry".to_string(),
+        ));
+    };
 
     if action.author.eq(record.action().author()) {
         return Ok(ValidateCallbackResult::Valid);

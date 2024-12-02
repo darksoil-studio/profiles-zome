@@ -1,11 +1,15 @@
-import '@darksoil-studio/linked-devices-zome/dist/elements/link-devices-requestor.js';
-import { sharedStyles, wrapPathInSvg } from '@tnesh-stack/elements';
-import '@tnesh-stack/elements/dist/elements/display-error.js';
-import { SignalWatcher } from '@tnesh-stack/signals';
+import {
+	LinkedDevicesStore,
+	linkedDevicesStoreContext,
+} from '@darksoil-studio/linked-devices-zome';
+import '@darksoil-studio/linked-devices-zome/dist/elements/link-device-requestor.js';
 import { consume } from '@lit/context';
 import { localized, msg } from '@lit/localize';
 import { mdiArrowLeft } from '@mdi/js';
 import '@shoelace-style/shoelace/dist/components/spinner/spinner.js';
+import { sharedStyles, wrapPathInSvg } from '@tnesh-stack/elements';
+import '@tnesh-stack/elements/dist/elements/display-error.js';
+import { SignalWatcher } from '@tnesh-stack/signals';
 import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
@@ -15,6 +19,7 @@ import './create-profile.js';
 
 /**
  * @element profile-prompt
+ * @slot default - The content of the app
  * @slot hero - Will be displayed above the create-profile form when the user is prompted with it
  */
 @localized()
@@ -27,12 +32,23 @@ export class ProfilePrompt extends SignalWatcher(LitElement) {
 	@property()
 	store!: ProfilesStore;
 
+	/**
+	 * @internal
+	 */
+	@consume({ context: linkedDevicesStoreContext, subscribe: true })
+	@property()
+	linkedDevicesStore: LinkedDevicesStore | undefined;
+
 	/** Private properties */
 
 	@state()
-	view: 'question' | 'create-profile' | 'link-device' = 'question';
+	private view: 'question' | 'create-profile' | 'link-device' = 'question';
 
-	renderContent() {
+	private renderContent() {
+		if (!this.linkedDevicesStore) {
+			return html` <create-profile></create-profile> `;
+		}
+
 		if (this.view === 'create-profile')
 			return html`
 				<div class="column" style="align-items: start">
@@ -64,12 +80,12 @@ export class ProfilePrompt extends SignalWatcher(LitElement) {
 					<sl-icon slot="prefix" .src=${wrapPathInSvg(mdiArrowLeft)}></sl-icon>
 					${msg('Back')}</sl-button
 				>
-				<link-devices-requestor
+				<link-device-requestor
 					@device-linked=${async (e: CustomEvent) => {
 						const linkedDevice = e.detail.agentPubKey;
 
 						const profileForLinkedDeviceLinks =
-							await this.store.client.getAgentProfile(linkedDevice);
+							await this.store.client.getProfileForAgent(linkedDevice);
 
 						if (profileForLinkedDeviceLinks.length > 0) {
 							const latestLink = profileForLinkedDeviceLinks.sort(
@@ -81,7 +97,7 @@ export class ProfilePrompt extends SignalWatcher(LitElement) {
 							);
 						}
 					}}
-				></link-devices-requestor>
+				></link-device-requestor>
 			</div>`;
 
 		return html`

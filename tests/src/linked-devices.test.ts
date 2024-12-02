@@ -1,8 +1,8 @@
 import { LinkedDevicesStore } from '@darksoil-studio/linked-devices-zome';
-import { toPromise, watch } from '@tnesh-stack/signals';
-import { EntryRecord } from '@tnesh-stack/utils';
 import { encodeHashToBase64 } from '@holochain/client';
 import { dhtSync, pause, runScenario } from '@holochain/tryorama';
+import { toPromise, watch } from '@tnesh-stack/signals';
+import { EntryRecord } from '@tnesh-stack/utils';
 import { assert, expect, test } from 'vitest';
 
 import { sampleProfile } from '../../ui/src/mocks.js';
@@ -20,9 +20,7 @@ test('create Profile and link devices', async () => {
 
 		// Alice creates their profile
 		const profile: EntryRecord<Profile> =
-			await alice.store.client.createProfile(
-				await sampleProfile(alice.store.client),
-			);
+			await alice.store.client.createProfile(sampleProfile());
 		assert.ok(profile);
 
 		await pause(1000); // Difference in time between the create the processing of the signal
@@ -159,11 +157,11 @@ async function linkDevices(
 	await store1.client.prepareLinkDevices(store1Passcode);
 	await store2.client.prepareLinkDevices(store2Passcode);
 
-	await store1.client.initLinkDevices(
+	await store1.client.requestLinkDevices(
 		store2.client.client.myPubKey,
 		store2Passcode,
 	);
-	await store2.client.requestLinkDevices(
+	await store2.client.acceptLinkDevices(
 		store1.client.client.myPubKey,
 		store1Passcode,
 	);

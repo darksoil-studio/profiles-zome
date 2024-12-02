@@ -25,12 +25,12 @@ import './profile-list-item-skeleton.js';
 import './search-profile-dropdown.js';
 
 /**
- * @element search-profile
+ * @element search-agent
  * @fires profile-selected - Fired when the user selects some agent. Detail will have this shape: { agentPubKey: HoloHash }
  */
 @localized()
-@customElement('search-profile')
-export class SearchProfile
+@customElement('search-agent')
+export class SearchAgent
 	extends SignalWatcher(LitElement)
 	implements FormField
 {
@@ -47,7 +47,7 @@ export class SearchProfile
 	 * The default value of the field if this element is used inside a form
 	 */
 	@property(hashProperty('default-value'))
-	defaultValue: ActionHash | undefined;
+	defaultValue: AgentPubKey | undefined;
 
 	/**
 	 * Whether this field is required if this element is used inside a form
@@ -65,7 +65,7 @@ export class SearchProfile
 	 * @internal
 	 */
 	@state()
-	value!: ActionHash | undefined;
+	value!: AgentPubKey | undefined;
 
 	/** Public attributes */
 
@@ -116,9 +116,12 @@ export class SearchProfile
 		this.value = this.defaultValue;
 		if (this.defaultValue) {
 			const profile = await toPromise(
-				this.store.profiles.get(this.defaultValue).latestVersion,
+				this.store.profileForAgent.get(this.defaultValue),
 			);
-			this._textField.value = profile?.entry.nickname || '';
+			if (profile) {
+				const profileLatestVersion = await toPromise(profile.latestVersion);
+				this._textField.value = profileLatestVersion?.entry.nickname || '';
+			}
 		} else {
 			this._textField.value = '';
 		}
@@ -137,7 +140,7 @@ export class SearchProfile
 		profileHash: ActionHash,
 		profile: EntryRecord<Profile>,
 	) {
-		this.value = profileHash;
+		this.value = profile.action.author;
 
 		// If the consumer says so, clear the field
 		if (this.clearOnSelect) {

@@ -13,6 +13,7 @@ Existing functionalities:
 - Configurable profile fields.
 - Profile detail frontend element.
 
+> [!NOTE]
 > In the future, when the personas & profiles application is fully developed, this module will switch to storing data in it, and will serve only as a bridge to get that private data. We hope to maintain the modules and their interfaces as similar as they are now, and that the migration friction is low.
 
 This module follows the [TNESH stack](https://darksoil.studio/tnesh-stack/) pattern of developing holochain modules. Read its documentation to understand more about its motivation and the big picture.

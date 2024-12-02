@@ -1,4 +1,3 @@
-import { EntryRecord, ZomeClient } from '@tnesh-stack/utils';
 import {
 	ActionHash,
 	AgentPubKey,
@@ -7,6 +6,7 @@ import {
 	Record,
 	RoleName,
 } from '@holochain/client';
+import { EntryRecord, ZomeClient } from '@tnesh-stack/utils';
 
 import { Profile, ProfilesSignal } from './types.js';
 
@@ -25,8 +25,8 @@ export class ProfilesClient extends ZomeClient<ProfilesSignal> {
 	 * @param agentPubKey the agent to get the profileHash for
 	 * @returns the links pointing to the profile of the agent, can't be more than one
 	 */
-	async getAgentProfile(agentPubKey: AgentPubKey): Promise<Array<Link>> {
-		return this.callZome('get_agent_profile', agentPubKey);
+	async getProfileForAgent(agentPubKey: AgentPubKey): Promise<Array<Link>> {
+		return this.callZome('get_profile_for_agent', agentPubKey);
 	}
 
 	/**
@@ -102,10 +102,6 @@ export class ProfilesClient extends ZomeClient<ProfilesSignal> {
 		return new EntryRecord(record);
 	}
 
-	async linkMyAgentToProfile(profileHash: ActionHash) {
-		await this.callZome('link_my_agent_to_profile', profileHash);
-	}
-
 	/**
 	 * Update my profile
 	 *
@@ -120,5 +116,21 @@ export class ProfilesClient extends ZomeClient<ProfilesSignal> {
 			updated_profile: updatedProfile,
 		});
 		return new EntryRecord(record);
+	}
+
+	/** Linked Devices */
+
+	/**
+	 * Links my agent to the given profile
+	 * This is useful when a user has two devices in the same network, and they want to appear under one single profile
+	 * The first agent would create the profile, and the second must first link devices with the first one
+	 * and then call this function
+	 *
+	 * Requires that my agent has linked devices with the creator of the profile
+	 *
+	 * @param profile the profile to create
+	 */
+	async linkMyAgentToProfile(profileHash: ActionHash) {
+		await this.callZome('link_my_agent_to_profile', profileHash);
 	}
 }

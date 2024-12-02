@@ -1,19 +1,3 @@
-import { sharedStyles } from '@tnesh-stack/elements';
-import '@tnesh-stack/elements/dist/elements/display-error.js';
-import {
-	AsyncComputed,
-	Signal,
-	SignalWatcher,
-	joinAsyncMap,
-	pipe,
-	toPromise,
-} from '@tnesh-stack/signals';
-import {
-	EntryRecord,
-	HoloHashMap,
-	mapValues,
-	slice,
-} from '@tnesh-stack/utils';
 import {
 	ActionHash,
 	AgentPubKey,
@@ -27,6 +11,17 @@ import '@shoelace-style/shoelace/dist/components/input/input.js';
 import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
 import '@shoelace-style/shoelace/dist/components/menu/menu.js';
 import '@shoelace-style/shoelace/dist/components/skeleton/skeleton.js';
+import { sharedStyles } from '@tnesh-stack/elements';
+import '@tnesh-stack/elements/dist/elements/display-error.js';
+import {
+	AsyncComputed,
+	Signal,
+	SignalWatcher,
+	joinAsyncMap,
+	pipe,
+	toPromise,
+} from '@tnesh-stack/signals';
+import { EntryRecord, HoloHashMap, mapValues, slice } from '@tnesh-stack/utils';
 import { LitElement, css, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -116,18 +111,20 @@ export class SearchProfileDropdown extends SignalWatcher(LitElement) {
 
 		switch (searchResult.status) {
 			case 'pending':
-				return Array(3).map(
+				return Array.from(Array(3)).map(
 					() => html`
 						<sl-menu-item>
-							<sl-skeleton
-								effect="sheen"
-								slot="prefix"
-								style="height: 32px; width: 32px; border-radius: 50%; margin: 8px"
-							></sl-skeleton>
-							<sl-skeleton
-								effect="sheen"
-								style="width: 100px; margin: 8px; border-radius: 12px"
-							></sl-skeleton>
+							<div class="row" style="display:flex; align-items: center">
+								<sl-skeleton
+									effect="sheen"
+									slot="prefix"
+									style="height: 32px; width: 32px; border-radius: 50%; margin: 8px"
+								></sl-skeleton>
+								<sl-skeleton
+									effect="sheen"
+									style="width: 100px; margin: 8px; border-radius: 12px"
+								></sl-skeleton>
+							</div>
 						</sl-menu-item>
 					`,
 				);
@@ -174,7 +171,12 @@ export class SearchProfileDropdown extends SignalWatcher(LitElement) {
 
 	render() {
 		return html`
-			<sl-dropdown id="dropdown" style="flex: 1" .open=${ifDefined(this.open)}>
+			<sl-dropdown
+				id="dropdown"
+				hoist
+				style="flex: 1"
+				.open=${ifDefined(this.open)}
+			>
 				<slot slot="trigger"></slot>
 				<sl-menu
 					@sl-select=${async (e: CustomEvent) => {

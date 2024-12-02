@@ -16,8 +16,8 @@ export default withMermaid({
 			include: ['mermaid'],
 		},
 	},
-	base: '/profiles',
-	title: '@darksoil-studio/profiles-zome',
+	base: '/profiles-zome',
+	title: 'Profiles Zome',
 	description: 'Profiles zome for hApps',
 	themeConfig: {
 		// https://vitepress.dev/reference/default-theme-config
@@ -81,9 +81,13 @@ export default withMermaid({
 			`
   function syncTheme() {
       const isDark = document.documentElement.classList.contains('dark');
-      const isShoelaceDark = document.documentElement.classList.contains('sl-theme-dark');
-      if (isDark && !isShoelaceDark) document.documentElement.classList = "dark sl-theme-dark";
-      if (!isDark && isShoelaceDark) document.documentElement.classList = "";
+      const isShoelaceDark = document.body.classList.contains('sl-theme-dark');
+      if (isDark && !isShoelaceDark) {
+	      document.body.classList = "sl-theme-dark";
+	    }
+      if (!isDark && isShoelaceDark) {
+      	document.body.classList = "";
+      }
   }
   const attrObserver = new MutationObserver((mutations) => {
     mutations.forEach(mu => {

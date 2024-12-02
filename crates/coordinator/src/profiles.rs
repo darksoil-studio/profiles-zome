@@ -35,8 +35,7 @@ pub fn create_profile(profile: Profile) -> ExternResult<Record> {
         (),
     )?;
 
-    let record = get(action_hash, GetOptions::default())?
-        .ok_or(wasm_error!(WasmErrorInner::Guest("Unreachable".into())))?;
+    let record = get(action_hash, GetOptions::default())?.ok_or(wasm_error!("Unreachable"))?;
 
     Ok(record)
 }
@@ -51,15 +50,12 @@ pub struct UpdateProfileInput {
 #[hdk_extern]
 pub fn update_profile(input: UpdateProfileInput) -> ExternResult<Record> {
     let action_hash = update_entry(input.previous_profile_hash.clone(), &input.updated_profile)?;
-    let my_pub_key = agent_info()?.agent_latest_pubkey;
 
     let maybe_previous_profile_record =
         get(input.previous_profile_hash.clone(), Default::default())?;
 
     let Some(previous_profile_record) = maybe_previous_profile_record else {
-        return Err(wasm_error!(WasmErrorInner::Guest(format!(
-            "Could not get the previous profile"
-        ))));
+        return Err(wasm_error!("Could not get the previous profile"));
     };
 
     // If we have changed the nickname, remove the previous nickname link and add a new one
@@ -67,9 +63,7 @@ pub fn update_profile(input: UpdateProfileInput) -> ExternResult<Record> {
         .entry()
         .to_app_option()
         .map_err(|e| wasm_error!(e))?
-        .ok_or(wasm_error!(WasmErrorInner::Guest(
-            "Previous profile is malformed".to_string()
-        )))?;
+        .ok_or(wasm_error!("Previous profile is malformed"))?;
     if previous_profile
         .nickname
         .ne(&input.updated_profile.nickname)
@@ -97,7 +91,7 @@ pub fn update_profile(input: UpdateProfileInput) -> ExternResult<Record> {
 
         create_link(
             path.path_entry_hash()?,
-            my_pub_key,
+            action_hash.clone(),
             LinkTypes::PathToProfile,
             LinkTag::new(
                 input
@@ -115,6 +109,7 @@ pub fn update_profile(input: UpdateProfileInput) -> ExternResult<Record> {
 
     Ok(record)
 }
+
 #[hdk_extern]
 pub fn get_original_profile(original_profile_hash: ActionHash) -> ExternResult<Option<Record>> {
     get(original_profile_hash, Default::default())
