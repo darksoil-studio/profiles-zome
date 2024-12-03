@@ -1,10 +1,10 @@
+import { ActionHash, encodeHashToBase64 } from '@holochain/client';
+import { consume } from '@lit/context';
+import { localized, msg } from '@lit/localize';
 import { sharedStyles } from '@tnesh-stack/elements';
 import '@tnesh-stack/elements/dist/elements/display-error.js';
 import { SignalWatcher, joinAsyncMap } from '@tnesh-stack/signals';
-import { EntryRecord, mapValues } from '@tnesh-stack/utils';
-import { ActionHash, AgentPubKey } from '@holochain/client';
-import { consume } from '@lit/context';
-import { localized, msg } from '@lit/localize';
+import { EntryRecord, mapValues, pick } from '@tnesh-stack/utils';
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
@@ -27,6 +27,12 @@ export class AllProfiles extends SignalWatcher(LitElement) {
 	@consume({ context: profilesStoreContext, subscribe: true })
 	@property()
 	store!: ProfilesStore;
+
+	/**
+	 * Profiles that won't be listed in the search
+	 */
+	@property()
+	excludedProfiles: ActionHash[] = [];
 
 	/** Private properties */
 
@@ -64,12 +70,9 @@ export class AllProfiles extends SignalWatcher(LitElement) {
 						<div
 							class="row"
 							style="align-items: center; margin-bottom: 16px; gap: 8px"
+							@click=${() => this.fireAgentSelected(profileHash)}
 						>
-							<agent-avatar
-								.profileHash=${profileHash}
-								@click=${() => this.fireAgentSelected(profileHash)}
-							>
-							</agent-avatar
+							<agent-avatar .profileHash=${profileHash}> </agent-avatar
 							><span> ${profile?.entry.nickname}</span>
 						</div>
 					`,
@@ -83,7 +86,16 @@ export class AllProfiles extends SignalWatcher(LitElement) {
 		if (allProfiles.status !== 'completed') return allProfiles;
 
 		const latestProfiles = joinAsyncMap(
-			mapValues(allProfiles.value, p => p.latestVersion.get()),
+			mapValues(
+				pick(
+					allProfiles.value,
+					key =>
+						!!this.excludedProfiles.find(
+							e => encodeHashToBase64(e) === encodeHashToBase64(key),
+						),
+				),
+				p => p.latestVersion.get(),
+			),
 		);
 		return latestProfiles;
 	}
