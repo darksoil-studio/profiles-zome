@@ -1,12 +1,14 @@
 import { ActionHash, encodeHashToBase64 } from '@holochain/client';
 import { consume } from '@lit/context';
 import { localized, msg } from '@lit/localize';
+import '@shoelace-style/shoelace/dist/components/divider/divider.js';
 import { sharedStyles } from '@tnesh-stack/elements';
 import '@tnesh-stack/elements/dist/elements/display-error.js';
 import { SignalWatcher, joinAsyncMap } from '@tnesh-stack/signals';
-import { EntryRecord, mapValues, pick } from '@tnesh-stack/utils';
+import { EntryRecord, mapValues, pick, pickBy } from '@tnesh-stack/utils';
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { join } from 'lit/directives/join.js';
 
 import { profilesStoreContext } from '../context.js';
 import { ProfilesStore } from '../profiles-store.js';
@@ -61,21 +63,24 @@ export class AllProfiles extends SignalWatcher(LitElement) {
 		profiles: ReadonlyMap<ActionHash, EntryRecord<Profile> | undefined>,
 	) {
 		if (profiles.size === 0)
-			return html`<span>${msg('There are no created profiles yet')} ></span>`;
+			return html`<span>${msg('There are no profiles created yet.')}</span>`;
 
 		return html`
-			<div style="min-width: 80px; flex: 1;" }>
-				${Array.from(profiles.entries()).map(
-					([profileHash, profile]) => html`
-						<div
-							class="row"
-							style="align-items: center; margin-bottom: 16px; gap: 8px"
-							@click=${() => this.fireAgentSelected(profileHash)}
-						>
-							<agent-avatar .profileHash=${profileHash}> </agent-avatar
-							><span> ${profile?.entry.nickname}</span>
-						</div>
-					`,
+			<div class="column" style="flex: 1;">
+				${join(
+					Array.from(profiles.entries()).map(
+						([profileHash, profile]) => html`
+							<div
+								class="row"
+								style="align-items: center; gap: 8px"
+								@click=${() => this.fireAgentSelected(profileHash)}
+							>
+								<agent-avatar .profileHash=${profileHash}> </agent-avatar
+								><span>${profile?.entry.nickname}</span>
+							</div>
+						`,
+					),
+					() => html`<sl-divider></sl-divider>`,
 				)}
 			</div>
 		`;
@@ -87,10 +92,10 @@ export class AllProfiles extends SignalWatcher(LitElement) {
 
 		const latestProfiles = joinAsyncMap(
 			mapValues(
-				pick(
+				pickBy(
 					allProfiles.value,
-					key =>
-						!!this.excludedProfiles.find(
+					(v, key) =>
+						!this.excludedProfiles.find(
 							e => encodeHashToBase64(e) === encodeHashToBase64(key),
 						),
 				),
@@ -107,7 +112,9 @@ export class AllProfiles extends SignalWatcher(LitElement) {
 			case 'pending':
 				return html`<div class="column center-content">
 					<profile-list-item-skeleton> </profile-list-item-skeleton>
-					<profile-list-item-skeleton> </profile-list-item-skeleton>
+					<sl-divider></sl-divider>
+					<profile-list-item-skeleton> </profile-list-item-skeleton
+					><sl-divider></sl-divider>
 					<profile-list-item-skeleton> </profile-list-item-skeleton>
 				</div>`;
 			case 'error':
