@@ -3,9 +3,10 @@ import {
 	linkedDevicesStoreContext,
 } from '@darksoil-studio/linked-devices-zome';
 import '@darksoil-studio/linked-devices-zome/dist/elements/link-device-requestor.js';
+import { AgentPubKey } from '@holochain/client';
 import { consume } from '@lit/context';
 import { localized, msg } from '@lit/localize';
-import { mdiArrowLeft } from '@mdi/js';
+import { mdiArrowLeft, mdiSync } from '@mdi/js';
 import '@shoelace-style/shoelace/dist/components/card/card.js';
 import '@shoelace-style/shoelace/dist/components/spinner/spinner.js';
 import { sharedStyles, wrapPathInSvg } from '@tnesh-stack/elements';
@@ -45,85 +46,131 @@ export class ProfilePrompt extends SignalWatcher(LitElement) {
 	@state()
 	private view: 'question' | 'create-profile' | 'link-device' = 'question';
 
+	@state()
+	private linkingDevices = false;
+
+	async createProfileForLinkedDevices(agent: AgentPubKey) {
+		if (this.linkingDevices) return;
+		this.linkingDevices = true;
+		try {
+			const profileForLinkedDeviceLinks =
+				await this.store.client.getProfileForAgent(agent);
+
+			if (profileForLinkedDeviceLinks.length > 0) {
+				const latestLink = profileForLinkedDeviceLinks.sort(
+					(l1, l2) => l2.timestamp - l1.timestamp,
+				)[0];
+				const profileForLinkedDevice = latestLink.target;
+				await this.store.client.linkMyAgentToProfile(profileForLinkedDevice);
+			}
+		} catch (e) {}
+
+		this.linkingDevices = false;
+	}
+
 	private renderContent() {
 		if (!this.linkedDevicesStore) {
 			return html` <create-profile></create-profile> `;
 		}
 
-		if (this.view === 'create-profile')
-			return html`
-				<div class="column" style="align-items: start">
-					<sl-button
-						variant="text"
-						@click=${() => {
-							this.view = 'question';
-						}}
-						style="margin-bottom: 12px"
+		const myLinkedDevices = this.linkedDevicesStore.myLinkedDevices.get();
+
+		switch (myLinkedDevices.status) {
+			case 'pending':
+				return html`<div
+					class="row"
+					style="flex: 1; justify-content: center; align-items: center"
+				>
+					<sl-spinner style="font-size: 2rem"></sl-spinner>
+				</div>`;
+			case 'error':
+				return html`<display-error
+					.headline=${msg('Error fetching your linked devices.')}
+					.error=${myLinkedDevices.error}
+				></display-error>`;
+			case 'completed':
+				if (myLinkedDevices.value.length > 0) {
+					this.createProfileForLinkedDevices(myLinkedDevices.value[0]);
+					return html`<div
+						class="row"
+						style="flex: 1; justify-content: center; align-items: center; gap: 16px"
 					>
 						<sl-icon
-							slot="prefix"
-							.src=${wrapPathInSvg(mdiArrowLeft)}
+							style="font-size: 64px"
+							.src=${wrapPathInSvg(mdiSync)}
 						></sl-icon>
-						${msg('Back')}</sl-button
-					>
-					<create-profile></create-profile>
-				</div>
-			`;
-		if (this.view === 'link-device')
-			return html` <div class="column" style="align-items: start">
-				<sl-button
-					variant="text"
-					@click=${() => {
-						this.view = 'question';
-					}}
-					style="margin-bottom: 12px"
-				>
-					<sl-icon slot="prefix" .src=${wrapPathInSvg(mdiArrowLeft)}></sl-icon>
-					${msg('Back')}</sl-button
-				>
-				<sl-card>
-					<link-device-requestor
-						@device-linked=${async (e: CustomEvent) => {
-							const linkedDevice = e.detail.agentPubKey;
+						<span
+							>${msg('Synchronizing profile with your other devices...')}
+						</span>
+					</div>`;
+				}
 
-							const profileForLinkedDeviceLinks =
-								await this.store.client.getProfileForAgent(linkedDevice);
-
-							if (profileForLinkedDeviceLinks.length > 0) {
-								const latestLink = profileForLinkedDeviceLinks.sort(
-									(l1, l2) => l2.timestamp - l1.timestamp,
-								)[0];
-								const profileForLinkedDevice = latestLink.target;
-								await this.store.client.linkMyAgentToProfile(
-									profileForLinkedDevice,
-								);
-							}
-						}}
-					></link-device-requestor>
-				</sl-card>
-			</div>`;
-
-		return html`
-			<sl-card>
-				<div class="column" style="gap: 12px">
-					<span class="title"> ${msg('Profile Setup')} </span>
-					<span>
-						${msg('Have you already created a profile in this app?')}
-					</span>
-
-					<div class="row" style="gap: 12px">
-						<sl-button @click=${() => (this.view = 'create-profile')}
-							>${msg('No, create a new profile')}
-						</sl-button>
+				if (this.view === 'create-profile')
+					return html`
+						<div class="column" style="align-items: start">
+							<sl-button
+								variant="text"
+								@click=${() => {
+									this.view = 'question';
+								}}
+								style="margin-bottom: 12px"
+							>
+								<sl-icon
+									slot="prefix"
+									.src=${wrapPathInSvg(mdiArrowLeft)}
+								></sl-icon>
+								${msg('Back')}</sl-button
+							>
+							<create-profile></create-profile>
+						</div>
+					`;
+				if (this.view === 'link-device')
+					return html` <div class="column" style="align-items: start">
 						<sl-button
-							variant="primary"
-							@click=${() => (this.view = 'link-device')}
-							>${msg('Yes! Link this device')}
-						</sl-button>
-					</div>
-				</div>
-			</sl-card>
-		`;
+							variant="text"
+							@click=${() => {
+								this.view = 'question';
+							}}
+							style="margin-bottom: 12px"
+						>
+							<sl-icon
+								slot="prefix"
+								.src=${wrapPathInSvg(mdiArrowLeft)}
+							></sl-icon>
+							${msg('Back')}</sl-button
+						>
+						<sl-card>
+							<link-device-requestor
+								@device-linked=${async (e: CustomEvent) => {
+									const linkedDevice = e.detail.agentPubKey;
+									this.createProfileForLinkedDevices(linkedDevice);
+								}}
+							></link-device-requestor>
+						</sl-card>
+					</div>`;
+
+				return html`
+					<sl-card>
+						<div class="column" style="gap: 12px">
+							<span class="title"> ${msg('Profile Setup')} </span>
+							<span>
+								${msg('Have you already created a profile in this app?')}
+							</span>
+
+							<div class="row" style="gap: 12px">
+								<sl-button @click=${() => (this.view = 'create-profile')}
+									>${msg('No, create a new profile')}
+								</sl-button>
+								<sl-button
+									variant="primary"
+									@click=${() => (this.view = 'link-device')}
+									>${msg('Yes! Link this device')}
+								</sl-button>
+							</div>
+						</div>
+					</sl-card>
+				`;
+		}
 	}
 
 	private renderPrompt(myProfileExists: boolean) {
