@@ -92,7 +92,7 @@ export class ProfilePrompt extends SignalWatcher(LitElement) {
 				if (myLinkedDevices.value.length > 0) {
 					this.createProfileForLinkedDevices(myLinkedDevices.value[0]);
 					return html`<div
-						class="row"
+						class="column"
 						style="flex: 1; justify-content: center; align-items: center; gap: 16px"
 					>
 						<sl-icon
