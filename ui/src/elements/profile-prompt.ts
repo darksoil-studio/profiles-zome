@@ -6,6 +6,7 @@ import '@darksoil-studio/linked-devices-zome/dist/elements/link-device-requestor
 import { consume } from '@lit/context';
 import { localized, msg } from '@lit/localize';
 import { mdiArrowLeft } from '@mdi/js';
+import '@shoelace-style/shoelace/dist/components/card/card.js';
 import '@shoelace-style/shoelace/dist/components/spinner/spinner.js';
 import { sharedStyles, wrapPathInSvg } from '@tnesh-stack/elements';
 import '@tnesh-stack/elements/dist/elements/display-error.js';
@@ -80,24 +81,26 @@ export class ProfilePrompt extends SignalWatcher(LitElement) {
 					<sl-icon slot="prefix" .src=${wrapPathInSvg(mdiArrowLeft)}></sl-icon>
 					${msg('Back')}</sl-button
 				>
-				<link-device-requestor
-					@device-linked=${async (e: CustomEvent) => {
-						const linkedDevice = e.detail.agentPubKey;
+				<sl-card>
+					<link-device-requestor
+						@device-linked=${async (e: CustomEvent) => {
+							const linkedDevice = e.detail.agentPubKey;
 
-						const profileForLinkedDeviceLinks =
-							await this.store.client.getProfileForAgent(linkedDevice);
+							const profileForLinkedDeviceLinks =
+								await this.store.client.getProfileForAgent(linkedDevice);
 
-						if (profileForLinkedDeviceLinks.length > 0) {
-							const latestLink = profileForLinkedDeviceLinks.sort(
-								(l1, l2) => l2.timestamp - l1.timestamp,
-							)[0];
-							const profileForLinkedDevice = latestLink.target;
-							await this.store.client.linkMyAgentToProfile(
-								profileForLinkedDevice,
-							);
-						}
-					}}
-				></link-device-requestor>
+							if (profileForLinkedDeviceLinks.length > 0) {
+								const latestLink = profileForLinkedDeviceLinks.sort(
+									(l1, l2) => l2.timestamp - l1.timestamp,
+								)[0];
+								const profileForLinkedDevice = latestLink.target;
+								await this.store.client.linkMyAgentToProfile(
+									profileForLinkedDevice,
+								);
+							}
+						}}
+					></link-device-requestor>
+				</sl-card>
 			</div>`;
 
 		return html`
