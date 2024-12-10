@@ -1,25 +1,14 @@
-import { LinkedDevicesStore } from '@darksoil-studio/linked-devices-zome';
-import { ActionHash, AgentPubKey, encodeHashToBase64 } from '@holochain/client';
+import { ActionHash, AgentPubKey } from '@holochain/client';
 import {
 	AsyncComputed,
-	AsyncSignal,
 	collectionSignal,
 	immutableEntrySignal,
 	latestVersionOfEntrySignal,
 	liveLinksSignal,
 	mapCompleted,
-	pipe,
-	queryLiveEntriesSignal,
-	toPromise,
 	uniquify,
 } from '@tnesh-stack/signals';
-import {
-	EntryRecord,
-	HashType,
-	MemoHoloHashMap,
-	retype,
-	slice,
-} from '@tnesh-stack/utils';
+import { HashType, MemoHoloHashMap, retype, slice } from '@tnesh-stack/utils';
 
 import { ProfilesConfig, defaultConfig } from './config.js';
 import { ProfilesClient } from './profiles-client.js';
