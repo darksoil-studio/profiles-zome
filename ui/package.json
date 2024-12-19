@@ -32,7 +32,7 @@
     "prepare": "pnpm build"
   },
   "dependencies": {
-    "@darksoil-studio/linked-devices-zome": "github:darksoil-studio/linked-devices-zome#4881ce12237a9454bdf0015559aab634736b424f&path:ui",
+    "@darksoil-studio/linked-devices-zome": "github:darksoil-studio/linked-devices-zome#603a4a6609348c869ce1affd38c43b455722a58e&path:ui",
     "@tnesh-stack/elements": "^0.400.0",
     "@tnesh-stack/signals": "^0.400.0",
     "@tnesh-stack/utils": "^0.400.0",
