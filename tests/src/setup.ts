@@ -11,8 +11,6 @@ import { ProfilesClient } from '../../ui/src/profiles-client.js';
 import { ProfilesStore } from '../../ui/src/profiles-store.js';
 
 export async function setup(scenario: Scenario) {
-	scenario.dpkiNetworkSeed = undefined;
-
 	const testHappUrl =
 		dirname(fileURLToPath(import.meta.url)) +
 		'/../../workdir/profiles-test.happ';
