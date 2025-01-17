@@ -43,6 +43,7 @@
           ];
           packages = [
             inputs'.tnesh-stack.packages.holochain
+            inputs'.tnesh-stack.packages.hc-scaffold-zome
             inputs'.p2p-shipyard.packages.hc-pilot
             inputs'.playground.packages.hc-playground
           ];
