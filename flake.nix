@@ -48,6 +48,7 @@
             inputs'.playground.packages.hc-playground
           ];
         };
+        devShells.npm-ci = inputs'.tnesh-stack.devShells.synchronized-pnpm;
 
         packages.scaffold = pkgs.symlinkJoin {
           name = "scaffold-remote-zome";
@@ -61,7 +62,6 @@
                 --remote-zome-git-url github:darksoil-studio/profiles-zome \
                 --remote-zome-git-branch main-0.4 \
                 --remote-npm-package-name @darksoil-studio/profiles-zome \
-                --remote-npm-package-path ui \
                 --context-element profiles-context \
                 --context-element-import @darksoil-studio/profiles-zome/dist/elements/profiles-context.js"
           '';
