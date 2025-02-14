@@ -63,7 +63,9 @@ export class ProfilePrompt extends SignalWatcher(LitElement) {
 				const profileForLinkedDevice = latestLink.target;
 				await this.store.client.linkMyAgentToProfile(profileForLinkedDevice);
 			}
-		} catch (e) {}
+		} catch (e) {
+			// TODO: what to do?
+		}
 
 		this.linkingDevices = false;
 	}

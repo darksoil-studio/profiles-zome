@@ -139,7 +139,7 @@ export class SearchProfileDropdown extends SignalWatcher(LitElement) {
 				`;
 			case 'completed': {
 				let profiles = Array.from(searchResult.value.entries());
-				let excludedStr = this.excludedProfiles.map(a => a.toString());
+				const excludedStr = this.excludedProfiles.map(a => a.toString());
 
 				profiles = profiles.filter(
 					([profileHash, _profile]) =>
