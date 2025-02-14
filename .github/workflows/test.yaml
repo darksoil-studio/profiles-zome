@@ -1,13 +1,14 @@
-
-name: "test-prs"
+name: "test"
 on:
   # Trigger the workflow on push or pull request,
   # but only for the main branch
+  push:
+    branches: [ main, develop, 'main-**' ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, develop, 'main-**' ]
 
 jobs:
-  testbuild:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,10 +16,10 @@ jobs:
       - name: Extend space
         uses: ./.github/actions/extend-space
 
-        uses: cachix/install-nix-action@v27
+      - uses: cachix/install-nix-action@v27
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
-          nix_path: nixpkgs=channel:nixos-24.05
+          nix_path: nixpkgs=channel:nixos-24.11
 
       - uses: cachix/cachix-action@v15
         with:
