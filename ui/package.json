@@ -30,7 +30,7 @@
     "localize:build": "lit-localize build"
   },
   "dependencies": {
-    "@darksoil-studio/linked-devices-zome": "0.400.0-rev.75efce06804b842860a6e83b68a91e6e43188206",
+    "@darksoil-studio/linked-devices-zome": "0.400.0-rev.162b38bf9c6319e02e2fe68244bfe308ef398a0b",
     "@tnesh-stack/elements": "^0.400.0",
     "@tnesh-stack/signals": "^0.400.0",
     "@tnesh-stack/utils": "^0.400.0",
