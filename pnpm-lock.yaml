@@ -78,8 +78,8 @@ importers:
   tests:
     dependencies:
       '@darksoil-studio/linked-devices-zome':
-        specifier: 0.400.0-rev.162b38bf9c6319e02e2fe68244bfe308ef398a0b
-        version: 0.400.0-rev.162b38bf9c6319e02e2fe68244bfe308ef398a0b(@floating-ui/utils@0.2.8)(@types/react@18.3.14)
+        specifier: 0.400.0-rev.23d64f1ce59822d7e1849d75c2d978cb6a0d62c8
+        version: 0.400.0-rev.23d64f1ce59822d7e1849d75c2d978cb6a0d62c8(@floating-ui/utils@0.2.8)(@types/react@18.3.14)
       '@holochain/client':
         specifier: ^0.18.0
         version: 0.18.0
@@ -105,8 +105,8 @@ importers:
   ui:
     dependencies:
       '@darksoil-studio/linked-devices-zome':
-        specifier: 0.400.0-rev.162b38bf9c6319e02e2fe68244bfe308ef398a0b
-        version: 0.400.0-rev.162b38bf9c6319e02e2fe68244bfe308ef398a0b(@floating-ui/utils@0.2.8)(@types/react@18.3.14)
+        specifier: 0.400.0-rev.23d64f1ce59822d7e1849d75c2d978cb6a0d62c8
+        version: 0.400.0-rev.23d64f1ce59822d7e1849d75c2d978cb6a0d62c8(@floating-ui/utils@0.2.8)(@types/react@18.3.14)
       '@holochain/client':
         specifier: ^0.18.0
         version: 0.18.0
@@ -355,8 +355,8 @@ packages:
   '@dabh/diagnostics@2.0.3':
     resolution: {integrity: sha512-hrlQOIi7hAfzsMqlGSFyVucrx38O+j6wiGOf//H2ecvIEqYN4ADBSS2iLMh5UFyDunCNniUIPk/q3riFv45xRA==}
 
-  '@darksoil-studio/linked-devices-zome@0.400.0-rev.162b38bf9c6319e02e2fe68244bfe308ef398a0b':
-    resolution: {integrity: sha512-+SwjTGLKWSkmtV3dGuzm/OG7C+kSRHWnnBH0v+g02o8daoVUFZahptgTcYagPcl9VzI1gbFZJjDfmyehD8RLAA==}
+  '@darksoil-studio/linked-devices-zome@0.400.0-rev.23d64f1ce59822d7e1849d75c2d978cb6a0d62c8':
+    resolution: {integrity: sha512-sXJoelDpELCcuuwbeqWOadd55MCJPO70w3obcI5hFgiFovMuAlN1fAI86U0IA9S3DZPkRAJA/ac/86SzCrh6Fg==}
 
   '@docsearch/css@3.8.0':
     resolution: {integrity: sha512-pieeipSOW4sQ0+bE5UFC51AOZp9NGxg89wAlZ1BAQFaiRAGK1IKUaPQ0UGZeNctJXyqZ1UvBtOQh2HH+U5GtmA==}
@@ -3233,7 +3233,7 @@ snapshots:
       enabled: 2.0.0
       kuler: 2.0.0
 
-  '@darksoil-studio/linked-devices-zome@0.400.0-rev.162b38bf9c6319e02e2fe68244bfe308ef398a0b(@floating-ui/utils@0.2.8)(@types/react@18.3.14)':
+  '@darksoil-studio/linked-devices-zome@0.400.0-rev.23d64f1ce59822d7e1849d75c2d978cb6a0d62c8(@floating-ui/utils@0.2.8)(@types/react@18.3.14)':
     dependencies:
       '@holochain/client': 0.18.0
       '@lit/context': 1.1.3
