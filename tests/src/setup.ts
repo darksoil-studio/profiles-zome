@@ -28,9 +28,9 @@ export async function setup(scenario: Scenario, numPlayers = 2) {
 
 async function setupStore(player: Player) {
 	// patchCallZome(player.appWs as AppWebsocket);
-	// await player.conductor
-	// 	.adminWs()
-	// 	.authorizeSigningCredentials(player.cells[0].cell_id);
+	await player.conductor
+		.adminWs()
+		.authorizeSigningCredentials(player.cells[0].cell_id);
 	const store = new ProfilesStore(
 		new ProfilesClient(player.appWs as any, 'profiles-test'),
 	);
