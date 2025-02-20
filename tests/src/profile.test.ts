@@ -11,6 +11,9 @@ import { setup } from './setup.js';
 test('create and update Profile', async () => {
 	await runScenario(async scenario => {
 		const { alice, bob } = await setup(scenario);
+		console.log('ha1');
+		await dhtSync([alice.player, bob.player], alice.player.cells[0].cell_id[0]); // Difference in time between the create the processing of the signal
+		console.log('ha2');
 
 		let agentsWithProfile = await toPromise(alice.store.allProfiles);
 		assert.equal(agentsWithProfile.size, 0);

@@ -1,3 +1,4 @@
+import { CapAccessType } from '@holochain/client';
 import { dhtSync, pause, runScenario } from '@holochain/tryorama';
 import { toPromise, watch } from '@tnesh-stack/signals';
 import { EntryRecord } from '@tnesh-stack/utils';
