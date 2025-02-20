@@ -10,7 +10,7 @@ import { setup } from './setup.js';
 
 test('create Profile and search', async () => {
 	await runScenario(async scenario => {
-		const { alice, bob } = await setup(scenario);
+		const [alice, bob] = await setup(scenario);
 
 		let agentsWithProfile = await toPromise(alice.store.allProfiles);
 		assert.equal(agentsWithProfile.size, 0);
