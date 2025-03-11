@@ -4,7 +4,7 @@ import { toPromise, watch } from '@tnesh-stack/signals';
 import { EntryRecord, retype } from '@tnesh-stack/utils';
 import { assert, test } from 'vitest';
 
-import { Profile } from '../../packages/profiles/src/types.js';
+import { Profile } from '../../packages/profiles-provider/src/types.js';
 import { sampleProfile } from '../../ui/src/mocks.js';
 import { setup } from './setup.js';
 
