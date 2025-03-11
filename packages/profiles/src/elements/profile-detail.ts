@@ -9,8 +9,8 @@ import { EntryRecord } from '@tnesh-stack/utils';
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import { profilesStoreContext } from '../context.js';
-import { ProfilesStore } from '../profiles-store.js';
+import { profilesProviderContext } from '../context.js';
+import { ProfilesProvider } from '../profiles-provider.js';
 import { Profile } from '../types.js';
 import './agent-avatar.js';
 
@@ -29,17 +29,11 @@ export class ProfileDetail extends SignalWatcher(LitElement) {
 	agentPubKey!: AgentPubKey;
 
 	/**
-	 * The public key of the agent to render the profile for
+	 * Profiles provider
 	 */
-	@property(hashProperty('profile-hash'))
-	profileHash: ActionHash | undefined;
-
-	/**
-	 * Profiles store for this element, not required if you embed this element inside a <profiles-context>
-	 */
-	@consume({ context: profilesStoreContext, subscribe: true })
+	@consume({ context: profilesProviderContext, subscribe: true })
 	@property()
-	store!: ProfilesStore;
+	profilesProvider!: ProfilesProvider;
 
 	private getAdditionalFields(profile: Profile): Record<string, string> {
 		const fields: Record<string, string> = {};
@@ -51,28 +45,6 @@ export class ProfileDetail extends SignalWatcher(LitElement) {
 		}
 
 		return fields;
-	}
-
-	private profile(): AsyncResult<EntryRecord<Profile> | undefined> {
-		if (this.profileHash) {
-			return this.store.profiles.get(this.profileHash).latestVersion.get();
-		} else if (this.agentPubKey) {
-			const agentProfile = this.store.profileForAgent
-				.get(this.agentPubKey)
-				.get();
-			if (agentProfile.status !== 'completed') return agentProfile;
-			if (agentProfile.value === undefined) {
-				return {
-					status: 'completed',
-					value: undefined,
-				};
-			}
-			return agentProfile.value.latestVersion.get();
-		} else {
-			throw new Error(
-				'Either agentPubKey or profileHash needs to be defined for the agent-avatar element',
-			);
-		}
 	}
 
 	private renderAdditionalField(fieldId: string, fieldValue: string) {
@@ -90,7 +62,7 @@ export class ProfileDetail extends SignalWatcher(LitElement) {
 		`;
 	}
 
-	private renderProfile(profile: EntryRecord<Profile> | undefined) {
+	private renderProfile(profile: Profile | undefined) {
 		if (!profile)
 			return html`<div
 				class="column"
@@ -104,12 +76,9 @@ export class ProfileDetail extends SignalWatcher(LitElement) {
 		return html`
 			<div class="column">
 				<div class="row" style="align-items: center">
-					<agent-avatar
-						.agentPubKey=${this.agentPubKey}
-						.profileHash=${this.profileHash}
-					></agent-avatar>
+					<agent-avatar .agentPubKey=${this.agentPubKey}></agent-avatar>
 					<span style="font-size: 16px; margin-left: 8px;"
-						>${profile.entry.nickname}</span
+						>${profile.name}</span
 					>
 
 					<span style="flex: 1"></span>
@@ -117,7 +86,7 @@ export class ProfileDetail extends SignalWatcher(LitElement) {
 					<slot name="action"></slot>
 				</div>
 
-				${Object.entries(this.getAdditionalFields(profile.entry))
+				${Object.entries(this.getAdditionalFields(profile))
 					.filter(([, value]) => value !== '')
 					.map(([key, value]) => this.renderAdditionalField(key, value))}
 			</div>
@@ -125,7 +94,10 @@ export class ProfileDetail extends SignalWatcher(LitElement) {
 	}
 
 	render() {
-		const profile = this.profile();
+		const profile = this.profilesProvider.currentProfileForAgent
+			.get(this.agentPubKey)
+			.get();
+
 		switch (profile.status) {
 			case 'pending':
 				return html`
@@ -143,7 +115,7 @@ export class ProfileDetail extends SignalWatcher(LitElement) {
 							</div>
 						</div>
 
-						${this.store.config.additionalFields.map(
+						${this.profilesProvider.config.additionalFields.map(
 							() => html`
 								<sl-skeleton
 									effect="pulse"

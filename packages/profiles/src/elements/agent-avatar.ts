@@ -13,14 +13,13 @@ import {
 } from '@tnesh-stack/elements';
 import '@tnesh-stack/elements/dist/elements/display-error.js';
 import '@tnesh-stack/elements/dist/elements/holo-identicon.js';
-import { AsyncResult, SignalWatcher } from '@tnesh-stack/signals';
-import { EntryRecord } from '@tnesh-stack/utils';
+import { SignalWatcher } from '@tnesh-stack/signals';
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
 
-import { profilesStoreContext } from '../context.js';
-import { ProfilesStore } from '../profiles-store.js';
+import { profilesProviderContext } from '../context.js';
+import { ProfilesProvider } from '../profiles-provider.js';
 import { Profile } from '../types.js';
 
 @localized()
@@ -32,13 +31,7 @@ export class AgentAvatar extends SignalWatcher(LitElement) {
 	 * The public key identifying the agent whose profile is going to be shown.
 	 */
 	@property(hashProperty('agent-pub-key'))
-	agentPubKey: AgentPubKey | undefined;
-
-	/**
-	 * The profile hash to be shown
-	 */
-	@property(hashProperty('profile-hash'))
-	profileHash: ActionHash | undefined;
+	agentPubKey!: AgentPubKey;
 
 	/**
 	 * Size of the avatar image in pixels.
@@ -61,11 +54,11 @@ export class AgentAvatar extends SignalWatcher(LitElement) {
 	/** Dependencies */
 
 	/**
-	 * Profiles store for this element, not required if you embed this element inside a <profiles-context>
+	 * Profiles provider
 	 */
-	@consume({ context: profilesStoreContext, subscribe: true })
+	@consume({ context: profilesProviderContext, subscribe: true })
 	@property()
-	store!: ProfilesStore;
+	profilesProvider!: ProfilesProvider;
 
 	private renderIdenticon() {
 		if (!this.agentPubKey)
@@ -103,8 +96,8 @@ export class AgentAvatar extends SignalWatcher(LitElement) {
 	 */
 	timeout: any;
 
-	private renderProfile(profile: EntryRecord<Profile> | undefined) {
-		if (!profile || !profile.entry.fields.avatar) return this.renderIdenticon();
+	private renderProfile(profile: Profile | undefined) {
+		if (!profile || !profile.avatar) return this.renderIdenticon();
 
 		const contents = html`
 			<div
@@ -116,7 +109,7 @@ export class AgentAvatar extends SignalWatcher(LitElement) {
 				})}
 			>
 				<sl-avatar
-					.image=${profile.entry.fields.avatar}
+					.image=${profile.avatar}
 					style="--size: ${this.size}px;"
 					@click=${() =>
 						this.dispatchEvent(
@@ -140,40 +133,17 @@ export class AgentAvatar extends SignalWatcher(LitElement) {
 				placement="top"
 				.trigger=${this.disableTooltip ? 'manual' : 'hover focus'}
 				hoist
-				.content=${profile.entry.nickname}
+				.content=${profile.name}
 			>
 				${contents}
 			</sl-tooltip>
 		`;
 	}
 
-	private profile(): AsyncResult<EntryRecord<Profile> | undefined> {
-		if (this.profileHash) {
-			return this.store.profiles.get(this.profileHash).latestVersion.get();
-		} else if (this.agentPubKey) {
-			const agentProfile = this.store.profileForAgent
-				.get(this.agentPubKey)
-				.get();
-			if (agentProfile.status !== 'completed') return agentProfile;
-			if (agentProfile.value === undefined) {
-				return {
-					status: 'completed',
-					value: undefined,
-				};
-			}
-			return agentProfile.value.latestVersion.get();
-		} else {
-			throw new Error(
-				'Either agentPubKey or profileHash needs to be defined for the agent-avatar element',
-			);
-		}
-	}
-
 	render() {
-		if (this.store.config.avatarMode === 'identicon')
-			return this.renderIdenticon();
-
-		const profile = this.profile();
+		const profile = this.profilesProvider.currentProfileForAgent
+			.get(this.agentPubKey)
+			.get();
 
 		switch (profile.status) {
 			case 'pending':
@@ -181,16 +151,16 @@ export class AgentAvatar extends SignalWatcher(LitElement) {
 					effect="pulse"
 					style="height: ${this.size}px; width: ${this.size}px"
 				></sl-skeleton>`;
-			case 'completed':
-				return this.renderProfile(profile.value);
 			case 'error':
 				return html`
 					<display-error
 						tooltip
-						.headline=${msg("Error fetching the agent's avatar")}
+						.headline=${msg("Error fetching the user's profile.")}
 						.error=${profile.error}
 					></display-error>
 				`;
+			case 'completed':
+				return this.renderProfile(profile.value);
 		}
 	}
 

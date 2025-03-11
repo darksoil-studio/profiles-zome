@@ -13,7 +13,8 @@ use crate::linked_devices::linked_devices_integrity_zome_name;
 #[hdk_entry_helper]
 #[derive(Clone)]
 pub struct Profile {
-    pub nickname: String,
+    pub name: String,
+    pub avatar: Option<String>,
     pub fields: BTreeMap<String, String>,
 }
 

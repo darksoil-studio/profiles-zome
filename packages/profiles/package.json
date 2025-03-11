@@ -1,5 +1,5 @@
 {
-	"name": "@darksoil-studio/profiles-zome",
+	"name": "@darksoil-studio/profiles",
 	"version": "0.400.0",
 	"description": "Frontend module for the Holochain hc_zome_profiles zomes",
 	"author": "guillem.cordoba@gmail.com",
@@ -26,7 +26,6 @@
 	},
 	"dependencies": {
 		"@darksoil-studio/linked-devices-zome": "0.400.0-rev.23d64f1ce59822d7e1849d75c2d978cb6a0d62c8",
-		"@darksoil-studio/profiles": "workspace:*",
 		"@tnesh-stack/elements": "^0.400.0",
 		"@tnesh-stack/signals": "^0.400.0",
 		"@tnesh-stack/utils": "^0.400.0",
