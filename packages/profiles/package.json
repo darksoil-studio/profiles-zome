@@ -18,6 +18,7 @@
 	"scripts": {
 		"start": "vite --clearScreen false --port $UI_PORT",
 		"build": "pnpm lint && tsc && pnpm localize:build && pnpm analyze",
+		"build:watch": "tsc -w --preserveWatchOutput",
 		"lint": "eslint src",
 		"analyze": "cem analyze --litelement --exclude dist",
 		"format": "eslint src --fix",
@@ -25,7 +26,6 @@
 		"localize:build": "lit-localize build"
 	},
 	"dependencies": {
-		"@darksoil-studio/linked-devices-zome": "0.400.0-rev.23d64f1ce59822d7e1849d75c2d978cb6a0d62c8",
 		"@tnesh-stack/elements": "^0.400.0",
 		"@tnesh-stack/signals": "^0.400.0",
 		"@tnesh-stack/utils": "^0.400.0",

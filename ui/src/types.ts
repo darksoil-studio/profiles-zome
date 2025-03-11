@@ -1,3 +1,4 @@
+import { Profile } from '@darksoil-studio/profiles';
 import { ActionCommittedSignal } from '@tnesh-stack/utils';
 
 export type ProfilesSignal = ActionCommittedSignal<EntryTypes, any>;

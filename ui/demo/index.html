@@ -33,9 +33,10 @@
 			import '../src/elements/my-profile.ts';
 			import '../src/elements/profile-prompt.ts';
 			import '../src/elements/profiles-context.ts';
-			import '../src/elements/search-profile.ts';
-			import '../src/elements/search-profiles.ts';
+			import '../src/elements/search-user.ts';
+			import '../src/elements/search-users.ts';
 			import '../src/elements/textarea-with-mentions.ts';
+			import '../src/elements/update-profile.ts';
 			import { ProfilesClient, ProfilesStore } from '../src/index.ts';
 
 			class ProfilesTest extends LitElement {
@@ -94,6 +95,17 @@
 							>
 							</link-device-recipient>
 						`;
+					if (this.editing) {
+						return html`
+							<update-profile
+								@profile-updated=${() => {
+									this.editing = false;
+									this.requestUpdate();
+								}}
+							>
+							</update-profile>
+						`;
+					}
 					return html`
 						<profile-prompt @profile-created=${e => console.log(e)}>
 							<div style="flex-direction: row; display:flex; flex-wrap: wrap">
@@ -105,19 +117,25 @@
 									<input type="submit" />
 								</form>
 								<all-profiles></all-profiles>
-								<my-profile style="height: 200px; width: 200px;"></my-profile>
+								<my-profile
+									style="height: 200px; width: 200px;"
+									@edit-profile-clicked=${() => {
+										this.editing = true;
+										this.requestUpdate();
+									}}
+								></my-profile>
 								<agent-avatar .agentPubKey=${this.store.client.client.myPubKey}>
 									<div
 										style="background-color: lightgreen; width: 12px; height: 12px; border-radius: 50%"
 										slot="badge"
 									></div>
 								</agent-avatar>
-								<search-profile
+								<search-user
 									name="author"
 									required
-									@profile-selected=${e => console.log(e)}
-								></search-profile>
-								<search-profiles name="hosts" required></search-profiles>
+									@user-selected=${e => console.log(e)}
+								></search-user>
+								<search-users name="hosts" required></search-users>
 								<agent-avatar
 									.agentPubKey=${this.store.client.client.myPubKey}
 									.showOnHover=${false}

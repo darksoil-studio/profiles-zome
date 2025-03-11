@@ -4,8 +4,8 @@ import { toPromise, watch } from '@tnesh-stack/signals';
 import { EntryRecord, retype } from '@tnesh-stack/utils';
 import { assert, test } from 'vitest';
 
+import { Profile } from '../../packages/profiles/src/types.js';
 import { sampleProfile } from '../../ui/src/mocks.js';
-import { Profile } from '../../ui/src/types.js';
 import { setup } from './setup.js';
 
 test('create and update Profile', async () => {
@@ -19,9 +19,7 @@ test('create and update Profile', async () => {
 
 		// Alice creates a Profile
 		const profile: EntryRecord<Profile> =
-			await alice.store.client.createProfile(
-				sampleProfile({ nickname: 'alice' }),
-			);
+			await alice.store.client.createProfile(sampleProfile({ name: 'alice' }));
 		assert.ok(profile);
 
 		await pause(3000); // Difference in time between the create the processing of the signal
@@ -32,7 +30,7 @@ test('create and update Profile', async () => {
 		const aliceProfile = await toPromise(alice.store.myProfile);
 		assert.ok(aliceProfile);
 		let profileLatestVersion = await toPromise(aliceProfile.latestVersion);
-		assert.equal(profileLatestVersion.entry.nickname, 'alice');
+		assert.equal(profileLatestVersion.entry.name, 'alice');
 
 		const agentsForProfile = await toPromise(
 			alice.store.agentsForProfile.get(profile.actionHash),
@@ -45,10 +43,10 @@ test('create and update Profile', async () => {
 
 		await alice.store.client.updateProfile(
 			profile.actionHash,
-			sampleProfile({ nickname: 'alice2' }),
+			sampleProfile({ name: 'alice2' }),
 		);
 
 		profileLatestVersion = await toPromise(aliceProfile.latestVersion);
-		assert.equal(profileLatestVersion.entry.nickname, 'alice2');
+		assert.equal(profileLatestVersion.entry.name, 'alice2');
 	});
 });

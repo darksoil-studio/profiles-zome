@@ -1,19 +1,27 @@
-import { ActionHash, AgentPubKey } from '@holochain/client';
+import {
+	Profile,
+	ProfilesConfig,
+	ProfilesProvider,
+	User,
+} from '@darksoil-studio/profiles';
+import { ActionHash, AgentPubKey, HoloHash } from '@holochain/client';
 import {
 	AsyncComputed,
+	AsyncSignal,
 	collectionSignal,
 	immutableEntrySignal,
 	latestVersionOfEntrySignal,
 	liveLinksSignal,
 	mapCompleted,
+	toPromise,
 	uniquify,
 } from '@tnesh-stack/signals';
 import { HashType, MemoHoloHashMap, retype, slice } from '@tnesh-stack/utils';
 
-import { ProfilesConfig, defaultConfig } from './config.js';
+import { defaultConfig } from './config.js';
 import { ProfilesClient } from './profiles-client.js';
 
-export class ProfilesStore {
+export class ProfilesStore implements ProfilesProvider {
 	config: ProfilesConfig;
 
 	constructor(
@@ -21,6 +29,10 @@ export class ProfilesStore {
 		config: Partial<ProfilesConfig> = {},
 	) {
 		this.config = { ...defaultConfig, ...config };
+	}
+
+	get myPubKey() {
+		return this.client.client.myPubKey;
 	}
 
 	/**
@@ -74,6 +86,47 @@ export class ProfilesStore {
 				};
 			}),
 	);
+
+	currentProfileForAgent = new MemoHoloHashMap(
+		agent =>
+			new AsyncComputed(() => {
+				const profile = this.profileForAgent.get(agent).get();
+
+				if (profile.status !== 'completed') return profile;
+
+				if (!profile.value) {
+					return {
+						status: 'completed' as const,
+						value: undefined,
+					};
+				}
+
+				const latestVersion = profile.value.latestVersion.get();
+				if (latestVersion.status !== 'completed') return latestVersion;
+				return {
+					status: 'completed',
+					value: latestVersion.value.entry,
+				};
+			}),
+	);
+
+	async search(nameFilter: string): Promise<Array<User>> {
+		const profilesHashes = await this.client.searchProfiles(nameFilter);
+
+		return Promise.all(
+			profilesHashes.map(async profileHash => {
+				const profile = await toPromise(
+					this.profiles.get(profileHash).latestVersion,
+				);
+				const agents = await toPromise(this.agentsForProfile.get(profileHash));
+
+				return {
+					agents,
+					profile: profile.entry,
+				};
+			}),
+		);
+	}
 
 	agentsForProfile = new MemoHoloHashMap((profileHash: ActionHash) =>
 		mapCompleted(

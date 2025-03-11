@@ -1,3 +1,4 @@
+import { Profile } from '@darksoil-studio/profiles';
 import {
 	ActionHash,
 	AgentPubKey,
@@ -8,7 +9,7 @@ import {
 } from '@holochain/client';
 import { EntryRecord, ZomeClient } from '@tnesh-stack/utils';
 
-import { Profile, ProfilesSignal } from './types.js';
+import { ProfilesSignal } from './types.js';
 
 export class ProfilesClient extends ZomeClient<ProfilesSignal> {
 	constructor(

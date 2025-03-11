@@ -110,7 +110,7 @@ export class AgentAvatar extends SignalWatcher(LitElement) {
 			>
 				<sl-avatar
 					.image=${profile.avatar}
-					style="--size: ${this.size}px;"
+					style="--size: ${this.size}px; display: flex;"
 					@click=${() =>
 						this.dispatchEvent(
 							new CustomEvent('profile-clicked', {

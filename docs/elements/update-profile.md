@@ -59,7 +59,7 @@ onMounted(async () => {
     <profiles-context .store=${store}>
       <api-demo src="custom-elements.json" only="update-profile" exclude-knobs="store">
         <template data-element="update-profile" data-target="host">
-          <update-profile>
+          <update-profile style="width: 500px">
           </update-profile>
         </template>
       </api-demo>

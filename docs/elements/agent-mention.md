@@ -19,13 +19,6 @@ import '@darksoil-studio/profiles-zome/dist/elements/agent-mention.js'
 </agent-mention>
 ```
 
-OR, if you have a profile hash instead of the agent pub key:
-
-```html
-<agent-mention .profileHash=${profileHash}>
-</agent-mention>
-```
-
 > [!WARNING]
 > Like all the elements in this module, `<agent-mention>` needs to be placed inside an initialized `<profiles-context>`.
 
@@ -64,7 +57,7 @@ onMounted(async () => {
     
   render(html`
     <profiles-context .store=${store}>
-      <api-demo src="custom-elements.json" only="agent-mention" exclude-knobs="store">
+      <api-demo src="custom-elements.json" only="agent-mention" exclude-knobs="profilesProvider">
         <template data-element="agent-mention" data-target="host">
           <agent-mention agent-pub-key="${unsafeStatic(encodeHashToBase64(client.client.myPubKey))}">
           </agent-mention>

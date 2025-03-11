@@ -7,6 +7,8 @@ import { Profile, ProfilesConfig, User } from './types.js';
 export interface ProfilesProvider {
 	config: ProfilesConfig;
 
+	myPubKey: AgentPubKey;
+
 	currentProfileForAgent: MemoHoloHashMap<
 		AgentPubKey,
 		AsyncSignal<Profile | undefined>

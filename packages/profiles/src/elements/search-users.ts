@@ -108,7 +108,7 @@ export class SearchUsers
 					.fieldLabel=${this.fieldLabel}
 					clear-on-select
 					@user-selected=${(e: any) => {
-						this.value = [...this.value, e.detail.user];
+						this.value = [...this.value, e.detail.agents];
 						this.dispatchEvent(
 							new CustomEvent('users-changed', {
 								composed: true,
