@@ -1,8 +1,8 @@
-# @darksoil-studio/profiles-zome
+# @darksoil-studio/profiles-provider
 
-Frontend module for the [profiles zome](https://github.com/darksoil-studio/profiles-zome).
+`ProfilesProvider` interface for holochain apps.
 
-This package includes types, a client and a store, and a collection of Custom Elements to build Holochain applications that automatically connect and interact with the profiles zome. 
+This interface is implemented by [@darksoil-studio/profiles-zome](https://www.npmjs.com/package/@darksoil-studio/profiles-zome).
 
 Read about how to include both the zome and this frontend module in your application here:
 

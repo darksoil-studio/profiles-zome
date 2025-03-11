@@ -12,7 +12,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, }"
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, }"
         }
       ],
       "exports": [
@@ -36,7 +36,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, }"
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, }"
         }
       ],
       "exports": [
@@ -60,7 +60,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, }"
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, }"
         }
       ],
       "exports": [
@@ -84,7 +84,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, }"
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, }"
         }
       ],
       "exports": [
@@ -164,7 +164,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, }"
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, }"
         }
       ],
       "exports": [
@@ -1129,12 +1129,12 @@
             },
             {
               "kind": "field",
-              "name": "fieldLabel",
+              "name": "label",
               "type": {
                 "text": "string"
               },
               "description": "Label for the agent searching field.",
-              "attribute": "field-label"
+              "attribute": "label"
             },
             {
               "kind": "method",
@@ -1190,13 +1190,13 @@
               "attribute": "clear-on-select"
             },
             {
-              "name": "field-label",
+              "name": "label",
               "type": {
                 "text": "string"
               },
               "description": "Label for the agent searching field.",
-              "fieldName": "fieldLabel",
-              "attribute": "field-label"
+              "fieldName": "label",
+              "attribute": "label"
             },
             {
               "name": "name",
@@ -1333,12 +1333,12 @@
             },
             {
               "kind": "field",
-              "name": "fieldLabel",
+              "name": "label",
               "type": {
                 "text": "string"
               },
               "description": "Label for the agent searching field.",
-              "attribute": "field-label"
+              "attribute": "label"
             },
             {
               "kind": "field",
@@ -1384,13 +1384,13 @@
           ],
           "attributes": [
             {
-              "name": "field-label",
+              "name": "label",
               "type": {
                 "text": "string"
               },
               "description": "Label for the agent searching field.",
-              "fieldName": "fieldLabel",
-              "attribute": "field-label"
+              "fieldName": "label",
+              "attribute": "label"
             },
             {
               "name": "empty-list-placeholder",
