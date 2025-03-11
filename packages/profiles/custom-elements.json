@@ -12,7 +12,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ 's39aca5bd9eed9271': `Aquest agent encara no ha creat el seu perfil`, 's3fa309bef44c54e9': `Almenys 3 caràcters...`, 'sc5c9f04c2d0a5f1d': `Error buscant el perfil`, 'sdd16cd8b418b1752': `Introdueix almenys 3 caràcters per buscar...`, 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's797aae8100bcb245': `No users selected yet.`, }"
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, }"
         }
       ],
       "exports": [
@@ -36,7 +36,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 's20828470889fc3a9': `Error fetching the profile.`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, }"
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, }"
         }
       ],
       "exports": [
@@ -60,7 +60,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ 's39aca5bd9eed9271': `Este agente no ha creado su perfil todavía`, 's3fa309bef44c54e9': `Al menos 3 caracteres...`, 'sc5c9f04c2d0a5f1d': `Error buscando el perfil`, 'sdd16cd8b418b1752': `Introduce al menos 3 carácteres para buscar...`, 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's797aae8100bcb245': `No users selected yet.`, }"
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, }"
         }
       ],
       "exports": [
@@ -84,7 +84,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 's20828470889fc3a9': `Error fetching the profile.`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, }"
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, }"
         }
       ],
       "exports": [
@@ -164,7 +164,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ 's39aca5bd9eed9271': `Denna agent har inte skapat en profil än`, 's3fa309bef44c54e9': `Minst 3 tecken...`, 'sc5c9f04c2d0a5f1d': `Fel vid hämtning av profilen`, 'sdd16cd8b418b1752': `Skriv minst 3 tecken för att söka...`, 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's797aae8100bcb245': `No users selected yet.`, }"
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, }"
         }
       ],
       "exports": [
@@ -399,6 +399,135 @@
           "declaration": {
             "name": "AgentAvatar",
             "module": "src/elements/agent-avatar.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/agent-mention.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "AgentMention",
+          "members": [
+            {
+              "kind": "field",
+              "name": "agentPubKey",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "description": "The public key identifying the agent whose profile is going to be shown.",
+              "attribute": "agentPubKey"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "number"
+              },
+              "default": "24",
+              "description": "Size of the avatar image in pixels.",
+              "attribute": "size"
+            },
+            {
+              "kind": "field",
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "attribute": "profilesProvider"
+            },
+            {
+              "kind": "method",
+              "name": "renderAvatar",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "Profile"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderProfile",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "Profile"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderContent",
+              "privacy": "private"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "agentPubKey",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "description": "The public key identifying the agent whose profile is going to be shown.",
+              "fieldName": "agentPubKey"
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "number"
+              },
+              "default": "24",
+              "description": "Size of the avatar image in pixels.",
+              "fieldName": "size"
+            },
+            {
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "fieldName": "profilesProvider"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@tnesh-stack/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "agent-mention",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "AgentMention",
+          "declaration": {
+            "name": "AgentMention",
+            "module": "src/elements/agent-mention.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "agent-mention",
+          "declaration": {
+            "name": "AgentMention",
+            "module": "src/elements/agent-mention.ts"
           }
         }
       ]
