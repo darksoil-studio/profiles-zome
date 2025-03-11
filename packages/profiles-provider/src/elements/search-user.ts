@@ -88,10 +88,10 @@ export class SearchUser extends SignalWatcher(LitElement) implements FormField {
 
 	/**
 	 * Label for the agent searching field.
-	 * @attr field-label
+	 * @attr label
 	 */
-	@property({ type: String, attribute: 'field-label' })
-	fieldLabel!: string;
+	@property({ type: String, attribute: 'label' })
+	label!: string;
 
 	/**
 	 * @internal
@@ -148,7 +148,7 @@ export class SearchUser extends SignalWatcher(LitElement) implements FormField {
 	 * @internal
 	 */
 	get _label() {
-		let l = this.fieldLabel ? this.fieldLabel : msg('Search User');
+		let l = this.label ? this.label : msg('Search User');
 
 		if (this.required !== false) l = `${l} *`;
 

@@ -1,5 +1,5 @@
-import { Profile } from '@darksoil-studio/profiles';
-import '@darksoil-studio/profiles/dist/elements/agent-avatar.js';
+import { Profile } from '@darksoil-studio/profiles-provider';
+import '@darksoil-studio/profiles-provider/dist/elements/agent-avatar.js';
 import { ActionHash, encodeHashToBase64 } from '@holochain/client';
 import { consume } from '@lit/context';
 import { localized, msg } from '@lit/localize';

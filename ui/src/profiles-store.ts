@@ -3,7 +3,7 @@ import {
 	ProfilesConfig,
 	ProfilesProvider,
 	User,
-} from '@darksoil-studio/profiles';
+} from '@darksoil-studio/profiles-provider';
 import { ActionHash, AgentPubKey, HoloHash } from '@holochain/client';
 import {
 	AsyncComputed,

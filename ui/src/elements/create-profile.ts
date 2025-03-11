@@ -1,4 +1,4 @@
-import { FieldConfig, Profile } from '@darksoil-studio/profiles';
+import { FieldConfig, Profile } from '@darksoil-studio/profiles-provider';
 import { consume } from '@lit/context';
 import { localized, msg, str } from '@lit/localize';
 import '@shoelace-style/shoelace/dist/components/alert/alert.js';

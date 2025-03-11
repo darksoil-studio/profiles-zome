@@ -1,4 +1,4 @@
-import { FieldConfig, Profile } from '@darksoil-studio/profiles';
+import { FieldConfig, Profile } from '@darksoil-studio/profiles-provider';
 import { ActionHash } from '@holochain/client';
 import { consume } from '@lit/context';
 import { localized, msg, str } from '@lit/localize';

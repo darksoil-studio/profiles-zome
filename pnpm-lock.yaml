@@ -75,11 +75,8 @@ importers:
         specifier: ^2.0.16
         version: 2.0.17(mermaid@11.4.1)(vitepress@1.5.0(@algolia/client-search@5.16.0)(@types/react@18.3.14)(postcss@8.4.49)(search-insights@2.17.3)(typescript@5.7.2))
 
-  packages/profiles:
+  packages/profiles-provider:
     dependencies:
-      '@darksoil-studio/linked-devices-zome':
-        specifier: 0.400.0-rev.23d64f1ce59822d7e1849d75c2d978cb6a0d62c8
-        version: 0.400.0-rev.23d64f1ce59822d7e1849d75c2d978cb6a0d62c8(@floating-ui/utils@0.2.8)(@types/react@18.3.14)
       '@holochain/client':
         specifier: ^0.18.0
         version: 0.18.0
@@ -162,9 +159,9 @@ importers:
       '@darksoil-studio/linked-devices-zome':
         specifier: 0.400.0-rev.23d64f1ce59822d7e1849d75c2d978cb6a0d62c8
         version: 0.400.0-rev.23d64f1ce59822d7e1849d75c2d978cb6a0d62c8(@floating-ui/utils@0.2.8)(@types/react@18.3.14)
-      '@darksoil-studio/profiles':
+      '@darksoil-studio/profiles-provider':
         specifier: workspace:*
-        version: link:../packages/profiles
+        version: link:../packages/profiles-provider
       '@holochain/client':
         specifier: ^0.18.0
         version: 0.18.0

@@ -1,4 +1,4 @@
-import { Profile } from '@darksoil-studio/profiles';
+import { Profile } from '@darksoil-studio/profiles-provider';
 import {
 	ActionHash,
 	AgentPubKey,
@@ -25,8 +25,6 @@ import {
 	pickBy,
 	retype,
 } from '@tnesh-stack/utils';
-
-import { ProfilesClient } from './profiles-client.js';
 
 export async function demoProfiles(): Promise<AgentPubKeyMap<Profile>> {
 	const map = new AgentPubKeyMap<Profile>();

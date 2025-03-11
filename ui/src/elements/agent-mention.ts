@@ -1,1 +1,1 @@
-export { AgentMention } from '@darksoil-studio/profiles/dist/elements/agent-mention.js';
+export { AgentMention } from '@darksoil-studio/profiles-provider/dist/elements/agent-mention.js';

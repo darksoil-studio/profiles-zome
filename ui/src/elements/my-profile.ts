@@ -1,1 +1,1 @@
-export { MyProfile } from '@darksoil-studio/profiles/dist/elements/my-profile.js';
+export { MyProfile } from '@darksoil-studio/profiles-provider/dist/elements/my-profile.js';

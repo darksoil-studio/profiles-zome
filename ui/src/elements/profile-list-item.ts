@@ -1,1 +1,1 @@
-export { ProfileListItem } from '@darksoil-studio/profiles/dist/elements/profile-list-item.js';
+export { ProfileListItem } from '@darksoil-studio/profiles-provider/dist/elements/profile-list-item.js';

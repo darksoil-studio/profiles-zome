@@ -1,1 +1,1 @@
-export { SearchUser } from '@darksoil-studio/profiles/dist/elements/search-user.js';
+export { SearchUser } from '@darksoil-studio/profiles-provider/dist/elements/search-user.js';

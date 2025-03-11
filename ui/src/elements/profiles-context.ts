@@ -1,4 +1,4 @@
-import { profilesProviderContext } from '@darksoil-studio/profiles';
+import { profilesProviderContext } from '@darksoil-studio/profiles-provider';
 import { AppClient } from '@holochain/client';
 import { consume, provide } from '@lit/context';
 import { appClientContext } from '@tnesh-stack/elements';

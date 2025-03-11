@@ -1,1 +1,1 @@
-export { AgentsAvatars } from '@darksoil-studio/profiles/dist/elements/agents-avatars.js';
+export { AgentsAvatars } from '@darksoil-studio/profiles-provider/dist/elements/agents-avatars.js';

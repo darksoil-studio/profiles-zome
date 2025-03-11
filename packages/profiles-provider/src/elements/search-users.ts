@@ -57,10 +57,10 @@ export class SearchUsers
 
 	/**
 	 * Label for the agent searching field.
-	 * @attr field-label
+	 * @attr label
 	 */
-	@property({ type: String, attribute: 'field-label' })
-	fieldLabel!: string;
+	@property({ type: String, attribute: 'label' })
+	label!: string;
 
 	/**
 	 * Placeholder to show when the list is empty.
@@ -105,7 +105,7 @@ export class SearchUsers
 		return html`
 			<div class="column" style="gap: 16px">
 				<search-user
-					.fieldLabel=${this.fieldLabel}
+					.label=${this.label ? this.label : msg('Search Users')}
 					clear-on-select
 					@user-selected=${(e: any) => {
 						this.value = [...this.value, e.detail.agents];

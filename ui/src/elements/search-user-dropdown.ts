@@ -1,1 +1,1 @@
-export { SearchUserDropdown } from '@darksoil-studio/profiles/dist/elements/search-user-dropdown.js';
+export { SearchUserDropdown } from '@darksoil-studio/profiles-provider/dist/elements/search-user-dropdown.js';
