@@ -1,9 +1,21 @@
+import { FieldConfig, Profile } from '@darksoil-studio/profiles-provider';
 import { ActionHash } from '@holochain/client';
 import { consume } from '@lit/context';
-import { localized, msg } from '@lit/localize';
+import { localized, msg, str } from '@lit/localize';
+import { mdiInformationOutline } from '@mdi/js';
+import '@shoelace-style/shoelace/dist/components/avatar/avatar.js';
+import '@shoelace-style/shoelace/dist/components/button/button.js';
+import '@shoelace-style/shoelace/dist/components/icon/icon.js';
+import '@shoelace-style/shoelace/dist/components/input/input.js';
 import '@shoelace-style/shoelace/dist/components/spinner/spinner.js';
-import { notifyError, sharedStyles } from '@tnesh-stack/elements';
+import {
+	notifyError,
+	onSubmit,
+	sharedStyles,
+	wrapPathInSvg,
+} from '@tnesh-stack/elements';
 import '@tnesh-stack/elements/dist/elements/display-error.js';
+import '@tnesh-stack/elements/dist/elements/select-avatar.js';
 import { AsyncResult, SignalWatcher } from '@tnesh-stack/signals';
 import { EntryRecord } from '@tnesh-stack/utils';
 import { LitElement, css, html } from 'lit';
@@ -11,8 +23,6 @@ import { customElement, property } from 'lit/decorators.js';
 
 import { profilesStoreContext } from '../context.js';
 import { ProfilesStore } from '../profiles-store.js';
-import { Profile } from '../types.js';
-import './edit-profile.js';
 
 /**
  * @element update-profile
@@ -28,8 +38,23 @@ export class UpdateProfile extends SignalWatcher(LitElement) {
 	@property()
 	store!: ProfilesStore;
 
-	async updateProfile(previousProfileHash: ActionHash, profile: Profile) {
+	async updateProfile(
+		previousProfileHash: ActionHash,
+		fields: Record<string, string>,
+	) {
+		const button = this.shadowRoot!.querySelector('sl-button')!;
+		button.loading = true;
 		try {
+			const name = fields['name'];
+			delete fields['name'];
+			const avatar = fields['avatar'];
+			delete fields['avatar'];
+
+			const profile: Profile = {
+				fields,
+				name,
+				avatar,
+			};
 			await this.store.client.updateProfile(previousProfileHash, profile);
 
 			this.dispatchEvent(
@@ -45,6 +70,7 @@ export class UpdateProfile extends SignalWatcher(LitElement) {
 			notifyError(msg('Error updating the profile.'));
 			console.error(e);
 		}
+		button.loading = false;
 	}
 
 	private myProfile(): AsyncResult<EntryRecord<Profile> | undefined> {
@@ -59,6 +85,65 @@ export class UpdateProfile extends SignalWatcher(LitElement) {
 		return myProfile.value.latestVersion.get();
 	}
 
+	avatarMode() {
+		return (
+			this.store.config.avatarMode === 'avatar-required' ||
+			this.store.config.avatarMode === 'avatar-optional'
+		);
+	}
+
+	renderField(profile: EntryRecord<Profile>, fieldConfig: FieldConfig) {
+		return html`
+			<sl-input
+				name="${fieldConfig.name}"
+				.required=${fieldConfig.required}
+				.label=${fieldConfig.label}
+				.value=${profile.entry.fields[fieldConfig.name] || ''}
+			></sl-input>
+		`;
+	}
+
+	renderForm(profile: EntryRecord<Profile>) {
+		return html`
+			<form
+				id="profile-form"
+				class="column"
+				style="gap: 16px; flex: 1"
+				${onSubmit(fields => this.updateProfile(profile.actionHash, fields))}
+			>
+				<div class="row" style="justify-content: center; gap: 16px">
+					${this.avatarMode()
+						? html` <select-avatar
+								name="avatar"
+								.value=${profile.entry.avatar || undefined}
+								.required=${this.store.config.avatarMode === 'avatar-required'}
+							></select-avatar>`
+						: html``}
+
+					<sl-input
+						name="name"
+						.label=${msg('Name')}
+						required
+						minLength="${this.store.config.minNicknameLength}"
+						.value=${profile.entry.name || ''}
+						.helpText=${msg(
+							str`Min. ${this.store.config.minNicknameLength} characters`,
+						)}
+						style="flex: 1"
+					></sl-input>
+				</div>
+
+				${this.store.config.additionalFields.map(field =>
+					this.renderField(profile, field),
+				)}
+
+				<sl-button variant="primary" type="submit"
+					>${msg('Update Profile')}
+				</sl-button>
+			</form>
+		`;
+	}
+
 	render() {
 		const myProfile = this.myProfile();
 
@@ -71,14 +156,19 @@ export class UpdateProfile extends SignalWatcher(LitElement) {
 					<sl-spinner style="font-size: 2rem"></sl-spinner>
 				</div>`;
 			case 'completed':
-				return html` <edit-profile
-					.allowCancel=${true}
-					style="margin-top: 16px; flex: 1"
-					.profile=${myProfile.value}
-					.saveProfileLabel=${msg('Update Profile')}
-					@save-profile=${(e: CustomEvent) =>
-						this.updateProfile(myProfile.value!.actionHash, e.detail.profile)}
-				></edit-profile>`;
+				if (!myProfile.value) {
+					return html`<div
+						class="column placeholder"
+						style="flex: 1; align-items: center; justify-content: center; gap: 16px"
+					>
+						<sl-icon
+							.src=${wrapPathInSvg(mdiInformationOutline)}
+							style="height: 64px; width: 48px;"
+						></sl-icon>
+						<span>${msg("You haven't created a profile yet.")}</span>
+					</div>`;
+				}
+				return this.renderForm(myProfile.value);
 			case 'error':
 				return html`<display-error
 					.headline=${msg('Error fetching your profile')}

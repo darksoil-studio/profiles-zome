@@ -3,13 +3,13 @@ import { toPromise, watch } from '@tnesh-stack/signals';
 import { EntryRecord } from '@tnesh-stack/utils';
 import { assert, test } from 'vitest';
 
+import { Profile } from '../../packages/profiles-provider/src/types.js';
 import { sampleProfile } from '../../ui/src/mocks.js';
-import { Profile } from '../../ui/src/types.js';
 import { setup } from './setup.js';
 
 test('create Profile and search', async () => {
 	await runScenario(async scenario => {
-		const { alice, bob } = await setup(scenario);
+		const [alice, bob] = await setup(scenario);
 
 		let agentsWithProfile = await toPromise(alice.store.allProfiles);
 		assert.equal(agentsWithProfile.size, 0);
@@ -21,7 +21,7 @@ test('create Profile and search', async () => {
 		const profile: EntryRecord<Profile> =
 			await alice.store.client.createProfile(
 				sampleProfile({
-					nickname: 'alice',
+					name: 'alice',
 				}),
 			);
 		assert.ok(profile);

@@ -5,13 +5,13 @@ import { toPromise, watch } from '@tnesh-stack/signals';
 import { EntryRecord } from '@tnesh-stack/utils';
 import { assert, expect, test } from 'vitest';
 
+import { Profile } from '../../packages/profiles-provider/src/types.js';
 import { sampleProfile } from '../../ui/src/mocks.js';
-import { Profile } from '../../ui/src/types.js';
-import { setup, setup3 } from './setup.js';
+import { setup } from './setup.js';
 
 test('create Profile and link devices', async () => {
 	await runScenario(async scenario => {
-		const { alice, bob, carol } = await setup3(scenario);
+		const [alice, bob, carol] = await setup(scenario, 3);
 
 		let agentsWithProfile = await toPromise(alice.store.allProfiles);
 		assert.equal(agentsWithProfile.size, 0);

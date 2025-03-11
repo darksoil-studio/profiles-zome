@@ -64,7 +64,7 @@ onMounted(async () => {
     
   render(html`
     <profiles-context .store=${store}>
-      <api-demo src="custom-elements.json" only="profile-detail" exclude-knobs="store">
+      <api-demo src="custom-elements.json" only="profile-detail" exclude-knobs="profilesProvider">
         <template data-element="profile-detail" data-target="host">
           <profile-detail agent-pub-key="${unsafeStatic(encodeHashToBase64(client.client.myPubKey))}">
           </profile-detail>

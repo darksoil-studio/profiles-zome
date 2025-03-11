@@ -3,133 +3,68 @@ import {
 	LinkedDevicesStore,
 } from '@darksoil-studio/linked-devices-zome';
 import { AppClient, AppWebsocket } from '@holochain/client';
-import { Scenario, pause } from '@holochain/tryorama';
+import { Player, Scenario, pause } from '@holochain/tryorama';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 import { ProfilesClient } from '../../ui/src/profiles-client.js';
 import { ProfilesStore } from '../../ui/src/profiles-store.js';
 
-export async function setup(scenario: Scenario) {
-	const testHappUrl =
-		dirname(fileURLToPath(import.meta.url)) +
-		'/../../workdir/profiles-test.happ';
+export const appPath =
+	dirname(fileURLToPath(import.meta.url)) + '/../../workdir/profiles-test.happ';
 
-	// Add 2 players with the test hApp to the Scenario. The returned players
-	// can be destructured.
-	const [alice, bob] = await scenario.addPlayersWithApps([
-		{ appBundleSource: { path: testHappUrl } },
-		{ appBundleSource: { path: testHappUrl } },
-	]);
-	await alice.conductor
-		.adminWs()
-		.authorizeSigningCredentials(alice.cells[0].cell_id);
-
-	await bob.conductor
-		.adminWs()
-		.authorizeSigningCredentials(bob.cells[0].cell_id);
-
-	const aliceStore = new ProfilesStore(
-		new ProfilesClient(alice.appWs as AppClient, 'profiles-test', 'profiles'),
+export async function setup(scenario: Scenario, numPlayers = 2) {
+	const players = await scenario.addPlayersWithApps(
+		Array.from(new Array(numPlayers)).fill({
+			appBundleSource: { path: appPath },
+		}),
 	);
-
-	const bobStore = new ProfilesStore(
-		new ProfilesClient(bob.appWs as AppClient, 'profiles-test', 'profiles'),
+	const playersAndStores = await promiseAllSequential(
+		players.map(p => () => setupStore(p)),
 	);
-	patchCallZome(alice.appWs as AppWebsocket);
-	patchCallZome(bob.appWs as AppWebsocket);
 
 	// Shortcut peer discovery through gossip and register all agents in every
 	// conductor of the scenario.
 	await scenario.shareAllAgents();
 
-	// Prevent race condition when two zome calls are made instantly at the beginning of the lifecycle that cause a ChainHeadMoved error because they trigger 2 parallel init workflows
-	await aliceStore.client.getAllProfiles();
-	await bobStore.client.getAllProfiles();
-
-	return {
-		alice: {
-			player: alice,
-			store: aliceStore,
-		},
-		bob: {
-			player: bob,
-			store: bobStore,
-		},
-	};
+	return playersAndStores;
+}
+async function promiseAllSequential<T>(
+	promises: Array<() => Promise<T>>,
+): Promise<Array<T>> {
+	const results: Array<T> = [];
+	for (const promise of promises) {
+		results.push(await promise());
+	}
+	return results;
 }
 
-export async function setup3(scenario: Scenario) {
-	scenario.dpkiNetworkSeed = undefined;
-
-	const testHappUrl =
-		dirname(fileURLToPath(import.meta.url)) +
-		'/../../workdir/profiles-test.happ';
-
-	// Add 2 players with the test hApp to the Scenario. The returned players
-	// can be destructured.
-	const [alice, bob, carol] = await scenario.addPlayersWithApps([
-		{ appBundleSource: { path: testHappUrl } },
-		{ appBundleSource: { path: testHappUrl } },
-		{ appBundleSource: { path: testHappUrl } },
-	]);
-	await alice.conductor
+async function setupStore(player: Player) {
+	// patchCallZome(player.appWs as AppWebsocket);
+	await player.conductor
 		.adminWs()
-		.authorizeSigningCredentials(alice.cells[0].cell_id);
-
-	await bob.conductor
-		.adminWs()
-		.authorizeSigningCredentials(bob.cells[0].cell_id);
-
-	await carol.conductor
-		.adminWs()
-		.authorizeSigningCredentials(carol.cells[0].cell_id);
-
-	const aliceStore = new ProfilesStore(
-		new ProfilesClient(alice.appWs as AppClient, 'profiles-test', 'profiles'),
+		.authorizeSigningCredentials(player.cells[0].cell_id);
+	const store = new ProfilesStore(
+		new ProfilesClient(player.appWs as any, 'profiles-test'),
 	);
-	patchCallZome(alice.appWs as AppWebsocket);
-
-	const bobStore = new ProfilesStore(
-		new ProfilesClient(bob.appWs as AppClient, 'profiles-test', 'profiles'),
-	);
-	patchCallZome(bob.appWs as AppWebsocket);
-
-	const carolStore = new ProfilesStore(
-		new ProfilesClient(carol.appWs as AppClient, 'profiles-test', 'profiles'),
-	);
-	patchCallZome(carol.appWs as AppWebsocket);
-
-	// Shortcut peer discovery through gossip and register all agents in every
-	// conductor of the scenario.
-	await scenario.shareAllAgents();
-
-	// Prevent race condition when two zome calls are made instantly at the beginning of the lifecycle that cause a ChainHeadMoved error because they trigger 2 parallel init workflows
-	await aliceStore.client.getAllProfiles();
-	await bobStore.client.getAllProfiles();
-	await carolStore.client.getAllProfiles();
-
+	await store.client.getAllProfiles();
 	return {
-		alice: {
-			player: alice,
-			store: aliceStore,
-			linkedDevicesStore: new LinkedDevicesStore(
-				new LinkedDevicesClient(alice.appWs as any, 'profiles-test'),
-			),
-		},
-		bob: {
-			player: bob,
-			store: bobStore,
-			linkedDevicesStore: new LinkedDevicesStore(
-				new LinkedDevicesClient(bob.appWs as any, 'profiles-test'),
-			),
-		},
-		carol: {
-			player: carol,
-			store: carolStore,
-			linkedDevicesStore: new LinkedDevicesStore(
-				new LinkedDevicesClient(carol.appWs as any, 'profiles-test'),
-			),
+		store,
+		linkedDevicesStore: new LinkedDevicesStore(
+			new LinkedDevicesClient(player.appWs as any, 'profiles-test'),
+		),
+		player,
+		startUp: async () => {
+			await player.conductor.startUp();
+			const port = await player.conductor.attachAppInterface();
+			const issued = await player.conductor
+				.adminWs()
+				.issueAppAuthenticationToken({
+					installed_app_id: player.appId,
+				});
+			const appWs = await player.conductor.connectAppWs(issued.token, port);
+			patchCallZome(appWs);
+			store.client.client = appWs;
 		},
 	};
 }

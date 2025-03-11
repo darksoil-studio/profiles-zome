@@ -1,3 +1,5 @@
+import { Profile } from '@darksoil-studio/profiles-provider';
+import '@darksoil-studio/profiles-provider/dist/elements/agent-avatar.js';
 import { ActionHash, encodeHashToBase64 } from '@holochain/client';
 import { consume } from '@lit/context';
 import { localized, msg } from '@lit/localize';
@@ -12,8 +14,6 @@ import { join } from 'lit/directives/join.js';
 
 import { profilesStoreContext } from '../context.js';
 import { ProfilesStore } from '../profiles-store.js';
-import { Profile } from '../types.js';
-import './agent-avatar.js';
 import './profile-list-item-skeleton.js';
 
 /**
@@ -75,8 +75,9 @@ export class AllProfiles extends SignalWatcher(LitElement) {
 								style="align-items: center; gap: 8px"
 								@click=${() => this.fireAgentSelected(profileHash)}
 							>
-								<agent-avatar .profileHash=${profileHash}> </agent-avatar
-								><span>${profile?.entry.nickname}</span>
+								<agent-avatar .agentPubKey=${profile?.action.author}>
+								</agent-avatar
+								><span>${profile?.entry.name}</span>
 							</div>
 						`,
 					),

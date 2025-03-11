@@ -30,5 +30,7 @@ jobs:
           name: darksoil-studio
 
       - name: Install and test
+        env:
+          CACHIX_AUTH_TOKEN: "${{ secrets.DARKSOIL_CACHIX_AUTH_TOKEN }}"
         run: |
-          nix develop --no-update-lock-file --command bash -c "pnpm i && pnpm t && pnpm -F @darksoil-studio/profiles-zome build"
+          cachix watch-exec darksoil-studio -- nix develop --no-update-lock-file --accept-flake-config --command bash -c "pnpm i && pnpm t && pnpm -F @darksoil-studio/profiles-provider build && pnpm -F @darksoil-studio/profiles-zome build"
