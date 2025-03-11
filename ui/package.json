@@ -19,7 +19,7 @@
 		"start": "vite --clearScreen false --port $UI_PORT",
 		"build": "pnpm lint && tsc && pnpm localize:build && pnpm analyze",
 		"lint": "eslint src",
-		"analyze": "cem  analyze --litelement --globs './src/elements/*.ts' '../packages/profiles/src/elements/*.ts'",
+		"analyze": "cem  analyze --litelement --globs './src/elements/*.ts' '../packages/profiles-provider/src/elements/*.ts'",
 		"format": "eslint src --fix",
 		"localize:extract": "lit-localize extract",
 		"localize:build": "lit-localize build"

@@ -12,7 +12,7 @@
           "name": "AgentAvatar",
           "declaration": {
             "name": "AgentAvatar",
-            "package": "@darksoil-studio/profiles/dist/elements/agent-avatar.js"
+            "package": "@darksoil-studio/profiles-provider/dist/elements/agent-avatar.js"
           }
         }
       ]
@@ -27,7 +27,7 @@
           "name": "AgentMention",
           "declaration": {
             "name": "AgentMention",
-            "package": "@darksoil-studio/profiles/dist/elements/agent-mention.js"
+            "package": "@darksoil-studio/profiles-provider/dist/elements/agent-mention.js"
           }
         }
       ]
@@ -42,7 +42,7 @@
           "name": "AgentsAvatars",
           "declaration": {
             "name": "AgentsAvatars",
-            "package": "@darksoil-studio/profiles/dist/elements/agents-avatars.js"
+            "package": "@darksoil-studio/profiles-provider/dist/elements/agents-avatars.js"
           }
         }
       ]
@@ -297,7 +297,7 @@
           "name": "MyProfile",
           "declaration": {
             "name": "MyProfile",
-            "package": "@darksoil-studio/profiles/dist/elements/my-profile.js"
+            "package": "@darksoil-studio/profiles-provider/dist/elements/my-profile.js"
           }
         }
       ]
@@ -312,7 +312,7 @@
           "name": "ProfileDetail",
           "declaration": {
             "name": "ProfileDetail",
-            "package": "@darksoil-studio/profiles/dist/elements/profile-detail.js"
+            "package": "@darksoil-studio/profiles-provider/dist/elements/profile-detail.js"
           }
         }
       ]
@@ -327,7 +327,7 @@
           "name": "ProfileListItemSkeleton",
           "declaration": {
             "name": "ProfileListItemSkeleton",
-            "package": "@darksoil-studio/profiles/dist/elements/profile-list-item-skeleton.js"
+            "package": "@darksoil-studio/profiles-provider/dist/elements/profile-list-item-skeleton.js"
           }
         }
       ]
@@ -342,7 +342,7 @@
           "name": "ProfileListItem",
           "declaration": {
             "name": "ProfileListItem",
-            "package": "@darksoil-studio/profiles/dist/elements/profile-list-item.js"
+            "package": "@darksoil-studio/profiles-provider/dist/elements/profile-list-item.js"
           }
         }
       ]
@@ -577,7 +577,7 @@
           "name": "SearchUserDropdown",
           "declaration": {
             "name": "SearchUserDropdown",
-            "package": "@darksoil-studio/profiles/dist/elements/search-user-dropdown.js"
+            "package": "@darksoil-studio/profiles-provider/dist/elements/search-user-dropdown.js"
           }
         }
       ]
@@ -592,7 +592,7 @@
           "name": "SearchUser",
           "declaration": {
             "name": "SearchUser",
-            "package": "@darksoil-studio/profiles/dist/elements/search-user.js"
+            "package": "@darksoil-studio/profiles-provider/dist/elements/search-user.js"
           }
         }
       ]
@@ -607,7 +607,7 @@
           "name": "SearchUsers",
           "declaration": {
             "name": "SearchUsers",
-            "package": "@darksoil-studio/profiles/dist/elements/search-users.js"
+            "package": "@darksoil-studio/profiles-provider/dist/elements/search-users.js"
           }
         }
       ]
@@ -753,7 +753,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "../packages/profiles/src/elements/agent-avatar.ts",
+      "path": "../packages/profiles-provider/src/elements/agent-avatar.ts",
       "declarations": [
         {
           "kind": "class",
@@ -900,7 +900,7 @@
           "name": "AgentAvatar",
           "declaration": {
             "name": "AgentAvatar",
-            "module": "../packages/profiles/src/elements/agent-avatar.ts"
+            "module": "../packages/profiles-provider/src/elements/agent-avatar.ts"
           }
         },
         {
@@ -908,14 +908,14 @@
           "name": "agent-avatar",
           "declaration": {
             "name": "AgentAvatar",
-            "module": "../packages/profiles/src/elements/agent-avatar.ts"
+            "module": "../packages/profiles-provider/src/elements/agent-avatar.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "../packages/profiles/src/elements/agent-mention.ts",
+      "path": "../packages/profiles-provider/src/elements/agent-mention.ts",
       "declarations": [
         {
           "kind": "class",
@@ -1029,7 +1029,7 @@
           "name": "AgentMention",
           "declaration": {
             "name": "AgentMention",
-            "module": "../packages/profiles/src/elements/agent-mention.ts"
+            "module": "../packages/profiles-provider/src/elements/agent-mention.ts"
           }
         },
         {
@@ -1037,14 +1037,14 @@
           "name": "agent-mention",
           "declaration": {
             "name": "AgentMention",
-            "module": "../packages/profiles/src/elements/agent-mention.ts"
+            "module": "../packages/profiles-provider/src/elements/agent-mention.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "../packages/profiles/src/elements/agents-avatars.ts",
+      "path": "../packages/profiles-provider/src/elements/agents-avatars.ts",
       "declarations": [
         {
           "kind": "class",
@@ -1091,7 +1091,7 @@
           "name": "AgentsAvatars",
           "declaration": {
             "name": "AgentsAvatars",
-            "module": "../packages/profiles/src/elements/agents-avatars.ts"
+            "module": "../packages/profiles-provider/src/elements/agents-avatars.ts"
           }
         },
         {
@@ -1099,14 +1099,14 @@
           "name": "agents-avatars",
           "declaration": {
             "name": "AgentsAvatars",
-            "module": "../packages/profiles/src/elements/agents-avatars.ts"
+            "module": "../packages/profiles-provider/src/elements/agents-avatars.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "../packages/profiles/src/elements/my-profile.ts",
+      "path": "../packages/profiles-provider/src/elements/my-profile.ts",
       "declarations": [
         {
           "kind": "class",
@@ -1161,7 +1161,7 @@
           "name": "MyProfile",
           "declaration": {
             "name": "MyProfile",
-            "module": "../packages/profiles/src/elements/my-profile.ts"
+            "module": "../packages/profiles-provider/src/elements/my-profile.ts"
           }
         },
         {
@@ -1169,14 +1169,14 @@
           "name": "my-profile",
           "declaration": {
             "name": "MyProfile",
-            "module": "../packages/profiles/src/elements/my-profile.ts"
+            "module": "../packages/profiles-provider/src/elements/my-profile.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "../packages/profiles/src/elements/profile-detail.ts",
+      "path": "../packages/profiles-provider/src/elements/profile-detail.ts",
       "declarations": [
         {
           "kind": "class",
@@ -1290,7 +1290,7 @@
           "name": "ProfileDetail",
           "declaration": {
             "name": "ProfileDetail",
-            "module": "../packages/profiles/src/elements/profile-detail.ts"
+            "module": "../packages/profiles-provider/src/elements/profile-detail.ts"
           }
         },
         {
@@ -1298,14 +1298,14 @@
           "name": "profile-detail",
           "declaration": {
             "name": "ProfileDetail",
-            "module": "../packages/profiles/src/elements/profile-detail.ts"
+            "module": "../packages/profiles-provider/src/elements/profile-detail.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "../packages/profiles/src/elements/profile-list-item-skeleton.ts",
+      "path": "../packages/profiles-provider/src/elements/profile-list-item-skeleton.ts",
       "declarations": [
         {
           "kind": "class",
@@ -1332,7 +1332,7 @@
           "name": "ProfileListItemSkeleton",
           "declaration": {
             "name": "ProfileListItemSkeleton",
-            "module": "../packages/profiles/src/elements/profile-list-item-skeleton.ts"
+            "module": "../packages/profiles-provider/src/elements/profile-list-item-skeleton.ts"
           }
         },
         {
@@ -1340,14 +1340,14 @@
           "name": "profile-list-item-skeleton",
           "declaration": {
             "name": "ProfileListItemSkeleton",
-            "module": "../packages/profiles/src/elements/profile-list-item-skeleton.ts"
+            "module": "../packages/profiles-provider/src/elements/profile-list-item-skeleton.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "../packages/profiles/src/elements/profile-list-item.ts",
+      "path": "../packages/profiles-provider/src/elements/profile-list-item.ts",
       "declarations": [
         {
           "kind": "class",
@@ -1411,7 +1411,7 @@
           "name": "ProfileListItem",
           "declaration": {
             "name": "ProfileListItem",
-            "module": "../packages/profiles/src/elements/profile-list-item.ts"
+            "module": "../packages/profiles-provider/src/elements/profile-list-item.ts"
           }
         },
         {
@@ -1419,14 +1419,14 @@
           "name": "profile-list-item",
           "declaration": {
             "name": "ProfileListItem",
-            "module": "../packages/profiles/src/elements/profile-list-item.ts"
+            "module": "../packages/profiles-provider/src/elements/profile-list-item.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "../packages/profiles/src/elements/search-user-dropdown.ts",
+      "path": "../packages/profiles-provider/src/elements/search-user-dropdown.ts",
       "declarations": [
         {
           "kind": "class",
@@ -1548,7 +1548,7 @@
           "name": "SearchUserDropdown",
           "declaration": {
             "name": "SearchUserDropdown",
-            "module": "../packages/profiles/src/elements/search-user-dropdown.ts"
+            "module": "../packages/profiles-provider/src/elements/search-user-dropdown.ts"
           }
         },
         {
@@ -1556,14 +1556,14 @@
           "name": "search-user-dropdown",
           "declaration": {
             "name": "SearchUserDropdown",
-            "module": "../packages/profiles/src/elements/search-user-dropdown.ts"
+            "module": "../packages/profiles-provider/src/elements/search-user-dropdown.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "../packages/profiles/src/elements/search-user.ts",
+      "path": "../packages/profiles-provider/src/elements/search-user.ts",
       "declarations": [
         {
           "kind": "class",
@@ -1639,12 +1639,12 @@
             },
             {
               "kind": "field",
-              "name": "fieldLabel",
+              "name": "label",
               "type": {
                 "text": "string"
               },
               "description": "Label for the agent searching field.",
-              "attribute": "field-label"
+              "attribute": "label"
             },
             {
               "kind": "method",
@@ -1700,13 +1700,13 @@
               "attribute": "clear-on-select"
             },
             {
-              "name": "field-label",
+              "name": "label",
               "type": {
                 "text": "string"
               },
               "description": "Label for the agent searching field.",
-              "fieldName": "fieldLabel",
-              "attribute": "field-label"
+              "fieldName": "label",
+              "attribute": "label"
             },
             {
               "name": "name",
@@ -1780,7 +1780,7 @@
           "name": "SearchUser",
           "declaration": {
             "name": "SearchUser",
-            "module": "../packages/profiles/src/elements/search-user.ts"
+            "module": "../packages/profiles-provider/src/elements/search-user.ts"
           }
         },
         {
@@ -1788,14 +1788,14 @@
           "name": "search-user",
           "declaration": {
             "name": "SearchUser",
-            "module": "../packages/profiles/src/elements/search-user.ts"
+            "module": "../packages/profiles-provider/src/elements/search-user.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "../packages/profiles/src/elements/search-users.ts",
+      "path": "../packages/profiles-provider/src/elements/search-users.ts",
       "declarations": [
         {
           "kind": "class",
@@ -1843,12 +1843,12 @@
             },
             {
               "kind": "field",
-              "name": "fieldLabel",
+              "name": "label",
               "type": {
                 "text": "string"
               },
               "description": "Label for the agent searching field.",
-              "attribute": "field-label"
+              "attribute": "label"
             },
             {
               "kind": "field",
@@ -1894,13 +1894,13 @@
           ],
           "attributes": [
             {
-              "name": "field-label",
+              "name": "label",
               "type": {
                 "text": "string"
               },
               "description": "Label for the agent searching field.",
-              "fieldName": "fieldLabel",
-              "attribute": "field-label"
+              "fieldName": "label",
+              "attribute": "label"
             },
             {
               "name": "empty-list-placeholder",
@@ -1981,7 +1981,7 @@
           "name": "SearchUsers",
           "declaration": {
             "name": "SearchUsers",
-            "module": "../packages/profiles/src/elements/search-users.ts"
+            "module": "../packages/profiles-provider/src/elements/search-users.ts"
           }
         },
         {
@@ -1989,7 +1989,7 @@
           "name": "search-users",
           "declaration": {
             "name": "SearchUsers",
-            "module": "../packages/profiles/src/elements/search-users.ts"
+            "module": "../packages/profiles-provider/src/elements/search-users.ts"
           }
         }
       ]
