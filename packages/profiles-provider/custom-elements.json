@@ -1,0 +1,1488 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "locales/ca.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "templates",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "templates",
+          "declaration": {
+            "name": "templates",
+            "module": "locales/ca.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "locales/de.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "templates",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "templates",
+          "declaration": {
+            "name": "templates",
+            "module": "locales/de.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "locales/es.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "templates",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "templates",
+          "declaration": {
+            "name": "templates",
+            "module": "locales/es.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "locales/fr-fr.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "templates",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "templates",
+          "declaration": {
+            "name": "templates",
+            "module": "locales/fr-fr.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "locales/locales.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "sourceLocale",
+          "default": "`en`",
+          "description": "The locale code that templates in this source code are written in."
+        },
+        {
+          "kind": "variable",
+          "name": "targetLocales",
+          "type": {
+            "text": "array"
+          },
+          "default": "[ `ca`, `de`, `es`, `fr-fr`, `sv`, ]",
+          "description": "The other locale codes that this application is localized into. Sorted\nlexicographically."
+        },
+        {
+          "kind": "variable",
+          "name": "allLocales",
+          "type": {
+            "text": "array"
+          },
+          "default": "[ `ca`, `de`, `en`, `es`, `fr-fr`, `sv`, ]",
+          "description": "All valid project locale codes. Sorted lexicographically."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "sourceLocale",
+          "declaration": {
+            "name": "sourceLocale",
+            "module": "locales/locales.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "targetLocales",
+          "declaration": {
+            "name": "targetLocales",
+            "module": "locales/locales.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "allLocales",
+          "declaration": {
+            "name": "allLocales",
+            "module": "locales/locales.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "locales/sv.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "templates",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "templates",
+          "declaration": {
+            "name": "templates",
+            "module": "locales/sv.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/context.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "profilesProviderContext"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "profilesProviderContext",
+          "declaration": {
+            "name": "profilesProviderContext",
+            "module": "src/context.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/index.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "./types.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "./context.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "./profiles-provider.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/profiles-provider.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/types.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/agent-avatar.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "AgentAvatar",
+          "members": [
+            {
+              "kind": "field",
+              "name": "agentPubKey",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "description": "The public key identifying the agent whose profile is going to be shown.",
+              "attribute": "agentPubKey"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "number"
+              },
+              "default": "32",
+              "description": "Size of the avatar image in pixels.",
+              "attribute": "size"
+            },
+            {
+              "kind": "field",
+              "name": "disableTooltip",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables showing the tooltip for the public key",
+              "attribute": "disable-tooltip"
+            },
+            {
+              "kind": "field",
+              "name": "disableCopy",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disable copying of the public key on click",
+              "attribute": "disable-copy"
+            },
+            {
+              "kind": "field",
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "attribute": "profilesProvider"
+            },
+            {
+              "kind": "method",
+              "name": "renderIdenticon",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "renderProfile",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "Profile | undefined"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "profile-clicked",
+              "type": {
+                "text": "CustomEvent"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "agentPubKey",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "description": "The public key identifying the agent whose profile is going to be shown.",
+              "fieldName": "agentPubKey"
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "number"
+              },
+              "default": "32",
+              "description": "Size of the avatar image in pixels.",
+              "fieldName": "size"
+            },
+            {
+              "name": "disable-tooltip",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables showing the tooltip for the public key",
+              "fieldName": "disableTooltip"
+            },
+            {
+              "name": "disable-copy",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disable copying of the public key on click",
+              "fieldName": "disableCopy"
+            },
+            {
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "fieldName": "profilesProvider"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@tnesh-stack/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "agent-avatar",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "AgentAvatar",
+          "declaration": {
+            "name": "AgentAvatar",
+            "module": "src/elements/agent-avatar.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "agent-avatar",
+          "declaration": {
+            "name": "AgentAvatar",
+            "module": "src/elements/agent-avatar.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/agent-mention.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "AgentMention",
+          "members": [
+            {
+              "kind": "field",
+              "name": "agentPubKey",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "description": "The public key identifying the agent whose profile is going to be shown.",
+              "attribute": "agentPubKey"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "number"
+              },
+              "default": "24",
+              "description": "Size of the avatar image in pixels.",
+              "attribute": "size"
+            },
+            {
+              "kind": "field",
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "attribute": "profilesProvider"
+            },
+            {
+              "kind": "method",
+              "name": "renderAvatar",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "Profile"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderProfile",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "Profile"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderContent",
+              "privacy": "private"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "agentPubKey",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "description": "The public key identifying the agent whose profile is going to be shown.",
+              "fieldName": "agentPubKey"
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "number"
+              },
+              "default": "24",
+              "description": "Size of the avatar image in pixels.",
+              "fieldName": "size"
+            },
+            {
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "fieldName": "profilesProvider"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@tnesh-stack/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "agent-mention",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "AgentMention",
+          "declaration": {
+            "name": "AgentMention",
+            "module": "src/elements/agent-mention.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "agent-mention",
+          "declaration": {
+            "name": "AgentMention",
+            "module": "src/elements/agent-mention.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/agents-avatars.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "AgentsAvatars",
+          "members": [
+            {
+              "kind": "field",
+              "name": "agents",
+              "type": {
+                "text": "AgentPubKey[]"
+              },
+              "default": "[]",
+              "attribute": "agents"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "agents",
+              "type": {
+                "text": "AgentPubKey[]"
+              },
+              "default": "[]",
+              "fieldName": "agents"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@tnesh-stack/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "agents-avatars",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "AgentsAvatars",
+          "declaration": {
+            "name": "AgentsAvatars",
+            "module": "src/elements/agents-avatars.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "agents-avatars",
+          "declaration": {
+            "name": "AgentsAvatars",
+            "module": "src/elements/agents-avatars.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/my-profile.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "MyProfile",
+          "members": [
+            {
+              "kind": "field",
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "attribute": "profilesProvider"
+            }
+          ],
+          "events": [
+            {
+              "name": "edit-profile-clicked",
+              "type": {
+                "text": "CustomEvent"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "fieldName": "profilesProvider"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@tnesh-stack/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "my-profile",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MyProfile",
+          "declaration": {
+            "name": "MyProfile",
+            "module": "src/elements/my-profile.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "my-profile",
+          "declaration": {
+            "name": "MyProfile",
+            "module": "src/elements/my-profile.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/profile-detail.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ProfileDetail",
+          "members": [
+            {
+              "kind": "field",
+              "name": "agentPubKey",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "description": "Public key identifying the agent for which the profile should be shown",
+              "attribute": "agentPubKey"
+            },
+            {
+              "kind": "field",
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "attribute": "profilesProvider"
+            },
+            {
+              "kind": "method",
+              "name": "getAdditionalFields",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "Record<string, string>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "Profile"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderAdditionalField",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "fieldId",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "fieldValue",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderProfile",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "Profile | undefined"
+                  }
+                }
+              ]
+            }
+          ],
+          "attributes": [
+            {
+              "name": "agentPubKey",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "description": "Public key identifying the agent for which the profile should be shown",
+              "fieldName": "agentPubKey"
+            },
+            {
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "fieldName": "profilesProvider"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@tnesh-stack/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "profile-detail",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ProfileDetail",
+          "declaration": {
+            "name": "ProfileDetail",
+            "module": "src/elements/profile-detail.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "profile-detail",
+          "declaration": {
+            "name": "ProfileDetail",
+            "module": "src/elements/profile-detail.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/profile-list-item-skeleton.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ProfileListItemSkeleton",
+          "members": [],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@tnesh-stack/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "profile-list-item-skeleton",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ProfileListItemSkeleton",
+          "declaration": {
+            "name": "ProfileListItemSkeleton",
+            "module": "src/elements/profile-list-item-skeleton.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "profile-list-item-skeleton",
+          "declaration": {
+            "name": "ProfileListItemSkeleton",
+            "module": "src/elements/profile-list-item-skeleton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/profile-list-item.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ProfileListItem",
+          "members": [
+            {
+              "kind": "field",
+              "name": "agentPubKey",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "description": "The public key of the agent to render the profile for",
+              "attribute": "agentPubKey"
+            },
+            {
+              "kind": "field",
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "attribute": "profilesProvider"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "agentPubKey",
+              "type": {
+                "text": "AgentPubKey"
+              },
+              "description": "The public key of the agent to render the profile for",
+              "fieldName": "agentPubKey"
+            },
+            {
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "fieldName": "profilesProvider"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@tnesh-stack/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "profile-list-item",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ProfileListItem",
+          "declaration": {
+            "name": "ProfileListItem",
+            "module": "src/elements/profile-list-item.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "profile-list-item",
+          "declaration": {
+            "name": "ProfileListItem",
+            "module": "src/elements/profile-list-item.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/search-user-dropdown.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SearchUserDropdown",
+          "members": [
+            {
+              "kind": "field",
+              "name": "searchFilter",
+              "description": "Public attributes"
+            },
+            {
+              "kind": "field",
+              "name": "_searchFilter",
+              "default": "new Signal.State<string | undefined>(undefined)"
+            },
+            {
+              "kind": "field",
+              "name": "open",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "attribute": "open"
+            },
+            {
+              "kind": "field",
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "attribute": "profilesProvider"
+            },
+            {
+              "kind": "field",
+              "name": "excludedUsers",
+              "type": {
+                "text": "Array<ActionHash[]>"
+              },
+              "default": "[]",
+              "description": "Profiles that won't be listed in the search",
+              "attribute": "excludedUsers"
+            },
+            {
+              "kind": "method",
+              "name": "onUserSelected",
+              "parameters": [
+                {
+                  "name": "agents",
+                  "type": {
+                    "text": "AgentPubKey[]"
+                  }
+                },
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "Profile"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "renderProfileList"
+            }
+          ],
+          "events": [
+            {
+              "name": "user-selected",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "Fired when the user selects some user. Detail will have this shape: { agents: Array<AgentPubKey> }"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "fieldName": "open"
+            },
+            {
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "fieldName": "profilesProvider"
+            },
+            {
+              "name": "excludedUsers",
+              "type": {
+                "text": "Array<ActionHash[]>"
+              },
+              "default": "[]",
+              "description": "Profiles that won't be listed in the search",
+              "fieldName": "excludedUsers"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@tnesh-stack/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "search-user-dropdown",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SearchUserDropdown",
+          "declaration": {
+            "name": "SearchUserDropdown",
+            "module": "src/elements/search-user-dropdown.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "search-user-dropdown",
+          "declaration": {
+            "name": "SearchUserDropdown",
+            "module": "src/elements/search-user-dropdown.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/search-user.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SearchUser",
+          "members": [
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name of the field if this element is used inside a form\nRequired only if the element is used inside a form",
+              "attribute": "name"
+            },
+            {
+              "kind": "field",
+              "name": "defaultValue",
+              "type": {
+                "text": "AgentPubKey[] | undefined"
+              },
+              "description": "The default value of the field if this element is used inside a form",
+              "attribute": "defaultValue"
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether this field is required if this element is used inside a form",
+              "attribute": "required"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether this field is disabled if this element is used inside a form",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "clearOnSelect",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether to clear the field when an agent is selected.",
+              "attribute": "clear-on-select"
+            },
+            {
+              "kind": "field",
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "attribute": "profilesProvider"
+            },
+            {
+              "kind": "field",
+              "name": "excludedUsers",
+              "type": {
+                "text": "Array<AgentPubKey[]>"
+              },
+              "default": "[]",
+              "description": "Profiles that won't be listed in the search",
+              "attribute": "excludedUsers"
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "Label for the agent searching field.",
+              "attribute": "label"
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity"
+            },
+            {
+              "kind": "method",
+              "name": "reset"
+            },
+            {
+              "kind": "field",
+              "name": "searchFilter",
+              "type": {
+                "text": "string"
+              },
+              "default": "''"
+            },
+            {
+              "kind": "method",
+              "name": "onUserSelected",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "user",
+                  "type": {
+                    "text": "AgentPubKey[]"
+                  }
+                },
+                {
+                  "name": "profile",
+                  "type": {
+                    "text": "Profile"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "description": "Fired when the user selects some agent. Detail will have this shape: { agents: Array<HoloHash> }",
+              "name": "user-selected"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "clear-on-select",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether to clear the field when an agent is selected.",
+              "fieldName": "clearOnSelect",
+              "attribute": "clear-on-select"
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "Label for the agent searching field.",
+              "fieldName": "label",
+              "attribute": "label"
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name of the field if this element is used inside a form\nRequired only if the element is used inside a form",
+              "fieldName": "name"
+            },
+            {
+              "name": "defaultValue",
+              "type": {
+                "text": "AgentPubKey[] | undefined"
+              },
+              "description": "The default value of the field if this element is used inside a form",
+              "fieldName": "defaultValue"
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether this field is required if this element is used inside a form",
+              "fieldName": "required"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether this field is disabled if this element is used inside a form",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "fieldName": "profilesProvider"
+            },
+            {
+              "name": "excludedUsers",
+              "type": {
+                "text": "Array<AgentPubKey[]>"
+              },
+              "default": "[]",
+              "description": "Profiles that won't be listed in the search",
+              "fieldName": "excludedUsers"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@tnesh-stack/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "search-user",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SearchUser",
+          "declaration": {
+            "name": "SearchUser",
+            "module": "src/elements/search-user.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "search-user",
+          "declaration": {
+            "name": "SearchUser",
+            "module": "src/elements/search-user.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/search-users.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SearchUsers",
+          "members": [
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name of the field if this element is used inside a form\nRequired only if the element is used inside a form",
+              "attribute": "name"
+            },
+            {
+              "kind": "field",
+              "name": "defaultValue",
+              "type": {
+                "text": "Array<AgentPubKey[]>"
+              },
+              "default": "[]",
+              "description": "The default value of the field if this element is used inside a form",
+              "attribute": "defaultValue"
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether this field is required if this element is used inside a form",
+              "attribute": "required"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether this field is disabled if this element is used inside a form",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "Label for the agent searching field.",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "emptyListPlaceholder",
+              "description": "Placeholder to show when the list is empty.",
+              "attribute": "empty-list-placeholder"
+            },
+            {
+              "kind": "field",
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "attribute": "profilesProvider"
+            },
+            {
+              "kind": "field",
+              "name": "excludedUsers",
+              "type": {
+                "text": "Array<AgentPubKey[]>"
+              },
+              "default": "[]",
+              "description": "Agents that won't be listed in the search",
+              "attribute": "excludedUsers"
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity"
+            },
+            {
+              "kind": "method",
+              "name": "reset"
+            }
+          ],
+          "events": [
+            {
+              "name": "users-changed",
+              "type": {
+                "text": "CustomEvent"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "Label for the agent searching field.",
+              "fieldName": "label",
+              "attribute": "label"
+            },
+            {
+              "name": "empty-list-placeholder",
+              "description": "Placeholder to show when the list is empty.",
+              "fieldName": "emptyListPlaceholder",
+              "attribute": "empty-list-placeholder"
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name of the field if this element is used inside a form\nRequired only if the element is used inside a form",
+              "fieldName": "name"
+            },
+            {
+              "name": "defaultValue",
+              "type": {
+                "text": "Array<AgentPubKey[]>"
+              },
+              "default": "[]",
+              "description": "The default value of the field if this element is used inside a form",
+              "fieldName": "defaultValue"
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether this field is required if this element is used inside a form",
+              "fieldName": "required"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Whether this field is disabled if this element is used inside a form",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "profilesProvider",
+              "type": {
+                "text": "ProfilesProvider"
+              },
+              "description": "Profiles provider",
+              "fieldName": "profilesProvider"
+            },
+            {
+              "name": "excludedUsers",
+              "type": {
+                "text": "Array<AgentPubKey[]>"
+              },
+              "default": "[]",
+              "description": "Agents that won't be listed in the search",
+              "fieldName": "excludedUsers"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@tnesh-stack/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "search-users",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SearchUsers",
+          "declaration": {
+            "name": "SearchUsers",
+            "module": "src/elements/search-users.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "search-users",
+          "declaration": {
+            "name": "SearchUsers",
+            "module": "src/elements/search-users.ts"
+          }
+        }
+      ]
+    }
+  ]
+}

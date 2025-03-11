@@ -1,26 +1,26 @@
-# `<search-profile>`
+# `<search-user>`
 
-Allows the user to search profiles based on the start of their nickname. Outputs their profile's `ActionHash`s as values.
+Allows the user to search profiles based on the start of their name. Outputs the user's agents as values.
 
 ## Usage
 
 0. If you haven't already, [go through the setup for the module](/setup).
 
-1. Import the `search-profile` element somewhere in the javascript side of your web-app like this:
+1. Import the `search-user` element somewhere in the javascript side of your web-app like this:
 
 ```js
-import '@darksoil-studio/profiles-zome/dist/elements/search-profile.js'
+import '@darksoil-studio/profiles-zome/dist/elements/search-user.js'
 ```
 
 2. Use it in the html side of your web-app like this:
 
 ```html
-<search-profile>
-</search-profile>
+<search-user>
+</search-user>
 ```
 
 > [!WARNING]
-> Like all the elements in this module, `<search-profile>` needs to be placed inside an initialized `<profiles-context>`.
+> Like all the elements in this module, `<search-user>` needs to be placed inside an initialized `<profiles-context>`.
 
 ## Demo
 
@@ -47,7 +47,7 @@ onMounted(async () => {
   await import('@api-viewer/docs/lib/api-docs.js');
   await import('@api-viewer/demo/lib/api-demo.js');
   await import('../../ui/src/elements/profiles-context.ts');
-  await import('../../ui/src/elements/search-profile.ts');
+  await import('../../ui/src/elements/search-user.ts');
 
   const profiles = await demoProfiles();
   const mock = new ProfilesZomeMock(profiles, Array.from(profiles.keys())[0]);
@@ -56,10 +56,10 @@ onMounted(async () => {
     
   render(html`
     <profiles-context .store=${store}>
-      <api-demo src="custom-elements.json" only="search-profile" exclude-knobs="store">
-        <template data-element="search-profile" data-target="host">
-          <search-profile style="height: 250px; width: 500px; display: flex">
-          </search-profile>
+      <api-demo src="custom-elements.json" only="search-user" exclude-knobs="profilesProvider">
+        <template data-element="search-user" data-target="host">
+          <search-user style="height: 250px; width: 500px; display: flex">
+          </search-user>
         </template>
       </api-demo>
     </profiles-context>`,
@@ -71,7 +71,7 @@ onMounted(async () => {
 
 ## API Reference
 
-`search-profile` is a [custom element](https://web.dev/articles/custom-elements-v1), which means that it can be used in any web app or website. Here is the reference for its API:
+`search-user` is a [custom element](https://web.dev/articles/custom-elements-v1), which means that it can be used in any web app or website. Here is the reference for its API:
 
-<api-docs src="custom-elements.json" only="search-profile">
+<api-docs src="custom-elements.json" only="search-user">
 </api-docs>

@@ -18,22 +18,19 @@ import { EntryRecord } from '@tnesh-stack/utils';
 import { LitElement, css, html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 
-import { profilesStoreContext } from '../context.js';
-import { ProfilesStore } from '../profiles-store.js';
+import { profilesProviderContext } from '../context.js';
+import { ProfilesProvider } from '../profiles-provider.js';
 import { Profile } from '../types.js';
 import './profile-list-item-skeleton.js';
-import './search-profile-dropdown.js';
+import './search-user-dropdown.js';
 
 /**
- * @element search-agent
- * @fires profile-selected - Fired when the user selects some agent. Detail will have this shape: { agentPubKey: HoloHash }
+ * @element search-user
+ * @fires user-selected - Fired when the user selects some agent. Detail will have this shape: { agents: Array<HoloHash> }
  */
 @localized()
-@customElement('search-agent')
-export class SearchAgent
-	extends SignalWatcher(LitElement)
-	implements FormField
-{
+@customElement('search-user')
+export class SearchUser extends SignalWatcher(LitElement) implements FormField {
 	/** Form field properties */
 
 	/**
@@ -47,7 +44,7 @@ export class SearchAgent
 	 * The default value of the field if this element is used inside a form
 	 */
 	@property(hashProperty('default-value'))
-	defaultValue: AgentPubKey | undefined;
+	defaultValue: AgentPubKey[] | undefined;
 
 	/**
 	 * Whether this field is required if this element is used inside a form
@@ -65,7 +62,7 @@ export class SearchAgent
 	 * @internal
 	 */
 	@state()
-	value!: AgentPubKey | undefined;
+	value!: AgentPubKey[] | undefined;
 
 	/** Public attributes */
 
@@ -77,24 +74,24 @@ export class SearchAgent
 	clearOnSelect = false;
 
 	/**
-	 * Profiles store for this element, not required if you embed this element inside a <profiles-context>
+	 * Profiles provider
 	 */
-	@consume({ context: profilesStoreContext, subscribe: true })
+	@consume({ context: profilesProviderContext, subscribe: true })
 	@property()
-	store!: ProfilesStore;
+	profilesProvider!: ProfilesProvider;
 
 	/**
 	 * Profiles that won't be listed in the search
 	 */
 	@property()
-	excludedProfiles: ActionHash[] = [];
+	excludedUsers: Array<AgentPubKey[]> = [];
 
 	/**
 	 * Label for the agent searching field.
-	 * @attr field-label
+	 * @attr label
 	 */
-	@property({ type: String, attribute: 'field-label' })
-	fieldLabel!: string;
+	@property({ type: String, attribute: 'label' })
+	label!: string;
 
 	/**
 	 * @internal
@@ -114,13 +111,12 @@ export class SearchAgent
 
 	async reset() {
 		this.value = this.defaultValue;
-		if (this.defaultValue) {
+		if (this.defaultValue && this.defaultValue.length > 0) {
 			const profile = await toPromise(
-				this.store.profileForAgent.get(this.defaultValue),
+				this.profilesProvider.currentProfileForAgent.get(this.defaultValue[0]),
 			);
 			if (profile) {
-				const profileLatestVersion = await toPromise(profile.latestVersion);
-				this._textField.value = profileLatestVersion?.entry.nickname || '';
+				this._textField.value = profile?.name || '';
 			}
 		} else {
 			this._textField.value = '';
@@ -136,17 +132,14 @@ export class SearchAgent
 	@state()
 	searchFilter = '';
 
-	private onProfileSelected(
-		profileHash: ActionHash,
-		profile: EntryRecord<Profile>,
-	) {
-		this.value = profile.action.author;
+	private onUserSelected(user: AgentPubKey[], profile: Profile) {
+		this.value = user;
 
 		// If the consumer says so, clear the field
 		if (this.clearOnSelect) {
 			this._textField.value = '';
 		} else {
-			this._textField.value = profile.entry.nickname;
+			this._textField.value = profile.name;
 		}
 		this.searchFilter = '';
 	}
@@ -155,7 +148,7 @@ export class SearchAgent
 	 * @internal
 	 */
 	get _label() {
-		let l = this.fieldLabel ? this.fieldLabel : msg('Search Profile');
+		let l = this.label ? this.label : msg('Search User');
 
 		if (this.required !== false) l = `${l} *`;
 
@@ -165,14 +158,14 @@ export class SearchAgent
 	render() {
 		return html`
 			<div style="flex: 1; display: flex;">
-				<search-profile-dropdown
+				<search-user-dropdown
 					id="dropdown"
 					.open=${this.searchFilter.length >= 3}
 					style="flex: 1"
-					.excludedProfiles=${this.excludedProfiles}
+					.excludedUsers=${this.excludedUsers}
 					.searchFilter=${this.searchFilter}
-					@profile-selected=${(e: CustomEvent) =>
-						this.onProfileSelected(e.detail.profileHash, e.detail.profile)}
+					@user-selected=${(e: CustomEvent) =>
+						this.onUserSelected(e.detail.agents, e.detail.profile)}
 				>
 					<sl-input
 						id="textfield"
@@ -182,7 +175,7 @@ export class SearchAgent
 							this.searchFilter = (e.target as SlInput).value;
 						}}
 					></sl-input>
-				</search-profile-dropdown>
+				</search-user-dropdown>
 			</div>
 		`;
 	}

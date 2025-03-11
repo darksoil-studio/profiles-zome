@@ -1,17 +1,7 @@
-export interface FieldConfig {
-	name: string;
-	label: string;
-	required: boolean;
-}
-
-export interface ProfilesConfig {
-	avatarMode: 'identicon' | 'avatar-required' | 'avatar-optional';
-	additionalFields: FieldConfig[];
-	minNicknameLength: number;
-}
+import { ProfilesConfig } from '@darksoil-studio/profiles-provider';
 
 export const defaultConfig: ProfilesConfig = {
-	avatarMode: 'avatar-optional',
+	avatarMode: 'avatar-required',
 	additionalFields: [],
 	minNicknameLength: 3,
 };

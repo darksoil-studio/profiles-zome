@@ -19,16 +19,24 @@ export async function setup(scenario: Scenario, numPlayers = 2) {
 			appBundleSource: { path: appPath },
 		}),
 	);
-	const playersAndStores = [];
-	for (const player of players) {
-		playersAndStores.push(await setupStore(player));
-	}
+	const playersAndStores = await promiseAllSequential(
+		players.map(p => () => setupStore(p)),
+	);
 
 	// Shortcut peer discovery through gossip and register all agents in every
 	// conductor of the scenario.
 	await scenario.shareAllAgents();
 
 	return playersAndStores;
+}
+async function promiseAllSequential<T>(
+	promises: Array<() => Promise<T>>,
+): Promise<Array<T>> {
+	const results: Array<T> = [];
+	for (const promise of promises) {
+		results.push(await promise());
+	}
+	return results;
 }
 
 async function setupStore(player: Player) {
@@ -39,6 +47,7 @@ async function setupStore(player: Player) {
 	const store = new ProfilesStore(
 		new ProfilesClient(player.appWs as any, 'profiles-test'),
 	);
+	await store.client.getAllProfiles();
 	return {
 		store,
 		linkedDevicesStore: new LinkedDevicesStore(

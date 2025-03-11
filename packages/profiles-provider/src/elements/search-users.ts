@@ -1,3 +1,8 @@
+import { ActionHash, AgentPubKey } from '@holochain/client';
+import { consume } from '@lit/context';
+import { localized, msg } from '@lit/localize';
+import { mdiDelete } from '@mdi/js';
+import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
 import {
 	FormField,
 	FormFieldController,
@@ -6,25 +11,20 @@ import {
 	wrapPathInSvg,
 } from '@tnesh-stack/elements';
 import { SignalWatcher } from '@tnesh-stack/signals';
-import { ActionHash, AgentPubKey } from '@holochain/client';
-import { consume } from '@lit/context';
-import { localized, msg } from '@lit/localize';
-import { mdiDelete } from '@mdi/js';
-import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
 import { LitElement, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
-import { profilesStoreContext } from '../context.js';
-import { ProfilesStore } from '../profiles-store.js';
+import { profilesProviderContext } from '../context.js';
+import { ProfilesProvider } from '../profiles-provider.js';
 import './profile-list-item.js';
-import './search-profile.js';
+import './search-user.js';
 
 /**
- * @element search-profiles
+ * @element search-users
  */
 @localized()
-@customElement('search-profiles')
-export class SearchProfiles
+@customElement('search-users')
+export class SearchUsers
 	extends SignalWatcher(LitElement)
 	implements FormField
 {
@@ -41,7 +41,7 @@ export class SearchProfiles
 	 * The default value of the field if this element is used inside a form
 	 */
 	@property(hashProperty('default-value'))
-	defaultValue: Array<ActionHash> = [];
+	defaultValue: Array<AgentPubKey[]> = [];
 
 	/**
 	 * Whether this field is required if this element is used inside a form
@@ -57,17 +57,17 @@ export class SearchProfiles
 
 	/**
 	 * Label for the agent searching field.
-	 * @attr field-label
+	 * @attr label
 	 */
-	@property({ type: String, attribute: 'field-label' })
-	fieldLabel!: string;
+	@property({ type: String, attribute: 'label' })
+	label!: string;
 
 	/**
 	 * Placeholder to show when the list is empty.
 	 * @attr empty-list-placeholder
 	 */
 	@property({ type: String, attribute: 'empty-list-placeholder' })
-	emptyListPlaceholder = msg('No agents selected yet.');
+	emptyListPlaceholder = msg('No users selected yet.');
 
 	/**
 	 * @internal
@@ -75,17 +75,17 @@ export class SearchProfiles
 	_controller = new FormFieldController(this);
 
 	/**
-	 * Profiles store for this element, not required if you embed this element inside a <profiles-context>
+	 * Profiles provider
 	 */
-	@consume({ context: profilesStoreContext, subscribe: true })
+	@consume({ context: profilesProviderContext, subscribe: true })
 	@property()
-	store!: ProfilesStore;
+	profilesProvider!: ProfilesProvider;
 
 	/**
 	 * Agents that won't be listed in the search
 	 */
 	@property()
-	excludedProfiles: ActionHash[] = [];
+	excludedUsers: Array<AgentPubKey[]> = [];
 
 	reportValidity() {
 		return true;
@@ -99,47 +99,47 @@ export class SearchProfiles
 	 * @internal
 	 */
 	@state()
-	value: ActionHash[] = [];
+	value: Array<AgentPubKey[]> = [];
 
 	render() {
 		return html`
 			<div class="column" style="gap: 16px">
-				<search-profile
-					.fieldLabel=${this.fieldLabel}
+				<search-user
+					.label=${this.label ? this.label : msg('Search Users')}
 					clear-on-select
-					@profile-selected=${(e: any) => {
-						this.value = [...this.value, e.detail.profileHash];
+					@user-selected=${(e: any) => {
+						this.value = [...this.value, e.detail.agents];
 						this.dispatchEvent(
-							new CustomEvent('profiles-changed', {
+							new CustomEvent('users-changed', {
 								composed: true,
 								bubbles: true,
 								detail: {
-									profilesHashes: this.value,
+									users: this.value,
 								},
 							}),
 						);
 					}}
-					.excludedProfiles=${this.excludedProfiles}
-				></search-profile>
+					.excludedUsers=${this.excludedUsers}
+				></search-user>
 				${this.value.length === 0
 					? html`<span class="placeholder">${this.emptyListPlaceholder}</span>`
 					: this.value.map(
-							(profileHash, i) =>
+							(user, i) =>
 								html`<div class="row">
 									<profile-list-item
 										style="flex: 1"
-										.profileHash=${profileHash}
+										.agentPubKey=${user[0]}
 									></profile-list-item
 									><sl-icon-button
 										.src=${wrapPathInSvg(mdiDelete)}
 										@click=${() => {
 											this.value = this.value.filter((v, i2) => i2 !== i);
 											this.dispatchEvent(
-												new CustomEvent('profiles-changed', {
+												new CustomEvent('users-changed', {
 													composed: true,
 													bubbles: true,
 													detail: {
-														profilesHashes: this.value,
+														users: this.value,
 													},
 												}),
 											);

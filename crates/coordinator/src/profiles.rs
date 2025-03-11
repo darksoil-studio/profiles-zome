@@ -10,7 +10,7 @@ pub fn create_profile(profile: Profile) -> ExternResult<Record> {
 
     let action_hash = create_entry(EntryTypes::Profile(profile.clone()))?;
 
-    let path = prefix_path(profile.nickname.clone())?;
+    let path = prefix_path(profile.name.clone())?;
 
     path.ensure()?;
 
@@ -20,7 +20,7 @@ pub fn create_profile(profile: Profile) -> ExternResult<Record> {
         path.path_entry_hash()?,
         action_hash.clone(),
         LinkTypes::PathToProfile,
-        LinkTag::new(profile.nickname.to_lowercase().as_bytes().to_vec()),
+        LinkTag::new(profile.name.to_lowercase().as_bytes().to_vec()),
     )?;
     create_link(
         agent_address.clone(),
@@ -64,11 +64,8 @@ pub fn update_profile(input: UpdateProfileInput) -> ExternResult<Record> {
         .to_app_option()
         .map_err(|e| wasm_error!(e))?
         .ok_or(wasm_error!("Previous profile is malformed"))?;
-    if previous_profile
-        .nickname
-        .ne(&input.updated_profile.nickname)
-    {
-        let previous_prefix_path = prefix_path(previous_profile.nickname)?;
+    if previous_profile.name.ne(&input.updated_profile.name) {
+        let previous_prefix_path = prefix_path(previous_profile.name)?;
         let links = get_links(
             GetLinksInputBuilder::try_new(
                 previous_prefix_path.path_entry_hash()?,
@@ -85,7 +82,7 @@ pub fn update_profile(input: UpdateProfileInput) -> ExternResult<Record> {
             }
         }
 
-        let path = prefix_path(input.updated_profile.nickname.clone())?;
+        let path = prefix_path(input.updated_profile.name.clone())?;
 
         path.ensure()?;
 
@@ -96,7 +93,7 @@ pub fn update_profile(input: UpdateProfileInput) -> ExternResult<Record> {
             LinkTag::new(
                 input
                     .updated_profile
-                    .nickname
+                    .name
                     .to_lowercase()
                     .as_bytes()
                     .to_vec(),

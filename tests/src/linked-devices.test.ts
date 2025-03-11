@@ -5,8 +5,8 @@ import { toPromise, watch } from '@tnesh-stack/signals';
 import { EntryRecord } from '@tnesh-stack/utils';
 import { assert, expect, test } from 'vitest';
 
+import { Profile } from '../../packages/profiles-provider/src/types.js';
 import { sampleProfile } from '../../ui/src/mocks.js';
-import { Profile } from '../../ui/src/types.js';
 import { setup } from './setup.js';
 
 test('create Profile and link devices', async () => {

@@ -1,6 +1,7 @@
 import {
 	ActionHash,
 	AgentPubKey,
+	AgentPubKeyB64,
 	decodeHashFromBase64,
 	encodeHashToBase64,
 } from '@holochain/client';
@@ -26,19 +27,19 @@ import { LitElement, css, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
-import { profilesStoreContext } from '../context.js';
-import { ProfilesStore } from '../profiles-store.js';
+import { profilesProviderContext } from '../context.js';
+import { ProfilesProvider } from '../profiles-provider.js';
 import { Profile } from '../types.js';
 import './agent-avatar.js';
 import './profile-list-item-skeleton.js';
 
 /**
- * @element search-profile-dropdown
- * @fires profile-selected - Fired when the user selects some agent. Detail will have this shape: { profileHash: ActionHash }
+ * @element search-user-dropdown
+ * @fires user-selected - Fired when the user selects some user. Detail will have this shape: { agents: Array<AgentPubKey> }
  */
 @localized()
-@customElement('search-profile-dropdown')
-export class SearchProfileDropdown extends SignalWatcher(LitElement) {
+@customElement('search-user-dropdown')
+export class SearchUserDropdown extends SignalWatcher(LitElement) {
 	/** Public attributes */
 
 	set searchFilter(sf: string | undefined) {
@@ -54,28 +55,23 @@ export class SearchProfileDropdown extends SignalWatcher(LitElement) {
 	open: boolean | undefined;
 
 	/**
-	 * Profiles store for this element, not required if you embed this element inside a <profiles-context>
+	 * Profiles provider
 	 */
-	@consume({ context: profilesStoreContext, subscribe: true })
+	@consume({ context: profilesProviderContext, subscribe: true })
 	@property()
-	store!: ProfilesStore;
+	profilesProvider!: ProfilesProvider;
 
 	/**
 	 * Profiles that won't be listed in the search
 	 */
 	@property()
-	excludedProfiles: ActionHash[] = [];
+	excludedUsers: Array<ActionHash[]> = [];
 
 	/**
 	 * @internal
 	 */
-	_searchProfiles = pipe(
-		this._searchFilter,
-		filter => this.store.client.searchProfiles(filter!),
-		profilesHashes => {
-			const profiles = slice(this.store.profiles, profilesHashes);
-			return joinAsyncMap(mapValues(profiles, p => p.latestVersion.get()));
-		},
+	_searchProfiles = pipe(this._searchFilter, filter =>
+		this.profilesProvider.search(filter!),
 	);
 
 	/**
@@ -84,14 +80,11 @@ export class SearchProfileDropdown extends SignalWatcher(LitElement) {
 	@query('#dropdown')
 	public dropdown!: SlDropdown;
 
-	async onProfileSelected(
-		profileHash: ActionHash,
-		profile: EntryRecord<Profile>,
-	) {
+	async onUserSelected(agents: AgentPubKey[], profile: Profile) {
 		this.dispatchEvent(
-			new CustomEvent('profile-selected', {
+			new CustomEvent('user-selected', {
 				detail: {
-					profileHash,
+					agents,
 					profile,
 				},
 				bubbles: true,
@@ -138,29 +131,35 @@ export class SearchProfileDropdown extends SignalWatcher(LitElement) {
 					></display-error>
 				`;
 			case 'completed': {
-				let profiles = Array.from(searchResult.value.entries());
-				const excludedStr = this.excludedProfiles.map(a => a.toString());
-
-				profiles = profiles.filter(
-					([profileHash, _profile]) =>
-						!excludedStr.includes(profileHash.toString()),
+				let users = searchResult.value;
+				const excludedAgentsStr = ([] as AgentPubKeyB64[]).concat(
+					...this.excludedUsers.map(agents =>
+						agents.map(agent => agent.toString()),
+					),
 				);
 
-				if (profiles.length === 0)
+				users = users.filter(
+					user =>
+						!user.agents.find(agent =>
+							excludedAgentsStr.includes(agent.toString()),
+						),
+				);
+
+				if (users.length === 0)
 					return html`<sl-menu-item disabled>
 						${msg('No nicknames match the filter')}
 					</sl-menu-item>`;
 
 				return html`
-					${profiles.map(
-						([profileHash, profile]) => html`
-							<sl-menu-item .value=${encodeHashToBase64(profileHash)}>
+					${users.map(
+						(user, i) => html`
+							<sl-menu-item .value=${i}>
 								<agent-avatar
 									slot="prefix"
-									.profileHash=${profileHash}
+									.agentPubKey=${user.agents[0]}
 									style="margin-right: 16px"
 								></agent-avatar>
-								${profile?.entry.nickname}
+								${user.profile?.name}
 							</sl-menu-item>
 						`,
 					)}
@@ -180,11 +179,13 @@ export class SearchProfileDropdown extends SignalWatcher(LitElement) {
 				<slot slot="trigger"></slot>
 				<sl-menu
 					@sl-select=${async (e: CustomEvent) => {
-						const profileHash = decodeHashFromBase64(e.detail.item.value);
-						const profile = await toPromise(
-							this.store.profiles.get(profileHash).latestVersion,
-						);
-						this.onProfileSelected(profileHash, profile);
+						const index = parseInt(e.detail.item.value);
+						const searchResults = this._searchProfiles.get();
+						if (searchResults.status !== 'completed') return;
+
+						const user = searchResults.value[index];
+
+						this.onUserSelected(user.agents, user.profile);
 					}}
 				>
 					${this.renderProfileList()}

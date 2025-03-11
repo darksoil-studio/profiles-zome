@@ -1,3 +1,4 @@
+import { profilesProviderContext } from '@darksoil-studio/profiles-provider';
 import { AppClient } from '@holochain/client';
 import { consume, provide } from '@lit/context';
 import { appClientContext } from '@tnesh-stack/elements';
@@ -12,6 +13,7 @@ import { ProfilesStore } from '../profiles-store.js';
 @customElement('profiles-context')
 export class ProfilesContext extends SignalWatcher(LitElement) {
 	@provide({ context: profilesStoreContext })
+	@provide({ context: profilesProviderContext })
 	@property({ type: Object })
 	store!: ProfilesStore;
 
