@@ -6,6 +6,7 @@ import { Profile, ProfilesConfig, User } from './types.js';
 
 export interface ProfilesProvider {
 	config: ProfilesConfig;
+	profilesArePublic: boolean;
 
 	myPubKey: AgentPubKey;
 

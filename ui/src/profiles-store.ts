@@ -1,13 +1,11 @@
 import {
-	Profile,
 	ProfilesConfig,
 	ProfilesProvider,
 	User,
 } from '@darksoil-studio/profiles-provider';
-import { ActionHash, AgentPubKey, HoloHash } from '@holochain/client';
+import { ActionHash, AgentPubKey } from '@holochain/client';
 import {
 	AsyncComputed,
-	AsyncSignal,
 	collectionSignal,
 	immutableEntrySignal,
 	latestVersionOfEntrySignal,
@@ -23,6 +21,8 @@ import { ProfilesClient } from './profiles-client.js';
 
 export class ProfilesStore implements ProfilesProvider {
 	config: ProfilesConfig;
+
+	profilesArePublic = true;
 
 	constructor(
 		public client: ProfilesClient,
