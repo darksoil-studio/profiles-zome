@@ -26,7 +26,7 @@
 	},
 	"dependencies": {
 		"@darksoil-studio/linked-devices-zome": "0.400.0-rev.3771839e56d9f93f7d5c3f4cb2171b305e98d4f5",
-		"@darksoil-studio/profiles-provider": "^0.400.0",
+		"@darksoil-studio/profiles-provider": "^0.400.1",
 		"@tnesh-stack/elements": "^0.400.0",
 		"@tnesh-stack/signals": "^0.400.0",
 		"@tnesh-stack/utils": "^0.400.0",

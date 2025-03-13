@@ -24,6 +24,8 @@ import { ProfilesClient } from './profiles-client.js';
 export class ProfilesStore implements ProfilesProvider {
 	config: ProfilesConfig;
 
+	profilesArePublic = true;
+
 	constructor(
 		public client: ProfilesClient,
 		config: Partial<ProfilesConfig> = {},
