@@ -17,6 +17,4 @@ export interface ProfilesProvider {
 	>;
 
 	search(nameFilter: string): Promise<Array<User>>;
-
-	onProfileUpdated(callback: (updatedProfile: Profile) => void): () => void;
 }

@@ -16,7 +16,6 @@ import {
 	uniquify,
 } from '@tnesh-stack/signals';
 import { HashType, MemoHoloHashMap, retype, slice } from '@tnesh-stack/utils';
-import Emittery, { UnsubscribeFunction } from 'emittery';
 
 import { defaultConfig } from './config.js';
 import { ProfilesClient } from './profiles-client.js';
@@ -26,27 +25,15 @@ export class ProfilesStore implements ProfilesProvider {
 
 	profilesArePublic = true;
 
-	emittery = new Emittery<{ 'profile-updated': Profile }>();
-
 	constructor(
 		public client: ProfilesClient,
 		config: Partial<ProfilesConfig> = {},
 	) {
 		this.config = { ...defaultConfig, ...config };
-
-		this.client.onSignal(signal => {
-			if (signal.type !== 'EntryUpdated') return;
-
-			this.emittery.emit('profile-updated', signal.app_entry);
-		});
 	}
 
 	get myPubKey() {
 		return this.client.client.myPubKey;
-	}
-
-	onProfileUpdated(callback: (updatedProfile: Profile) => void): () => void {
-		return this.emittery.on('profile-updated', callback);
 	}
 
 	/**
