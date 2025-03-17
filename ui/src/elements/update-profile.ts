@@ -163,7 +163,7 @@ export class UpdateProfile extends SignalWatcher(LitElement) {
 					>
 						<sl-icon
 							.src=${wrapPathInSvg(mdiInformationOutline)}
-							style="height: 64px; width: 48px;"
+							style="height: 64px; width: 64px;"
 						></sl-icon>
 						<span>${msg("You haven't created a profile yet.")}</span>
 					</div>`;
