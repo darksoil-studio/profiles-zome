@@ -160,8 +160,8 @@ importers:
         specifier: 0.400.0-rev.e85058930c86c486390f0e52c932b0c5065c4b23
         version: 0.400.0-rev.e85058930c86c486390f0e52c932b0c5065c4b23(@floating-ui/utils@0.2.8)(@types/react@18.3.14)
       '@darksoil-studio/profiles-provider':
-        specifier: ^0.400.1
-        version: 0.400.1(@floating-ui/utils@0.2.8)(@types/react@18.3.14)
+        specifier: ^0.400.2
+        version: 0.400.2(@floating-ui/utils@0.2.8)(@types/react@18.3.14)
       '@holochain/client':
         specifier: ^0.18.0
         version: 0.18.0
@@ -189,6 +189,9 @@ importers:
       '@tnesh-stack/utils':
         specifier: ^0.400.0
         version: 0.400.0
+      emittery:
+        specifier: ^1.1.0
+        version: 1.1.0
       lit:
         specifier: ^3.0.2
         version: 3.2.1
@@ -413,8 +416,8 @@ packages:
   '@darksoil-studio/linked-devices-zome@0.400.0-rev.e85058930c86c486390f0e52c932b0c5065c4b23':
     resolution: {integrity: sha512-bczzlqO5LzSQsgECzq0VBPfaDMXGmjplHlCb4QJCllzynBCcUkfwlDUgvug7ZnyAzAy6j7b5I39se5YNcxPIJQ==}
 
-  '@darksoil-studio/profiles-provider@0.400.1':
-    resolution: {integrity: sha512-Ja77MAjyVlTAHzEZjW+10vFrGRV6BSzEBSmR/M2Rl7t98geO424N9CgasMPcq1g7knwv6AIsKOo6OC4a/q2Ohg==}
+  '@darksoil-studio/profiles-provider@0.400.2':
+    resolution: {integrity: sha512-QjPlzze3F5xXgQ8EOpsOdlsfCPJvWduLFQ7j36JD9v+SvgmemNOGCmgOOxms3zcpZ6Hd41F3rX0GC/qnahDveg==}
 
   '@docsearch/css@3.8.0':
     resolution: {integrity: sha512-pieeipSOW4sQ0+bE5UFC51AOZp9NGxg89wAlZ1BAQFaiRAGK1IKUaPQ0UGZeNctJXyqZ1UvBtOQh2HH+U5GtmA==}
@@ -1777,6 +1780,10 @@ packages:
     resolution: {integrity: sha512-tJdCJitoy2lrC2ldJcqN4vkqJ00lT+tOWNT1hBJjO/3FDMJa5TTIiYGCKGkn/WfCyOzUMObeohbVTj00fhiLiA==}
     engines: {node: '>=14.16'}
 
+  emittery@1.1.0:
+    resolution: {integrity: sha512-rsX7ktqARv/6UQDgMaLfIqUWAEzzbCQiVh7V9rhDXp6c37yoJcks12NVD+XPkgl4AEavmNhVfrhGoqYwIsMYYA==}
+    engines: {node: '>=14.16'}
+
   emoji-regex-xs@1.0.0:
     resolution: {integrity: sha512-LRlerrMYoIDrT6jgpeZ2YYl/L8EulRTt5hQcYjy5AInh7HWXKimpqx68aknBFpGL2+/IcogTcaydJEgaTmOpDg==}
 
@@ -2194,6 +2201,7 @@ packages:
 
   lodash.pick@4.4.0:
     resolution: {integrity: sha512-hXt6Ul/5yWjfklSGvLQl8vM//l3FtyHZeuelpzK6mm99pNvN9yTDruNZPEJZD1oWrqo+izBmB7oUfWgcCX7s4Q==}
+    deprecated: This package is deprecated. Use destructuring assignment syntax instead.
 
   lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
@@ -3311,7 +3319,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@darksoil-studio/profiles-provider@0.400.1(@floating-ui/utils@0.2.8)(@types/react@18.3.14)':
+  '@darksoil-studio/profiles-provider@0.400.2(@floating-ui/utils@0.2.8)(@types/react@18.3.14)':
     dependencies:
       '@holochain/client': 0.18.0
       '@lit/context': 1.1.3
@@ -3565,7 +3573,7 @@ snapshots:
       '@bitgo/blake2b': 3.2.4
       '@holochain/serialization': 0.1.0-beta-rc.3
       '@msgpack/msgpack': 2.8.0
-      emittery: 1.0.3
+      emittery: 1.1.0
       isomorphic-ws: 5.0.0(ws@8.18.0)
       js-base64: 3.7.7
       libsodium-wrappers: 0.7.15
@@ -3870,7 +3878,7 @@ snapshots:
       '@holochain/client': 0.18.0
       '@msgpack/msgpack': 2.8.0
       blakejs: 1.2.1
-      emittery: 1.0.3
+      emittery: 1.1.0
       js-base64: 3.7.7
       lodash-es: 4.17.21
       sort-keys: 5.1.0
@@ -4760,6 +4768,8 @@ snapshots:
       '@types/trusted-types': 2.0.7
 
   emittery@1.0.3: {}
+
+  emittery@1.1.0: {}
 
   emoji-regex-xs@1.0.0: {}
 

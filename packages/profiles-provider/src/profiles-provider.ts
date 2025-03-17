@@ -6,6 +6,7 @@ import { Profile, ProfilesConfig, User } from './types.js';
 
 export interface ProfilesProvider {
 	config: ProfilesConfig;
+
 	profilesArePublic: boolean;
 
 	myPubKey: AgentPubKey;
@@ -16,4 +17,6 @@ export interface ProfilesProvider {
 	>;
 
 	search(nameFilter: string): Promise<Array<User>>;
+
+	onProfileUpdated(callback: (updatedProfile: Profile) => void): () => void;
 }
