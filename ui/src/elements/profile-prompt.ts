@@ -49,6 +49,11 @@ export class ProfilePrompt extends SignalWatcher(LitElement) {
 	@state()
 	private linkingDevices = false;
 
+	firstUpdated() {
+		// Trigger init
+		this.store.client.getProfileForAgent(this.store.client.client.myPubKey);
+	}
+
 	async createProfileForLinkedDevices(agent: AgentPubKey) {
 		if (this.linkingDevices) return;
 		this.linkingDevices = true;
