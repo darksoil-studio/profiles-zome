@@ -4,7 +4,7 @@ import {
 	ProfilesProvider,
 	User,
 } from '@darksoil-studio/profiles-provider';
-import { ActionHash, AgentPubKey } from '@holochain/client';
+import { ActionHash, AgentPubKey, encodeHashToBase64 } from '@holochain/client';
 import {
 	AsyncComputed,
 	collectionSignal,
@@ -19,6 +19,7 @@ import { HashType, MemoHoloHashMap, retype, slice } from '@tnesh-stack/utils';
 
 import { defaultConfig } from './config.js';
 import { ProfilesClient } from './profiles-client.js';
+import { LocalStorageSignal } from './utils.js';
 
 export class ProfilesStore implements ProfilesProvider {
 	config: ProfilesConfig;
@@ -30,6 +31,14 @@ export class ProfilesStore implements ProfilesProvider {
 		config: Partial<ProfilesConfig> = {},
 	) {
 		this.config = { ...defaultConfig, ...config };
+
+		const unsubscribe = client.onSignal(signal => {
+			if (!('type' in signal && signal.type === 'LinkCreated')) return;
+
+			if (signal.link_type !== 'AgentToProfile') return;
+			this.profileIntialized.set(true);
+			unsubscribe();
+		});
 	}
 
 	get myPubKey() {
@@ -151,6 +160,19 @@ export class ProfilesStore implements ProfilesProvider {
 		),
 	}));
 
+	private profileIntialized = new LocalStorageSignal<boolean>(
+		`profile-initialized/${this.client.roleName}/${encodeHashToBase64(this.client.client.myPubKey)}`,
+	);
+
 	// Fetches the profile for the active agent
-	myProfile = this.profileForAgent.get(this.client.client.myPubKey);
+	myProfile = new AsyncComputed(() => {
+		if (!this.profileIntialized.get()) {
+			return {
+				status: 'completed',
+				value: undefined,
+			};
+		}
+
+		return this.profileForAgent.get(this.client.client.myPubKey).get();
+	});
 }
