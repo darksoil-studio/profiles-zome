@@ -57,6 +57,7 @@
 <a href="#57" id="57">57</a>
 <a href="#58" id="58">58</a>
 <a href="#59" id="59">59</a>
+<a href="#60" id="60">60</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>std::collections::BTreeMap;
 
 <span class="kw">use </span>hdi::prelude::<span class="kw-2">*</span>;
@@ -72,7 +73,8 @@
 </span><span class="attr">#[hdk_entry_helper]
 #[derive(Clone)]
 </span><span class="kw">pub struct </span>Profile {
-    <span class="kw">pub </span>nickname: String,
+    <span class="kw">pub </span>name: String,
+    <span class="kw">pub </span>avatar: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="kw">pub </span>fields: BTreeMap&lt;String, String&gt;,
 }
 

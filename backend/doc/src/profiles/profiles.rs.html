@@ -132,9 +132,6 @@
 <a href="#132" id="132">132</a>
 <a href="#133" id="133">133</a>
 <a href="#134" id="134">134</a>
-<a href="#135" id="135">135</a>
-<a href="#136" id="136">136</a>
-<a href="#137" id="137">137</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>hdk::prelude::<span class="kw-2">*</span>;
 <span class="kw">use </span>profiles_integrity::<span class="kw-2">*</span>;
 
@@ -147,7 +144,7 @@
 
     <span class="kw">let </span>action_hash = create_entry(EntryTypes::Profile(profile.clone()))<span class="question-mark">?</span>;
 
-    <span class="kw">let </span>path = prefix_path(profile.nickname.clone())<span class="question-mark">?</span>;
+    <span class="kw">let </span>path = prefix_path(profile.name.clone())<span class="question-mark">?</span>;
 
     path.ensure()<span class="question-mark">?</span>;
 
@@ -157,7 +154,7 @@
         path.path_entry_hash()<span class="question-mark">?</span>,
         action_hash.clone(),
         LinkTypes::PathToProfile,
-        LinkTag::new(profile.nickname.to_lowercase().as_bytes().to_vec()),
+        LinkTag::new(profile.name.to_lowercase().as_bytes().to_vec()),
     )<span class="question-mark">?</span>;
     create_link(
         agent_address.clone(),
@@ -201,11 +198,8 @@
         .to_app_option()
         .map_err(|e| <span class="macro">wasm_error!</span>(e))<span class="question-mark">?
         </span>.ok_or(<span class="macro">wasm_error!</span>(<span class="string">"Previous profile is malformed"</span>))<span class="question-mark">?</span>;
-    <span class="kw">if </span>previous_profile
-        .nickname
-        .ne(<span class="kw-2">&amp;</span>input.updated_profile.nickname)
-    {
-        <span class="kw">let </span>previous_prefix_path = prefix_path(previous_profile.nickname)<span class="question-mark">?</span>;
+    <span class="kw">if </span>previous_profile.name.ne(<span class="kw-2">&amp;</span>input.updated_profile.name) {
+        <span class="kw">let </span>previous_prefix_path = prefix_path(previous_profile.name)<span class="question-mark">?</span>;
         <span class="kw">let </span>links = get_links(
             GetLinksInputBuilder::try_new(
                 previous_prefix_path.path_entry_hash()<span class="question-mark">?</span>,
@@ -222,7 +216,7 @@
             }
         }
 
-        <span class="kw">let </span>path = prefix_path(input.updated_profile.nickname.clone())<span class="question-mark">?</span>;
+        <span class="kw">let </span>path = prefix_path(input.updated_profile.name.clone())<span class="question-mark">?</span>;
 
         path.ensure()<span class="question-mark">?</span>;
 
@@ -233,7 +227,7 @@
             LinkTag::new(
                 input
                     .updated_profile
-                    .nickname
+                    .name
                     .to_lowercase()
                     .as_bytes()
                     .to_vec(),
