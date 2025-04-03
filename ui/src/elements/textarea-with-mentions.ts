@@ -101,10 +101,13 @@ export class TextareaWithMentions
 	get value() {
 		if (!this.textarea) return '';
 		const value = this.textarea.innerHTML;
-		return value.replace(
-			/<agent-mention agent-pub-key="([^"]*)"><\/agent-mention>/gm,
-			'$1',
-		);
+		return value
+			.replace(
+				/<agent-mention agent-pub-key="([^"]*)"><\/agent-mention>/gm,
+				'$1',
+			)
+			.replace('&nbsp;', ' ')
+			.trim();
 	}
 
 	set value(v: string) {
