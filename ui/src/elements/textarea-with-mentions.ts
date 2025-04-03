@@ -1,300 +1,267 @@
-// import { SlTextareaProsemirror } from '@tnesh-stack/elements/dist/elements/sl-textarea-prosemirror.js';
-import {
-	getCellIdFromRoleName,
-	joinHrlString,
-	splitHrlString,
-} from '@tnesh-stack/utils';
-import { DnaHash, encodeHashToBase64 } from '@holochain/client';
+import { AgentPubKey, DnaHash, encodeHashToBase64 } from '@holochain/client';
 import { consume } from '@lit/context';
 import { localized, msg } from '@lit/localize';
-import { customElement, property } from 'lit/decorators.js';
+import styles from '@shoelace-style/shoelace/dist/components/textarea/textarea.styles.js';
+import { sharedStyles } from '@tnesh-stack/elements';
+import { FormField, FormFieldController } from '@tnesh-stack/elements';
+import { SignalWatcher } from '@tnesh-stack/signals';
+import { LitElement, css, html } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 
-// import { baseKeymap } from 'prosemirror-commands';
-// import { keymap } from 'prosemirror-keymap';
-// import { NodeSpec, Schema } from 'prosemirror-model';
-// import { Plugin, PluginKey } from 'prosemirror-state';
+import { profilesStoreContext } from '../context.js';
+import { ProfilesStore } from '../profiles-store.js';
+import './agent-mention.js';
+import { SearchUserDropdown } from './search-user-dropdown.js';
 
-// import { profilesStoreContext } from '../context.js';
-// import { ProfilesStore } from '../profiles-store.js';
-// import './agent-mention.js';
-// import { SearchProfileDropdown } from './search-profile-dropdown.js';
+@localized()
+@customElement('textarea-with-mentions')
+export class TextareaWithMentions
+	extends SignalWatcher(LitElement)
+	implements FormField
+{
+	/**
+	 * Profiles store for this element, not required if you embed this element inside a <profiles-context>
+	 */
+	@consume({ context: profilesStoreContext, subscribe: true })
+	@property()
+	store!: ProfilesStore;
 
-// export const profileMentionSpec: NodeSpec = {
-// 	attrs: { profileHash: {} },
-// 	inline: true,
-// 	group: 'inline',
-// 	draggable: true,
-// 	toDOM: node => {
-// 		console.log(node);
-// 		return [
-// 			'profile-mention',
-// 			{ 'profile-hash': encodeHashToBase64(node.attrs.profileHash) },
-// 		];
-// 	},
-// 	parseDOM: [{ tag: 'agent-mention' }],
-// };
+	// private readonly hasSlotController = new HasSlotController(
+	// 	this,
+	// 	'help-text',
+	// 	'label',
+	// );
 
-// export type SearchAgentPluginState =
-// 	| {
-// 			dropdownEl: SearchProfileDropdown;
-// 			mentionCharIndex: number;
-// 			lastCharIndex: number;
-// 	  }
-// 	| 'hidden';
-// const schema = new Schema({
-// 	nodes: {
-// 		doc: { content: 'paragraph+' },
-// 		paragraph: {
-// 			content: '(text|profileMention)*',
-// 			toDOM() {
-// 				return ['p', 0];
-// 			},
-// 		},
-// 		text: {},
-// 		profileMention: profileMentionSpec,
-// 	},
-// });
-// const profileType = schema.nodes.profileMention;
+	_controller = new FormFieldController(this);
 
-// export const pluginKey = new PluginKey('search-profile');
-// export const searchProfilePlugin = new Plugin<SearchAgentPluginState>({
-// 	key: pluginKey,
-// 	state: {
-// 		init() {
-// 			return 'hidden';
-// 		},
-// 		apply(tr, state) {
-// 			const newPluginState = tr.getMeta(pluginKey);
-// 			return newPluginState ? newPluginState : state;
-// 		},
-// 	},
-// 	props: {
-// 		handleKeyDown(view, event) {
-// 			const state = this.getState(view.state);
-// 			if (state && state !== 'hidden' && event.key === 'ArrowDown') {
-// 				state.dropdownEl.dropdown.handleTriggerKeyDown(event);
-// 			}
-// 		},
-// 		handleTextInput(view, _from, to, text) {
-// 			const state = this.getState(view.state);
-// 			console.log(state);
+	/**
+	 * The name of the field if this element is used inside a form
+	 * Required only if the element is used inside a form
+	 */
+	@property()
+	name!: string;
 
-// 			if (state && state !== 'hidden') {
-// 				setTimeout(() => {
-// 					state.dropdownEl.searchFilter = view.state.doc.textBetween(
-// 						state.mentionCharIndex + 1,
-// 						to + 1,
-// 					);
-// 					view.dispatch(
-// 						view.state.tr.setMeta(pluginKey, {
-// 							...state,
-// 							lastCharIndex: to,
-// 						}),
-// 					);
-// 				});
-// 			} else if (text === '@') {
-// 				const { top, left } = view.coordsAtPos(to);
-// 				const dropdownEl = document.createElement(
-// 					'search-profile-dropdown',
-// 				) as SearchProfileDropdown;
+	/** The textarea's size. */
+	@property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
-// 				dropdownEl.innerHTML = `<div style="position: fixed; height: 24px; top: ${top}px; left: ${left}px"></div>`;
-// 				dropdownEl.open = true;
-// 				view.dom.getRootNode().appendChild(dropdownEl);
+	/** Draws a filled textarea. */
+	@property({ type: Boolean, reflect: true }) filled = false;
 
-// 				view.dispatch(
-// 					view.state.tr.setMeta(pluginKey, {
-// 						dropdownEl,
-// 						mentionCharIndex: to,
-// 						lastCharIndex: to,
-// 					}),
-// 				);
+	/** The textarea's label. If you need to display HTML, use the `label` slot instead. */
+	@property() label = '';
 
-// 				dropdownEl.addEventListener('profile-selected', (e: any) => {
-// 					const profileHash = e.detail.profileHash;
-// 					const state = this.getState(view.state);
+	/** Placeholder text to show as a hint when the input is empty. */
+	@property() placeholder = '';
 
-// 					if (!state || state === 'hidden') return;
+	/** The number of rows to display by default. */
+	@property({ type: Number }) rows = 4;
 
-// 					const tr = view.state.tr;
+	/** Controls how the textarea can be resized. */
+	@property() resize: 'none' | 'vertical' | 'auto' = 'vertical';
 
-// 					tr.replaceRangeWith(
-// 						state.mentionCharIndex,
-// 						state.lastCharIndex + 1,
-// 						profileType.create({
-// 							profileHash,
-// 						}),
-// 					);
+	/** Disables the textarea. */
+	@property({ type: Boolean, reflect: true }) disabled = false;
 
-// 					view.dom.getRootNode().removeChild(dropdownEl);
-// 					view.dispatch(tr.setMeta(pluginKey, 'hidden'));
-// 				});
+	/** Makes the textarea readonly. */
+	@property({ type: Boolean, reflect: true }) readonly = false;
 
-// 				dropdownEl.addEventListener('sl-hide', () =>
-// 					setTimeout(() => {
-// 						view.dom.getRootNode().removeChild(dropdownEl);
-// 						view.dispatch(view.state.tr.setMeta(pluginKey, 'hidden'));
-// 					}, 10),
-// 				);
-// 			}
-// 		},
-// 	},
-// });
+	/** Makes the textarea a required field. */
+	@property({ type: Boolean, reflect: true }) required = false;
 
-// // export class SearchAgentModule {
-// //   dropdownEl: SearchAgentDropdown | undefined;
-// //   mentionCharIndex: number | undefined;
-// //   lastCharIndex: number | undefined;
+	/** The minimum length of input that will be considered valid. */
+	@property({ type: Number }) minlength!: number;
 
-// //   constructor(protected quill: Quill) {
-// //     console.log(quill);
-// //     quill.container.addEventListener("keydown", (e: KeyboardEvent) => {
-// //       if (this.dropdownEl) {
-// //         this.dropdownEl!.dropdown.handleTriggerKeyDown(e);
-// //       }
-// //     });
-// //     quill.on("text-change", (delta: any) => {
-// //       const insertOneLetter =
-// //         delta.ops.length > 0 && "insert" in delta.ops[delta.ops.length - 1];
+	/** The maximum length of input that will be considered valid. */
+	@property({ type: Number }) maxlength!: number;
 
-// //       if (!insertOneLetter) return;
+	@property()
+	helpText: string = msg("Press '@' to mention an agent.");
 
-// //       const cursorPosition = "retain" in delta.ops[0] ? delta.ops[0].retain : 0;
+	@state() private hasFocus = false;
 
-// //       if (this.dropdownEl) {
-// //         let searchFilter: string = quill.getText(
-// //           this.mentionCharIndex! + 1,
-// //           cursorPosition
-// //         );
-// //         if (searchFilter.endsWith("\n")) {
-// //           searchFilter = searchFilter.slice(0, searchFilter.length - 1);
-// //         }
+	reportValidity() {
+		const invalid = this.required !== false && this.value === undefined;
 
-// //         this.lastCharIndex = cursorPosition;
-// //         this.dropdownEl.searchFilter = searchFilter;
-// //       } else if (delta.ops[delta.ops.length - 1].insert === "@") {
-// //         this.mentionCharIndex = cursorPosition;
-// //         this.lastCharIndex = this.mentionCharIndex;
+		if (invalid) {
+			const input = this.shadowRoot!.querySelector('input')!;
+			input.setCustomValidity(`This field is required`);
+		}
 
-// //         const containerPos = quill.container.getBoundingClientRect();
-// //         const mentionCharPos = quill.getBounds(this.mentionCharIndex);
-// //         const mentionCharPosAbsolute = {
-// //           left: containerPos.left + mentionCharPos.left,
-// //           top: containerPos.top + mentionCharPos.top,
-// //         };
+		return !invalid;
+	}
 
-// //         this.dropdownEl = document.createElement(
-// //           "search-agent-dropdown"
-// //         ) as SearchAgentDropdown;
-// //         this.dropdownEl.innerHTML = `<div style="position: fixed; height: 24px; top: ${mentionCharPosAbsolute.top}px; left: ${mentionCharPosAbsolute.left}px"></div>`;
-// //         this.dropdownEl.open = true;
-// //         this.dropdownEl.includeMyself = true;
+	async reset() {
+		this.value = this.defaultValue || '';
+	}
 
-// //         this.dropdownEl.addEventListener("sl-hide", () =>
-// //           setTimeout(() => this.removeDropdown(), 10)
-// //         );
-// //         this.dropdownEl.addEventListener("agent-selected", (e) => {
-// //           const index = this.mentionCharIndex;
-// //           const length = this.lastCharIndex! - this.mentionCharIndex!;
-// //           this.removeDropdown();
-// //           this.quill.deleteText(index!, length + 1, "api");
-// //           this.quill.insertEmbed(
-// //             index,
-// //             "agent-mention",
-// //             (e as any).detail.agentPubKey,
-// //             "api"
-// //           );
-// //           this.quill.insertText(index! + 1, " ");
-// //           setTimeout(() => {
-// //             this.quill.focus();
-// //             this.quill.setSelection(index! + 1, 0, "api");
-// //           }, 1000);
-// //         });
+	@property()
+	defaultValue: string | undefined;
 
-// //         quill.container.appendChild(this.dropdownEl);
-// //       }
-// //     });
-// //   }
+	get value() {
+		if (!this.textarea) return '';
+		const value = this.textarea.innerHTML;
+		return value.replace(
+			/<agent-mention agent-pub-key="([^"]*)"><\/agent-mention>/gm,
+			'$1',
+		);
+	}
 
-// //   removeDropdown() {
-// //     if (!this.dropdownEl) return;
-// //     this.quill.container.removeChild(this.dropdownEl);
-// //     this.dropdownEl = undefined;
-// //     this.mentionCharIndex = undefined;
-// //     this.lastCharIndex = undefined;
-// //   }
+	set value(v: string) {
+		this.textarea.innerHTML =
+			'&nbsp' +
+			v.replace(
+				/(uhCAK[^\s]*)/gm,
+				'<agent-mention agent-pub-key="$1"></agent-mention>',
+			) +
+			'&nbsp';
+	}
 
-// //   detach() {
-// //     this.removeDropdown();
-// //   }
-// // }
+	get dropdown() {
+		return this.shadowRoot!.querySelector(
+			'search-user-dropdown',
+		)! as SearchUserDropdown;
+	}
 
-// // Quill.register("modules/search-agent", SearchAgentModule);
+	get textarea() {
+		return this.shadowRoot!.getElementById('textarea')!;
+	}
 
-// @localized()
-// @customElement('textarea-with-mentions')
-// export class TextareaWithMentions extends SlTextareaProsemirror {
-// 	/**
-// 	 * Profiles store for this element, not required if you embed this element inside a <profiles-context>
-// 	 */
-// 	@consume({ context: profilesStoreContext, subscribe: true })
-// 	@property()
-// 	store!: ProfilesStore;
+	hideDropdown() {
+		this.dropdown.searchFilter = '';
+		this.dropdown.open = false;
+	}
 
-// 	dnaHash!: DnaHash;
+	render() {
+		// const hasLabelSlot = this.hasSlotController.test('label');
+		// const hasHelpTextSlot = this.hasSlotController.test('help-text');
+		const hasLabelSlot = false;
+		const hasHelpTextSlot = false;
+		const hasLabel = this.label ? true : !!hasLabelSlot;
+		const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
 
-// 	async firstUpdated() {
-// 		super.firstUpdated();
-// 		const appInfo = await this.store.client.client.appInfo();
-// 		if (!appInfo) throw new Error('Appinfo is null.');
-// 		const cellId = getCellIdFromRoleName(this.store.client.roleName, appInfo);
-// 		this.dnaHash = cellId[0];
-// 	}
+		return html`
+			<div
+				part="form-control"
+				class=${classMap({
+					'form-control': true,
+					'form-control--small': this.size === 'small',
+					'form-control--medium': this.size === 'medium',
+					'form-control--large': this.size === 'large',
+					'form-control--has-label': hasLabel,
+					'form-control--has-help-text': hasHelpText,
+				})}
+			>
+				<label
+					part="form-control-label"
+					class="form-control__label"
+					for="input"
+					aria-hidden=${hasLabel ? 'false' : 'true'}
+				>
+					<slot name="label">${this.label}</slot>
+				</label>
 
-// 	@property()
-// 	helpText: string = msg("Press '@' to mention an agent.");
+				<div part="form-control-input" class="form-control-input">
+					<div
+						part="base"
+						class=${classMap({
+							textarea: true,
+							'textarea--small': this.size === 'small',
+							'textarea--medium': this.size === 'medium',
+							'textarea--large': this.size === 'large',
+							'textarea--standard': !this.filled,
+							'textarea--filled': this.filled,
+							'textarea--disabled': this.disabled,
+							'textarea--focused': this.hasFocus,
+							'textarea--empty': !this.value,
+							'textarea--resize-none': this.resize === 'none',
+							'textarea--resize-vertical': this.resize === 'vertical',
+							'textarea--resize-auto': this.resize === 'auto',
+						})}
+					>
+						<div class="column">
+							<div
+								id="textarea"
+								contenteditable
+								@keydown=${(e: KeyboardEvent) => {
+									if (this.dropdown.open) {
+										this.dropdown.dropdown.handleTriggerKeyDown(e);
+										if (e.key === 'Backspace') {
+											if (this.dropdown.searchFilter!.length === 0) {
+												this.hideDropdown();
+											}
+											this.dropdown.searchFilter =
+												this.dropdown.searchFilter!.slice(
+													0,
+													this.dropdown.searchFilter!.length - 1,
+												);
+										} else if (e.key.match(/\w/gm)) {
+											this.dropdown.searchFilter += e.key;
+										} else {
+											this.hideDropdown();
+										}
+									} else if (e.key === '@') {
+										this.dropdown.open = true;
+										this.dropdown.searchFilter = '';
+									}
+								}}
+							></div>
+							<search-user-dropdown
+								@user-selected=${(e: CustomEvent) => {
+									const agents: AgentPubKey[] = e.detail.agents;
+									const atCharPos = this.textarea.innerHTML.search(
+										`@${this.dropdown.searchFilter}`,
+									);
+									this.textarea.innerHTML =
+										'&nbsp;' +
+										this.textarea.innerHTML.slice(0, atCharPos) +
+										`<agent-mention agent-pub-key=${encodeHashToBase64(agents[0])}></agent-mention>` +
+										this.textarea.innerHTML.slice(
+											atCharPos! + this.dropdown.searchFilter!.length + 1,
+										) +
+										'&nbsp;';
+									this.hideDropdown();
+								}}
+								><div></div>
+							</search-user-dropdown>
+							<input style="display: none" />
+						</div>
+						<!-- This "adjuster" exists to prevent layout shifting. https://github.com/shoelace-style/shoelace/issues/2180 -->
+						<div
+							part="textarea-adjuster"
+							class="textarea__size-adjuster"
+							?hidden=${this.resize !== 'auto'}
+						></div>
+					</div>
+				</div>
 
-// 	get value() {
-// 		if (!this.input?.quill) return '';
-// 		const contents = this.input.quill.getContents();
+				<div
+					part="form-control-help-text"
+					id="help-text"
+					class="form-control__help-text"
+					aria-hidden=${hasHelpText ? 'false' : 'true'}
+				>
+					<slot name="help-text">${this.helpText}</slot>
+				</div>
+			</div>
+		`;
+	}
 
-// 		const array = contents.ops.map((delta: any) => {
-// 			if (typeof delta.insert === 'string') {
-// 				return delta.insert;
-// 			} else {
-// 				return [this.dnaHash, delta.insert['agent-mention']];
-// 			}
-// 		});
+	static styles = [
+		css`
+			#textarea {
+				padding: 4px;
+				min-height: 120px;
+			}
+		`,
+		sharedStyles,
+		styles,
+	];
 
-// 		const text = joinHrlString(array);
-
-// 		return text.slice(0, text.length - 1); // Slice to remove the newline
-// 	}
-
-// 	set value(v: string) {
-// 		if (!this.input?.quill) return;
-// 		const array = splitHrlString(v);
-
-// 		const ops = array.map(hrlOrString => {
-// 			if (typeof hrlOrString === 'string') {
-// 				return {
-// 					insert: hrlOrString,
-// 				};
-// 			} else {
-// 				return {
-// 					insert: {
-// 						'agent-mention': hrlOrString[1],
-// 					},
-// 				};
-// 			}
-// 		});
-// 		this.input.quill.setContents(ops);
-// 	}
-
-// 	editorStateConfig() {
-// 		return {
-// 			schema,
-// 			plugins: [keymap(baseKeymap), searchProfilePlugin],
-// 		};
-// 	}
-// }
+	// editorStateConfig() {
+	// 	return {
+	// 		schema,
+	// 		plugins: [keymap(baseKeymap), searchProfilePlugin],
+	// 	};
+	// }
+}
