@@ -35,6 +35,7 @@
 			import '../src/elements/profiles-context.ts';
 			import '../src/elements/search-user.ts';
 			import '../src/elements/search-users.ts';
+			import '../src/elements/text-with-mentions.ts';
 			import '../src/elements/textarea-with-mentions.ts';
 			import '../src/elements/update-profile.ts';
 			import { ProfilesClient, ProfilesStore } from '../src/index.ts';
@@ -114,7 +115,15 @@
 										name="hi"
 										label="hey"
 										style="width: 400px; height: 200px"
+										@keydown=${e => {
+											this.text = e.target.value;
+											this.requestUpdate();
+										}}
 									></textarea-with-mentions>
+									<text-with-mentions
+										.text=${this.text || ''}
+										style="width: 400px; height: 200px"
+									></text-with-mentions>
 									<input type="submit" />
 								</form>
 								<all-profiles></all-profiles>
