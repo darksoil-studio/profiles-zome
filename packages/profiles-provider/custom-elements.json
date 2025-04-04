@@ -962,6 +962,10 @@
             },
             {
               "kind": "method",
+              "name": "focusFirstItem"
+            },
+            {
+              "kind": "method",
               "name": "onUserSelected",
               "parameters": [
                 {
@@ -1480,6 +1484,73 @@
           "declaration": {
             "name": "SearchUsers",
             "module": "src/elements/search-users.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/text-with-mentions.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TextWithMentions",
+          "members": [
+            {
+              "kind": "field",
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "text"
+            },
+            {
+              "kind": "field",
+              "name": "span",
+              "type": {
+                "text": "HTMLElement"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "text"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@tnesh-stack/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "text-with-mentions",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TextWithMentions",
+          "declaration": {
+            "name": "TextWithMentions",
+            "module": "src/elements/text-with-mentions.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "text-with-mentions",
+          "declaration": {
+            "name": "TextWithMentions",
+            "module": "src/elements/text-with-mentions.ts"
           }
         }
       ]
