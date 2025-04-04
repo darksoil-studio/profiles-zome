@@ -12,7 +12,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, }"
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, 's20453e988c3e79f3': `Press '@' to mention an agent.`, }"
         }
       ],
       "exports": [
@@ -36,7 +36,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, }"
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, 's20453e988c3e79f3': `Press '@' to mention an agent.`, }"
         }
       ],
       "exports": [
@@ -60,7 +60,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, }"
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, 's20453e988c3e79f3': `Press '@' to mention an agent.`, }"
         }
       ],
       "exports": [
@@ -84,7 +84,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, }"
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, 's20453e988c3e79f3': `Press '@' to mention an agent.`, }"
         }
       ],
       "exports": [
@@ -164,7 +164,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, }"
+          "default": "{ 's4f8d5a80d2ef619a': `Error fetching the user's profile.`, 's20828470889fc3a9': `Error fetching the profile.`, 's297916d1dc37f2b3': `Profile not found.`, 's39aca5bd9eed9271': `This agent hasn't created a profile yet`, 'sc5c9f04c2d0a5f1d': `Error fetching the profile`, 'sdd16cd8b418b1752': `Enter at least 3 chars to search...`, 'sf2b16baed2a5b0d1': `Error searching profiles`, 'sa4b18e98fd41dc11': `No nicknames match the filter`, 's9dda5478082bf968': `Search User`, 's3fa309bef44c54e9': `At least 3 chars...`, 's797aae8100bcb245': `No users selected yet.`, 's65f6a2f5e2b848e1': `Search Users`, 's20453e988c3e79f3': `Press '@' to mention an agent.`, }"
         }
       ],
       "exports": [
@@ -1480,6 +1480,348 @@
           "declaration": {
             "name": "SearchUsers",
             "module": "src/elements/search-users.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/textarea-with-mentions.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TextareaWithMentions",
+          "members": [
+            {
+              "kind": "field",
+              "name": "_controller",
+              "default": "new FormFieldController(this)"
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name of the field if this element is used inside a form\nRequired only if the element is used inside a form",
+              "attribute": "name"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "'small' | 'medium' | 'large'"
+              },
+              "default": "'medium'",
+              "description": "The textarea's size.",
+              "attribute": "size",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "filled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a filled textarea.",
+              "attribute": "filled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The textarea's label. If you need to display HTML, use the `label` slot instead.",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Placeholder text to show as a hint when the input is empty.",
+              "attribute": "placeholder"
+            },
+            {
+              "kind": "field",
+              "name": "rows",
+              "type": {
+                "text": "number"
+              },
+              "default": "4",
+              "description": "The number of rows to display by default.",
+              "attribute": "rows"
+            },
+            {
+              "kind": "field",
+              "name": "resize",
+              "type": {
+                "text": "'none' | 'vertical' | 'auto'"
+              },
+              "default": "'vertical'",
+              "description": "Controls how the textarea can be resized.",
+              "attribute": "resize"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the textarea.",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "readonly",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the textarea readonly.",
+              "attribute": "readonly",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the textarea a required field.",
+              "attribute": "required",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "minlength",
+              "type": {
+                "text": "number"
+              },
+              "description": "The minimum length of input that will be considered valid.",
+              "attribute": "minlength"
+            },
+            {
+              "kind": "field",
+              "name": "maxlength",
+              "type": {
+                "text": "number"
+              },
+              "description": "The maximum length of input that will be considered valid.",
+              "attribute": "maxlength"
+            },
+            {
+              "kind": "field",
+              "name": "helpText",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "helpText"
+            },
+            {
+              "kind": "field",
+              "name": "hasFocus",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity"
+            },
+            {
+              "kind": "method",
+              "name": "reset"
+            },
+            {
+              "kind": "field",
+              "name": "defaultValue",
+              "type": {
+                "text": "string | undefined"
+              },
+              "attribute": "defaultValue"
+            },
+            {
+              "kind": "field",
+              "name": "value"
+            },
+            {
+              "kind": "field",
+              "name": "dropdown",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "textarea",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "hideDropdown"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name of the field if this element is used inside a form\nRequired only if the element is used inside a form",
+              "fieldName": "name"
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "'small' | 'medium' | 'large'"
+              },
+              "default": "'medium'",
+              "description": "The textarea's size.",
+              "fieldName": "size"
+            },
+            {
+              "name": "filled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a filled textarea.",
+              "fieldName": "filled"
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The textarea's label. If you need to display HTML, use the `label` slot instead.",
+              "fieldName": "label"
+            },
+            {
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Placeholder text to show as a hint when the input is empty.",
+              "fieldName": "placeholder"
+            },
+            {
+              "name": "rows",
+              "type": {
+                "text": "number"
+              },
+              "default": "4",
+              "description": "The number of rows to display by default.",
+              "fieldName": "rows"
+            },
+            {
+              "name": "resize",
+              "type": {
+                "text": "'none' | 'vertical' | 'auto'"
+              },
+              "default": "'vertical'",
+              "description": "Controls how the textarea can be resized.",
+              "fieldName": "resize"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the textarea.",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "readonly",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the textarea readonly.",
+              "fieldName": "readonly"
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the textarea a required field.",
+              "fieldName": "required"
+            },
+            {
+              "name": "minlength",
+              "type": {
+                "text": "number"
+              },
+              "description": "The minimum length of input that will be considered valid.",
+              "fieldName": "minlength"
+            },
+            {
+              "name": "maxlength",
+              "type": {
+                "text": "number"
+              },
+              "description": "The maximum length of input that will be considered valid.",
+              "fieldName": "maxlength"
+            },
+            {
+              "name": "helpText",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "helpText"
+            },
+            {
+              "name": "defaultValue",
+              "type": {
+                "text": "string | undefined"
+              },
+              "fieldName": "defaultValue"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@tnesh-stack/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "textarea-with-mentions",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TextareaWithMentions",
+          "declaration": {
+            "name": "TextareaWithMentions",
+            "module": "src/elements/textarea-with-mentions.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "textarea-with-mentions",
+          "declaration": {
+            "name": "TextareaWithMentions",
+            "module": "src/elements/textarea-with-mentions.ts"
           }
         }
       ]

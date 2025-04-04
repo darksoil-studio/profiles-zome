@@ -8,21 +8,15 @@ import {
 import { consume } from '@lit/context';
 import { localized, msg } from '@lit/localize';
 import SlDropdown from '@shoelace-style/shoelace/dist/components/dropdown/dropdown.js';
+import '@shoelace-style/shoelace/dist/components/dropdown/dropdown.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
 import '@shoelace-style/shoelace/dist/components/menu/menu.js';
+import SlMenu from '@shoelace-style/shoelace/dist/components/menu/menu.js';
 import '@shoelace-style/shoelace/dist/components/skeleton/skeleton.js';
 import { sharedStyles } from '@tnesh-stack/elements';
 import '@tnesh-stack/elements/dist/elements/display-error.js';
-import {
-	AsyncComputed,
-	Signal,
-	SignalWatcher,
-	joinAsyncMap,
-	pipe,
-	toPromise,
-} from '@tnesh-stack/signals';
-import { EntryRecord, HoloHashMap, mapValues, slice } from '@tnesh-stack/utils';
+import { Signal, SignalWatcher, pipe } from '@tnesh-stack/signals';
 import { LitElement, css, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -79,6 +73,26 @@ export class SearchUserDropdown extends SignalWatcher(LitElement) {
 	 */
 	@query('#dropdown')
 	public dropdown!: SlDropdown;
+
+	focusFirstItem() {
+		const searchResult = this._searchProfiles.get();
+		if (searchResult.status !== 'completed') return;
+		let users = searchResult.value;
+		const excludedAgentsStr = ([] as AgentPubKeyB64[]).concat(
+			...this.excludedUsers.map(agents =>
+				agents.map(agent => agent.toString()),
+			),
+		);
+
+		users = users.filter(
+			user =>
+				!user.agents.find(agent =>
+					excludedAgentsStr.includes(agent.toString()),
+				),
+		);
+		if (users.length === 0) return;
+		this.shadowRoot!.querySelector('sl-menu-item')!.focus();
+	}
 
 	async onUserSelected(agents: AgentPubKey[], profile: Profile) {
 		this.dispatchEvent(
