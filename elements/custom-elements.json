@@ -614,359 +614,30 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/elements/textarea-with-mentions.ts",
-      "declarations": [
+      "path": "src/elements/text-with-mentions.ts",
+      "declarations": [],
+      "exports": [
         {
-          "kind": "class",
-          "description": "",
-          "name": "TextareaWithMentions",
-          "members": [
-            {
-              "kind": "field",
-              "name": "store",
-              "type": {
-                "text": "ProfilesStore"
-              },
-              "description": "Profiles store for this element, not required if you embed this element inside a <profiles-context>",
-              "attribute": "store"
-            },
-            {
-              "kind": "field",
-              "name": "_controller",
-              "default": "new FormFieldController(this)"
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "description": "The name of the field if this element is used inside a form\nRequired only if the element is used inside a form",
-              "attribute": "name"
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "'small' | 'medium' | 'large'"
-              },
-              "default": "'medium'",
-              "description": "The textarea's size.",
-              "attribute": "size",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "filled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws a filled textarea.",
-              "attribute": "filled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The textarea's label. If you need to display HTML, use the `label` slot instead.",
-              "attribute": "label"
-            },
-            {
-              "kind": "field",
-              "name": "placeholder",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "Placeholder text to show as a hint when the input is empty.",
-              "attribute": "placeholder"
-            },
-            {
-              "kind": "field",
-              "name": "rows",
-              "type": {
-                "text": "number"
-              },
-              "default": "4",
-              "description": "The number of rows to display by default.",
-              "attribute": "rows"
-            },
-            {
-              "kind": "field",
-              "name": "resize",
-              "type": {
-                "text": "'none' | 'vertical' | 'auto'"
-              },
-              "default": "'vertical'",
-              "description": "Controls how the textarea can be resized.",
-              "attribute": "resize"
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the textarea.",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "readonly",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the textarea readonly.",
-              "attribute": "readonly",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the textarea a required field.",
-              "attribute": "required",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "minlength",
-              "type": {
-                "text": "number"
-              },
-              "description": "The minimum length of input that will be considered valid.",
-              "attribute": "minlength"
-            },
-            {
-              "kind": "field",
-              "name": "maxlength",
-              "type": {
-                "text": "number"
-              },
-              "description": "The maximum length of input that will be considered valid.",
-              "attribute": "maxlength"
-            },
-            {
-              "kind": "field",
-              "name": "helpText",
-              "type": {
-                "text": "string"
-              },
-              "attribute": "helpText"
-            },
-            {
-              "kind": "field",
-              "name": "hasFocus",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false"
-            },
-            {
-              "kind": "method",
-              "name": "reportValidity"
-            },
-            {
-              "kind": "method",
-              "name": "reset"
-            },
-            {
-              "kind": "field",
-              "name": "defaultValue",
-              "type": {
-                "text": "string | undefined"
-              },
-              "attribute": "defaultValue"
-            },
-            {
-              "kind": "field",
-              "name": "value"
-            },
-            {
-              "kind": "field",
-              "name": "dropdown",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "textarea",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "hideDropdown"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "store",
-              "type": {
-                "text": "ProfilesStore"
-              },
-              "description": "Profiles store for this element, not required if you embed this element inside a <profiles-context>",
-              "fieldName": "store"
-            },
-            {
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "description": "The name of the field if this element is used inside a form\nRequired only if the element is used inside a form",
-              "fieldName": "name"
-            },
-            {
-              "name": "size",
-              "type": {
-                "text": "'small' | 'medium' | 'large'"
-              },
-              "default": "'medium'",
-              "description": "The textarea's size.",
-              "fieldName": "size"
-            },
-            {
-              "name": "filled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Draws a filled textarea.",
-              "fieldName": "filled"
-            },
-            {
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "The textarea's label. If you need to display HTML, use the `label` slot instead.",
-              "fieldName": "label"
-            },
-            {
-              "name": "placeholder",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "Placeholder text to show as a hint when the input is empty.",
-              "fieldName": "placeholder"
-            },
-            {
-              "name": "rows",
-              "type": {
-                "text": "number"
-              },
-              "default": "4",
-              "description": "The number of rows to display by default.",
-              "fieldName": "rows"
-            },
-            {
-              "name": "resize",
-              "type": {
-                "text": "'none' | 'vertical' | 'auto'"
-              },
-              "default": "'vertical'",
-              "description": "Controls how the textarea can be resized.",
-              "fieldName": "resize"
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disables the textarea.",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "readonly",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the textarea readonly.",
-              "fieldName": "readonly"
-            },
-            {
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Makes the textarea a required field.",
-              "fieldName": "required"
-            },
-            {
-              "name": "minlength",
-              "type": {
-                "text": "number"
-              },
-              "description": "The minimum length of input that will be considered valid.",
-              "fieldName": "minlength"
-            },
-            {
-              "name": "maxlength",
-              "type": {
-                "text": "number"
-              },
-              "description": "The maximum length of input that will be considered valid.",
-              "fieldName": "maxlength"
-            },
-            {
-              "name": "helpText",
-              "type": {
-                "text": "string"
-              },
-              "fieldName": "helpText"
-            },
-            {
-              "name": "defaultValue",
-              "type": {
-                "text": "string | undefined"
-              },
-              "fieldName": "defaultValue"
-            }
-          ],
-          "mixins": [
-            {
-              "name": "SignalWatcher",
-              "package": "@tnesh-stack/signals"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "textarea-with-mentions",
-          "customElement": true
+          "kind": "js",
+          "name": "TextWithMentions",
+          "declaration": {
+            "name": "TextWithMentions",
+            "package": "@darksoil-studio/profiles-provider/dist/elements/text-with-mentions.js"
+          }
         }
-      ],
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/elements/textarea-with-mentions.ts",
+      "declarations": [],
       "exports": [
         {
           "kind": "js",
           "name": "TextareaWithMentions",
           "declaration": {
             "name": "TextareaWithMentions",
-            "module": "src/elements/textarea-with-mentions.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "textarea-with-mentions",
-          "declaration": {
-            "name": "TextareaWithMentions",
-            "module": "src/elements/textarea-with-mentions.ts"
+            "package": "@darksoil-studio/profiles-provider/dist/elements/textarea-with-mentions.js"
           }
         }
       ]
@@ -1825,6 +1496,10 @@
             },
             {
               "kind": "method",
+              "name": "focusFirstItem"
+            },
+            {
+              "kind": "method",
               "name": "onUserSelected",
               "parameters": [
                 {
@@ -2343,6 +2018,415 @@
           "declaration": {
             "name": "SearchUsers",
             "module": "../packages/profiles-provider/src/elements/search-users.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "../packages/profiles-provider/src/elements/text-with-mentions.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TextWithMentions",
+          "members": [
+            {
+              "kind": "field",
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "text"
+            },
+            {
+              "kind": "field",
+              "name": "span",
+              "type": {
+                "text": "HTMLElement"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "text"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@tnesh-stack/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "text-with-mentions",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TextWithMentions",
+          "declaration": {
+            "name": "TextWithMentions",
+            "module": "../packages/profiles-provider/src/elements/text-with-mentions.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "text-with-mentions",
+          "declaration": {
+            "name": "TextWithMentions",
+            "module": "../packages/profiles-provider/src/elements/text-with-mentions.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "../packages/profiles-provider/src/elements/textarea-with-mentions.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TextareaWithMentions",
+          "members": [
+            {
+              "kind": "field",
+              "name": "_controller",
+              "default": "new FormFieldController(this)"
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name of the field if this element is used inside a form\nRequired only if the element is used inside a form",
+              "attribute": "name"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "'small' | 'medium' | 'large'"
+              },
+              "default": "'medium'",
+              "description": "The textarea's size.",
+              "attribute": "size",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "filled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a filled textarea.",
+              "attribute": "filled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The textarea's label. If you need to display HTML, use the `label` slot instead.",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Placeholder text to show as a hint when the input is empty.",
+              "attribute": "placeholder"
+            },
+            {
+              "kind": "field",
+              "name": "rows",
+              "type": {
+                "text": "number"
+              },
+              "default": "4",
+              "description": "The number of rows to display by default.",
+              "attribute": "rows"
+            },
+            {
+              "kind": "field",
+              "name": "resize",
+              "type": {
+                "text": "'none' | 'vertical' | 'auto'"
+              },
+              "default": "'vertical'",
+              "description": "Controls how the textarea can be resized.",
+              "attribute": "resize"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the textarea.",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "readonly",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the textarea readonly.",
+              "attribute": "readonly",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the textarea a required field.",
+              "attribute": "required",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "minlength",
+              "type": {
+                "text": "number"
+              },
+              "description": "The minimum length of input that will be considered valid.",
+              "attribute": "minlength"
+            },
+            {
+              "kind": "field",
+              "name": "maxlength",
+              "type": {
+                "text": "number"
+              },
+              "description": "The maximum length of input that will be considered valid.",
+              "attribute": "maxlength"
+            },
+            {
+              "kind": "field",
+              "name": "helpText",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "helpText"
+            },
+            {
+              "kind": "field",
+              "name": "hasFocus",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity"
+            },
+            {
+              "kind": "method",
+              "name": "reset"
+            },
+            {
+              "kind": "field",
+              "name": "defaultValue",
+              "type": {
+                "text": "string | undefined"
+              },
+              "attribute": "defaultValue"
+            },
+            {
+              "kind": "field",
+              "name": "value"
+            },
+            {
+              "kind": "field",
+              "name": "dropdown",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "textarea",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "hideDropdown"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "The name of the field if this element is used inside a form\nRequired only if the element is used inside a form",
+              "fieldName": "name"
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "'small' | 'medium' | 'large'"
+              },
+              "default": "'medium'",
+              "description": "The textarea's size.",
+              "fieldName": "size"
+            },
+            {
+              "name": "filled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Draws a filled textarea.",
+              "fieldName": "filled"
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "The textarea's label. If you need to display HTML, use the `label` slot instead.",
+              "fieldName": "label"
+            },
+            {
+              "name": "placeholder",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Placeholder text to show as a hint when the input is empty.",
+              "fieldName": "placeholder"
+            },
+            {
+              "name": "rows",
+              "type": {
+                "text": "number"
+              },
+              "default": "4",
+              "description": "The number of rows to display by default.",
+              "fieldName": "rows"
+            },
+            {
+              "name": "resize",
+              "type": {
+                "text": "'none' | 'vertical' | 'auto'"
+              },
+              "default": "'vertical'",
+              "description": "Controls how the textarea can be resized.",
+              "fieldName": "resize"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disables the textarea.",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "readonly",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the textarea readonly.",
+              "fieldName": "readonly"
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Makes the textarea a required field.",
+              "fieldName": "required"
+            },
+            {
+              "name": "minlength",
+              "type": {
+                "text": "number"
+              },
+              "description": "The minimum length of input that will be considered valid.",
+              "fieldName": "minlength"
+            },
+            {
+              "name": "maxlength",
+              "type": {
+                "text": "number"
+              },
+              "description": "The maximum length of input that will be considered valid.",
+              "fieldName": "maxlength"
+            },
+            {
+              "name": "helpText",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "helpText"
+            },
+            {
+              "name": "defaultValue",
+              "type": {
+                "text": "string | undefined"
+              },
+              "fieldName": "defaultValue"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@tnesh-stack/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "textarea-with-mentions",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TextareaWithMentions",
+          "declaration": {
+            "name": "TextareaWithMentions",
+            "module": "../packages/profiles-provider/src/elements/textarea-with-mentions.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "textarea-with-mentions",
+          "declaration": {
+            "name": "TextareaWithMentions",
+            "module": "../packages/profiles-provider/src/elements/textarea-with-mentions.ts"
           }
         }
       ]
