@@ -160,8 +160,8 @@ importers:
         specifier: 0.400.0-rev.9ec0b1c9b0e0c546b1118b7bbdac129bb901ae38
         version: 0.400.0-rev.9ec0b1c9b0e0c546b1118b7bbdac129bb901ae38(@floating-ui/utils@0.2.8)(@types/react@18.3.14)
       '@darksoil-studio/profiles-provider':
-        specifier: ^0.400.3
-        version: 0.400.3(@floating-ui/utils@0.2.8)(@types/react@18.3.14)
+        specifier: ^0.400.4
+        version: 0.400.4(@floating-ui/utils@0.2.8)(@types/react@18.3.14)
       '@holochain/client':
         specifier: ^0.18.0
         version: 0.18.0
@@ -413,8 +413,8 @@ packages:
   '@darksoil-studio/linked-devices-zome@0.400.0-rev.9ec0b1c9b0e0c546b1118b7bbdac129bb901ae38':
     resolution: {integrity: sha512-pU80j2glS6mVV6JKsU7WyjXVBQylGedmGnlDvgRbJ87qNFb5qf0+PCqbAiuc5gxCTY+71o2Xj7agem/raZ/Chw==}
 
-  '@darksoil-studio/profiles-provider@0.400.3':
-    resolution: {integrity: sha512-/hrA5i5cxy3Uf+E63SnCdk5kP7oPazGcfalTIyUMaDlpWuqrMAST/dMrKmUtBfRlFfspRmRx4hgDlwc7mWtUVw==}
+  '@darksoil-studio/profiles-provider@0.400.4':
+    resolution: {integrity: sha512-iNKTw6hFqTXVDeeN+3nIoV6sZfBW/gACO+RvBpnIvHWO+h7C1Q7JRvyeRStFZPjqFm0jGq0zDQ0pgxoFj3MyeA==}
 
   '@docsearch/css@3.8.0':
     resolution: {integrity: sha512-pieeipSOW4sQ0+bE5UFC51AOZp9NGxg89wAlZ1BAQFaiRAGK1IKUaPQ0UGZeNctJXyqZ1UvBtOQh2HH+U5GtmA==}
@@ -3316,7 +3316,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@darksoil-studio/profiles-provider@0.400.3(@floating-ui/utils@0.2.8)(@types/react@18.3.14)':
+  '@darksoil-studio/profiles-provider@0.400.4(@floating-ui/utils@0.2.8)(@types/react@18.3.14)':
     dependencies:
       '@holochain/client': 0.18.0
       '@lit/context': 1.1.3
