@@ -1,4 +1,4 @@
-import { AgentPubKey, DnaHash, encodeHashToBase64 } from '@holochain/client';
+import { AgentPubKey, encodeHashToBase64 } from '@holochain/client';
 import { localized, msg } from '@lit/localize';
 import styles from '@shoelace-style/shoelace/dist/components/textarea/textarea.styles.js';
 import { sharedStyles } from '@tnesh-stack/elements';
@@ -106,7 +106,7 @@ export class TextareaWithMentions
 
 	set value(v: string) {
 		this.textarea.innerHTML = v.replace(
-			/(uhCAk[^\ ]*)/gm,
+			/(uhCAk[^ ]*)/gm,
 			'&nbsp;<agent-mention agent-pub-key="$1"></agent-mention>&nbsp;',
 		);
 	}

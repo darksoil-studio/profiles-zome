@@ -20,7 +20,7 @@ export class TextWithMentions extends SignalWatcher(LitElement) {
 		super.updated(changedValues);
 
 		this.span.innerHTML = this.text.replaceAll(
-			/(uhCAk[^\ ]*)/gm,
+			/(uhCAk[^ ]*)/gm,
 			'<agent-mention agent-pub-key="$1"></agent-mention>',
 		);
 	}
