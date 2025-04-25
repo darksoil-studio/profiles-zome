@@ -1,8 +1,8 @@
 import { LinkedDevicesStore } from '@darksoil-studio/linked-devices-zome';
 import { encodeHashToBase64 } from '@holochain/client';
 import { dhtSync, pause, runScenario } from '@holochain/tryorama';
-import { toPromise, watch } from '@tnesh-stack/signals';
-import { EntryRecord } from '@tnesh-stack/utils';
+import { toPromise, watch } from '@darksoil-studio/holochain-signals';
+import { EntryRecord } from '@darksoil-studio/holochain-utils';
 import { assert, expect, test } from 'vitest';
 
 import { Profile } from '../../packages/profiles-provider/src/types.js';

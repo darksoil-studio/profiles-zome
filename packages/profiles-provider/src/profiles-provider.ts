@@ -1,6 +1,6 @@
 import { AgentPubKey } from '@holochain/client';
-import { AsyncSignal } from '@tnesh-stack/signals';
-import { MemoHoloHashMap } from '@tnesh-stack/utils';
+import { AsyncSignal } from '@darksoil-studio/holochain-signals';
+import { MemoHoloHashMap } from '@darksoil-studio/holochain-utils';
 
 import { Profile, ProfilesConfig, User } from './types.js';
 

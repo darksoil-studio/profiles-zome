@@ -1,8 +1,8 @@
 import { consume } from '@lit/context';
 import { mdiPencil } from '@mdi/js';
 import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
-import { sharedStyles, wrapPathInSvg } from '@tnesh-stack/elements';
-import { SignalWatcher } from '@tnesh-stack/signals';
+import { sharedStyles, wrapPathInSvg } from '@darksoil-studio/holochain-elements';
+import { SignalWatcher } from '@darksoil-studio/holochain-signals';
 import { LitElement, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 

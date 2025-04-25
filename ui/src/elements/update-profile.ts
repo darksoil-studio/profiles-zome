@@ -13,11 +13,11 @@ import {
 	onSubmit,
 	sharedStyles,
 	wrapPathInSvg,
-} from '@tnesh-stack/elements';
-import '@tnesh-stack/elements/dist/elements/display-error.js';
-import '@tnesh-stack/elements/dist/elements/select-avatar.js';
-import { AsyncResult, SignalWatcher } from '@tnesh-stack/signals';
-import { EntryRecord } from '@tnesh-stack/utils';
+} from '@darksoil-studio/holochain-elements';
+import '@darksoil-studio/holochain-elements/dist/elements/display-error.js';
+import '@darksoil-studio/holochain-elements/dist/elements/select-avatar.js';
+import { AsyncResult, SignalWatcher } from '@darksoil-studio/holochain-signals';
+import { EntryRecord } from '@darksoil-studio/holochain-utils';
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 

@@ -1,8 +1,8 @@
 import { profilesProviderContext } from '@darksoil-studio/profiles-provider';
 import { AppClient } from '@holochain/client';
 import { consume, provide } from '@lit/context';
-import { appClientContext } from '@tnesh-stack/elements';
-import { SignalWatcher } from '@tnesh-stack/signals';
+import { appClientContext } from '@darksoil-studio/holochain-elements';
+import { SignalWatcher } from '@darksoil-studio/holochain-signals';
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 

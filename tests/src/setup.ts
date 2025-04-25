@@ -16,7 +16,7 @@ export const appPath =
 export async function setup(scenario: Scenario, numPlayers = 2) {
 	const players = await scenario.addPlayersWithApps(
 		Array.from(new Array(numPlayers)).fill({
-			appBundleSource: { path: appPath },
+			appBundleSource: { type: 'path', value: appPath },
 		}),
 	);
 	const playersAndStores = await promiseAllSequential(
@@ -75,7 +75,7 @@ export function patchCallZome(appWs: AppWebsocket) {
 	appWs.callZome = async req => {
 		try {
 			const result = await callZome(req);
-			return result;
+			return result as any;
 		} catch (e) {
 			if (
 				!e.toString().includes('Socket is not open') &&

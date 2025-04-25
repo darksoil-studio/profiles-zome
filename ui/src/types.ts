@@ -1,5 +1,5 @@
 import { Profile } from '@darksoil-studio/profiles-provider';
-import { ActionCommittedSignal } from '@tnesh-stack/utils';
+import { ActionCommittedSignal } from '@darksoil-studio/holochain-utils';
 
 export type ProfilesSignal = ActionCommittedSignal<EntryTypes, any>;
 

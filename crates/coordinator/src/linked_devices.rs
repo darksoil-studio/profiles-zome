@@ -3,7 +3,7 @@ use profiles_integrity::LinkTypes;
 
 #[hdk_extern]
 pub fn link_my_agent_to_profile(profile_hash: ActionHash) -> ExternResult<()> {
-    let my_pub_key = agent_info()?.agent_latest_pubkey;
+    let my_pub_key = agent_info()?.agent_initial_pubkey;
     create_link_relaxed(
         my_pub_key.clone(),
         profile_hash.clone(),

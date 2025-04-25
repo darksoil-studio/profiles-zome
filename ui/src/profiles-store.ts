@@ -14,8 +14,8 @@ import {
 	mapCompleted,
 	toPromise,
 	uniquify,
-} from '@tnesh-stack/signals';
-import { HashType, MemoHoloHashMap, retype, slice } from '@tnesh-stack/utils';
+} from '@darksoil-studio/holochain-signals';
+import { HashType, MemoHoloHashMap, retype, slice } from '@darksoil-studio/holochain-utils';
 
 import { defaultConfig } from './config.js';
 import { ProfilesClient } from './profiles-client.js';

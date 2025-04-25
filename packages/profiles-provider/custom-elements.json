@@ -373,7 +373,7 @@
           "mixins": [
             {
               "name": "SignalWatcher",
-              "package": "@tnesh-stack/signals"
+              "package": "@darksoil-studio/holochain-signals"
             }
           ],
           "superclass": {
@@ -502,7 +502,7 @@
           "mixins": [
             {
               "name": "SignalWatcher",
-              "package": "@tnesh-stack/signals"
+              "package": "@darksoil-studio/holochain-signals"
             }
           ],
           "superclass": {
@@ -564,7 +564,7 @@
           "mixins": [
             {
               "name": "SignalWatcher",
-              "package": "@tnesh-stack/signals"
+              "package": "@darksoil-studio/holochain-signals"
             }
           ],
           "superclass": {
@@ -634,7 +634,7 @@
           "mixins": [
             {
               "name": "SignalWatcher",
-              "package": "@tnesh-stack/signals"
+              "package": "@darksoil-studio/holochain-signals"
             }
           ],
           "superclass": {
@@ -763,7 +763,7 @@
           "mixins": [
             {
               "name": "SignalWatcher",
-              "package": "@tnesh-stack/signals"
+              "package": "@darksoil-studio/holochain-signals"
             }
           ],
           "superclass": {
@@ -805,7 +805,7 @@
           "mixins": [
             {
               "name": "SignalWatcher",
-              "package": "@tnesh-stack/signals"
+              "package": "@darksoil-studio/holochain-signals"
             }
           ],
           "superclass": {
@@ -884,7 +884,7 @@
           "mixins": [
             {
               "name": "SignalWatcher",
-              "package": "@tnesh-stack/signals"
+              "package": "@darksoil-studio/holochain-signals"
             }
           ],
           "superclass": {
@@ -1025,7 +1025,7 @@
           "mixins": [
             {
               "name": "SignalWatcher",
-              "package": "@tnesh-stack/signals"
+              "package": "@darksoil-studio/holochain-signals"
             }
           ],
           "superclass": {
@@ -1257,7 +1257,7 @@
           "mixins": [
             {
               "name": "SignalWatcher",
-              "package": "@tnesh-stack/signals"
+              "package": "@darksoil-studio/holochain-signals"
             }
           ],
           "superclass": {
@@ -1458,7 +1458,7 @@
           "mixins": [
             {
               "name": "SignalWatcher",
-              "package": "@tnesh-stack/signals"
+              "package": "@darksoil-studio/holochain-signals"
             }
           ],
           "superclass": {
@@ -1525,7 +1525,7 @@
           "mixins": [
             {
               "name": "SignalWatcher",
-              "package": "@tnesh-stack/signals"
+              "package": "@darksoil-studio/holochain-signals"
             }
           ],
           "superclass": {
@@ -1867,7 +1867,7 @@
           "mixins": [
             {
               "name": "SignalWatcher",
-              "package": "@tnesh-stack/signals"
+              "package": "@darksoil-studio/holochain-signals"
             }
           ],
           "superclass": {
