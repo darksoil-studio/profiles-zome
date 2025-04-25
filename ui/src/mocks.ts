@@ -9,7 +9,7 @@ import {
 	SignedActionHashed,
 	decodeHashFromBase64,
 } from '@holochain/client';
-import { createLinkToLink } from '@tnesh-stack/signals';
+import { createLinkToLink } from '@darksoil-studio/holochain-signals';
 import {
 	AgentPubKeyMap,
 	EntryRecord,
@@ -24,7 +24,7 @@ import {
 	fakeUpdateEntry,
 	pickBy,
 	retype,
-} from '@tnesh-stack/utils';
+} from '@darksoil-studio/holochain-utils';
 
 export async function demoProfiles(): Promise<AgentPubKeyMap<Profile>> {
 	const map = new AgentPubKeyMap<Profile>();

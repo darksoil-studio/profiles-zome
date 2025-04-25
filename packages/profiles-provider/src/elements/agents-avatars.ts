@@ -1,7 +1,7 @@
 import { AgentPubKey } from '@holochain/client';
 import { localized } from '@lit/localize';
-import { hashesProperty, sharedStyles } from '@tnesh-stack/elements';
-import { SignalWatcher } from '@tnesh-stack/signals';
+import { hashesProperty, sharedStyles } from '@darksoil-studio/holochain-elements';
+import { SignalWatcher } from '@darksoil-studio/holochain-signals';
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 

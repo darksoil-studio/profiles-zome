@@ -7,7 +7,7 @@ import {
 	Record,
 	RoleName,
 } from '@holochain/client';
-import { EntryRecord, ZomeClient } from '@tnesh-stack/utils';
+import { EntryRecord, ZomeClient } from '@darksoil-studio/holochain-utils';
 
 import { ProfilesSignal } from './types.js';
 

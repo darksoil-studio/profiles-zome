@@ -1,6 +1,6 @@
 import { localized } from '@lit/localize';
-import { sharedStyles } from '@tnesh-stack/elements';
-import { SignalWatcher } from '@tnesh-stack/signals';
+import { sharedStyles } from '@darksoil-studio/holochain-elements';
+import { SignalWatcher } from '@darksoil-studio/holochain-signals';
 import { LitElement, PropertyValues, css } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { html } from 'lit/static-html.js';

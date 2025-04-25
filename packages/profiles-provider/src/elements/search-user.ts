@@ -11,10 +11,10 @@ import {
 	FormFieldController,
 	hashProperty,
 	sharedStyles,
-} from '@tnesh-stack/elements';
-import '@tnesh-stack/elements/dist/elements/display-error.js';
-import { SignalWatcher, toPromise } from '@tnesh-stack/signals';
-import { EntryRecord } from '@tnesh-stack/utils';
+} from '@darksoil-studio/holochain-elements';
+import '@darksoil-studio/holochain-elements/dist/elements/display-error.js';
+import { SignalWatcher, toPromise } from '@darksoil-studio/holochain-signals';
+import { EntryRecord } from '@darksoil-studio/holochain-utils';
 import { LitElement, css, html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 

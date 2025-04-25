@@ -1,7 +1,7 @@
 import { css, html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
-import { sharedStyles } from "@tnesh-stack/elements";
-import { SignalWatcher } from "@tnesh-stack/signals";
+import { sharedStyles } from "@darksoil-studio/holochain-elements";
+import { SignalWatcher } from "@darksoil-studio/holochain-signals";
 
 import "@shoelace-style/shoelace/dist/components/skeleton/skeleton.js";
 

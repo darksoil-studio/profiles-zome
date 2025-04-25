@@ -1,9 +1,9 @@
 import { ActionHash, AgentPubKey } from '@holochain/client';
 import { consume } from '@lit/context';
 import { localized, msg } from '@lit/localize';
-import { hashProperty, sharedStyles } from '@tnesh-stack/elements';
-import { AsyncResult, SignalWatcher } from '@tnesh-stack/signals';
-import { EntryRecord } from '@tnesh-stack/utils';
+import { hashProperty, sharedStyles } from '@darksoil-studio/holochain-elements';
+import { AsyncResult, SignalWatcher } from '@darksoil-studio/holochain-signals';
+import { EntryRecord } from '@darksoil-studio/holochain-utils';
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 

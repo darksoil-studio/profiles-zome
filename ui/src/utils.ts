@@ -1,4 +1,4 @@
-import { Signal } from '@tnesh-stack/signals';
+import { Signal } from '@darksoil-studio/holochain-signals';
 
 export class LocalStorageSignal<T> extends Signal.State<T | undefined> {
 	constructor(public key: string) {

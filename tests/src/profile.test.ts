@@ -1,7 +1,7 @@
 import { encodeHashToBase64 } from '@holochain/client';
 import { dhtSync, pause, runScenario } from '@holochain/tryorama';
-import { toPromise, watch } from '@tnesh-stack/signals';
-import { EntryRecord, retype } from '@tnesh-stack/utils';
+import { toPromise, watch } from '@darksoil-studio/holochain-signals';
+import { EntryRecord, retype } from '@darksoil-studio/holochain-utils';
 import { assert, test } from 'vitest';
 
 import { Profile } from '../../packages/profiles-provider/src/types.js';
