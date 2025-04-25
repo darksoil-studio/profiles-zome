@@ -1,0 +1,5 @@
+import{_ as e}from"./tslib.es6.kHcLnhpD.js";import{e as r,l as i}from"./chunk.AJ3ENQ5C.CWahIKAi.js";import{S as p,s as n,n as m,t as s}from"./property.DW58LSP5.js";import{i as a,r as d}from"./lit-element.BYH7MJbe.js";import{u as l}from"./static.C4gJ75QQ.js";import"./agent-mention.DkDMg4ED.js";import"./range.CeOrHCaV.js";import"./isIterateeCall.CSfPBF3e.js";import"./toFinite.CWHk3G1P.js";import"./isSymbol.XF-DE6V6.js";import"./holo-identicon.TaizM_pS.js";import"./display-error.euNRL-7Q.js";import"./style-map.DTEisfmL.js";import"./chunk.H5RLO2CN.Cl6l8a4M.js";import"./chunk.G6R7BW5E.Bqo2lwOD.js";import"./if-defined.mwbAsAHa.js";import"./context.Bem5hB17.js";let t=class extends p(d){updated(o){super.updated(o),this.span.innerHTML=this.text.replaceAll(/(uhCAk[^ ]*)/gm,'<agent-mention agent-pub-key="$1"></agent-mention>')}render(){return l`<span></span>`}};t.styles=[a`
+			:host {
+				display: contents;
+			}
+		`,n];e([m()],t.prototype,"text",void 0);e([r("span")],t.prototype,"span",void 0);t=e([i(),s("text-with-mentions")],t);export{t as TextWithMentions};
