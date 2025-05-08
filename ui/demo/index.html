@@ -19,12 +19,12 @@
 		<profiles-test style="height: 100%; display: flex"></profiles-test>
 
 		<script type="module">
+			import { onSubmit } from '@darksoil-studio/holochain-elements';
+			import '@darksoil-studio/holochain-elements/dist/elements/app-client-context.js';
 			import '@darksoil-studio/linked-devices-zome/dist/elements/link-device-recipient.js';
 			import '@darksoil-studio/linked-devices-zome/dist/elements/linked-devices-context.js';
 			import { AppWebsocket } from '@holochain/client';
 			import '@shoelace-style/shoelace/dist/themes/dark.css';
-			import { onSubmit } from '@darksoil-studio/holochain-elements';
-			import '@darksoil-studio/holochain-elements/dist/elements/app-client-context.js';
 			import { LitElement, html } from 'lit';
 
 			import '../src/elements/agent-avatar.ts';

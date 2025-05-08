@@ -2,8 +2,7 @@
 	"name": "@darksoil-studio/profiles-zome-dev",
 	"private": true,
 	"scripts": {
-		"start": "AGENTS=2 pnpm network",
-		"network": "pnpm build:happ && UI_PORT=8888 concurrently \"pnpm -F @darksoil-studio/profiles-zome start\" \"pnpm launch\" \"pnpm -F @darksoil-studio/profiles build:watch\" \"hc playground\"",
+		"start": "pnpm build:happ && UI_PORT=8888 concurrently \"pnpm -F @darksoil-studio/profiles-zome start\" \"AGENTS=${AGENTS:-2} pnpm launch\" \"pnpm -F @darksoil-studio/profiles-provider build:watch\" \"hc playground\"",
 		"test": "pnpm build:happ && pnpm -F tests test",
 		"launch": "concurrently-repeat  \"RUST_LOG=warn hc pilot workdir/profiles-test.happ --ui-port $UI_PORT\" $AGENTS",
 		"build:happ": "nix build -L .#profiles_test_happ.meta.debug -o workdir/profiles-test.happ"

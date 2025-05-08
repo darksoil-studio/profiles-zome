@@ -1,11 +1,3 @@
-import { ActionHash, AgentPubKey } from '@holochain/client';
-import { consume } from '@lit/context';
-import { localized, msg } from '@lit/localize';
-import '@shoelace-style/shoelace/dist/components/dropdown/dropdown.js';
-import SlInput from '@shoelace-style/shoelace/dist/components/input/input.js';
-import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
-import '@shoelace-style/shoelace/dist/components/menu/menu.js';
-import '@shoelace-style/shoelace/dist/components/skeleton/skeleton.js';
 import {
 	FormField,
 	FormFieldController,
@@ -15,6 +7,14 @@ import {
 import '@darksoil-studio/holochain-elements/dist/elements/display-error.js';
 import { SignalWatcher, toPromise } from '@darksoil-studio/holochain-signals';
 import { EntryRecord } from '@darksoil-studio/holochain-utils';
+import { ActionHash, AgentPubKey } from '@holochain/client';
+import { consume } from '@lit/context';
+import { localized, msg } from '@lit/localize';
+import '@shoelace-style/shoelace/dist/components/dropdown/dropdown.js';
+import SlInput from '@shoelace-style/shoelace/dist/components/input/input.js';
+import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
+import '@shoelace-style/shoelace/dist/components/menu/menu.js';
+import '@shoelace-style/shoelace/dist/components/skeleton/skeleton.js';
 import { LitElement, css, html } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 
@@ -43,7 +43,7 @@ export class SearchUser extends SignalWatcher(LitElement) implements FormField {
 	/**
 	 * The default value of the field if this element is used inside a form
 	 */
-	@property(hashProperty('default-value'))
+	@property()
 	defaultValue: AgentPubKey[] | undefined;
 
 	/**
