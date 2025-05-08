@@ -1,8 +1,3 @@
-import { ActionHash, AgentPubKey } from '@holochain/client';
-import { consume } from '@lit/context';
-import { localized, msg } from '@lit/localize';
-import { mdiDelete } from '@mdi/js';
-import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
 import {
 	FormField,
 	FormFieldController,
@@ -11,6 +6,11 @@ import {
 	wrapPathInSvg,
 } from '@darksoil-studio/holochain-elements';
 import { SignalWatcher } from '@darksoil-studio/holochain-signals';
+import { ActionHash, AgentPubKey } from '@holochain/client';
+import { consume } from '@lit/context';
+import { localized, msg } from '@lit/localize';
+import { mdiDelete } from '@mdi/js';
+import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
 import { LitElement, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
@@ -40,7 +40,7 @@ export class SearchUsers
 	/**
 	 * The default value of the field if this element is used inside a form
 	 */
-	@property(hashProperty('default-value'))
+	@property()
 	defaultValue: Array<AgentPubKey[]> = [];
 
 	/**
