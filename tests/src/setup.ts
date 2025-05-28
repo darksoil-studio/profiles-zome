@@ -15,7 +15,9 @@ export const appPath =
 
 export async function setup(scenario: Scenario, numPlayers = 2) {
 	const players = await scenario.addPlayersWithSameApp(
-		{ appBundleSource: { type: 'path', value: appPath } },
+		{
+			appBundleSource: { type: 'path', value: appPath },
+		},
 		numPlayers,
 	);
 	const playersAndStores = await promiseAllSequential(
