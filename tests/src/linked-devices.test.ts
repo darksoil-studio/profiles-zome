@@ -1,8 +1,8 @@
+import { toPromise, watch } from '@darksoil-studio/holochain-signals';
+import { EntryRecord } from '@darksoil-studio/holochain-utils';
 import { LinkedDevicesStore } from '@darksoil-studio/linked-devices-zome';
 import { encodeHashToBase64 } from '@holochain/client';
 import { dhtSync, pause, runScenario } from '@holochain/tryorama';
-import { toPromise, watch } from '@darksoil-studio/holochain-signals';
-import { EntryRecord } from '@darksoil-studio/holochain-utils';
 import { assert, expect, test } from 'vitest';
 
 import { Profile } from '../../packages/profiles-provider/src/types.js';
@@ -45,17 +45,17 @@ test('create Profile and link devices', async () => {
 
 		await linkDevices(alice.linkedDevicesStore, bob.linkedDevicesStore);
 
-		await dhtSync(
-			[alice.player, bob.player, carol.player],
-			alice.player.cells[0].cell_id[0],
-		); // Difference in time between the create the processing of the signal
+		// await dhtSync(
+		// 	[alice.player, bob.player, carol.player],
+		// 	alice.player.cells[0].cell_id[0],
+		// 	500,
+		// 	480_000,
+		// ); // Difference in time between the create the processing of the signal
+		await pause(15000);
 
 		await bob.store.client.linkMyAgentToProfile(profile.actionHash);
 
-		await dhtSync(
-			[alice.player, bob.player, carol.player],
-			alice.player.cells[0].cell_id[0],
-		); // Difference in time between the create the processing of the signal
+		await pause(10000);
 
 		agentsWithProfile = await toPromise(alice.store.allProfiles);
 		assert.equal(agentsWithProfile.size, 1);
@@ -65,11 +65,6 @@ test('create Profile and link devices', async () => {
 			const bobProfileStatus = await toPromise(bob.store.myProfile);
 			return bobProfileStatus !== undefined;
 		}, 20_000);
-
-		await dhtSync(
-			[alice.player, bob.player, carol.player],
-			alice.player.cells[0].cell_id[0],
-		); // Difference in time between the create the processing of the signal
 
 		const bobProfileStatus = await toPromise(bob.store.myProfile);
 
@@ -96,17 +91,17 @@ test('create Profile and link devices', async () => {
 
 		await linkDevices(bob.linkedDevicesStore, carol.linkedDevicesStore);
 
-		await dhtSync(
-			[alice.player, bob.player, carol.player],
-			alice.player.cells[0].cell_id[0],
-		);
+		// await dhtSync(
+		// 	[alice.player, bob.player, carol.player],
+		// 	alice.player.cells[0].cell_id[0],
+		// 	500,
+		// 	120_000,
+		// );
+		await pause(15000);
 
 		await carol.store.client.linkMyAgentToProfile(profile.actionHash);
 
-		await dhtSync(
-			[alice.player, bob.player, carol.player],
-			alice.player.cells[0].cell_id[0],
-		);
+		await pause(15000);
 
 		agentsWithProfile = await toPromise(alice.store.allProfiles);
 		assert.equal(agentsWithProfile.size, 1);

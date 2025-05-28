@@ -3,7 +3,7 @@ import {
 	LinkedDevicesStore,
 } from '@darksoil-studio/linked-devices-zome';
 import { AppClient, AppWebsocket } from '@holochain/client';
-import { Player, Scenario, pause } from '@holochain/tryorama';
+import { Player, PlayerApp, Scenario, pause } from '@holochain/tryorama';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -14,10 +14,11 @@ export const appPath =
 	dirname(fileURLToPath(import.meta.url)) + '/../../workdir/profiles-test.happ';
 
 export async function setup(scenario: Scenario, numPlayers = 2) {
-	const players = await scenario.addPlayersWithApps(
-		Array.from(new Array(numPlayers)).fill({
+	const players = await scenario.addPlayersWithSameApp(
+		{
 			appBundleSource: { type: 'path', value: appPath },
-		}),
+		},
+		numPlayers,
 	);
 	const playersAndStores = await promiseAllSequential(
 		players.map(p => () => setupStore(p)),
@@ -39,7 +40,7 @@ async function promiseAllSequential<T>(
 	return results;
 }
 
-async function setupStore(player: Player) {
+async function setupStore(player: PlayerApp) {
 	// patchCallZome(player.appWs as AppWebsocket);
 	await player.conductor
 		.adminWs()
