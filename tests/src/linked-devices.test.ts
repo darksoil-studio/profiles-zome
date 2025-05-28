@@ -1,8 +1,8 @@
+import { toPromise, watch } from '@darksoil-studio/holochain-signals';
+import { EntryRecord } from '@darksoil-studio/holochain-utils';
 import { LinkedDevicesStore } from '@darksoil-studio/linked-devices-zome';
 import { encodeHashToBase64 } from '@holochain/client';
 import { dhtSync, pause, runScenario } from '@holochain/tryorama';
-import { toPromise, watch } from '@darksoil-studio/holochain-signals';
-import { EntryRecord } from '@darksoil-studio/holochain-utils';
 import { assert, expect, test } from 'vitest';
 
 import { Profile } from '../../packages/profiles-provider/src/types.js';
@@ -48,6 +48,8 @@ test('create Profile and link devices', async () => {
 		await dhtSync(
 			[alice.player, bob.player, carol.player],
 			alice.player.cells[0].cell_id[0],
+			2_000,
+			240_000,
 		); // Difference in time between the create the processing of the signal
 
 		await bob.store.client.linkMyAgentToProfile(profile.actionHash);
@@ -55,6 +57,8 @@ test('create Profile and link devices', async () => {
 		await dhtSync(
 			[alice.player, bob.player, carol.player],
 			alice.player.cells[0].cell_id[0],
+			2_000,
+			120_000,
 		); // Difference in time between the create the processing of the signal
 
 		agentsWithProfile = await toPromise(alice.store.allProfiles);
@@ -69,6 +73,8 @@ test('create Profile and link devices', async () => {
 		await dhtSync(
 			[alice.player, bob.player, carol.player],
 			alice.player.cells[0].cell_id[0],
+			500,
+			120_000,
 		); // Difference in time between the create the processing of the signal
 
 		const bobProfileStatus = await toPromise(bob.store.myProfile);
@@ -99,6 +105,8 @@ test('create Profile and link devices', async () => {
 		await dhtSync(
 			[alice.player, bob.player, carol.player],
 			alice.player.cells[0].cell_id[0],
+			500,
+			120_000,
 		);
 
 		await carol.store.client.linkMyAgentToProfile(profile.actionHash);
