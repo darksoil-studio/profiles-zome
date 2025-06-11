@@ -1,9 +1,12 @@
+import { sharedStyles } from '@darksoil-studio/holochain-elements';
+import {
+	FormField,
+	FormFieldController,
+} from '@darksoil-studio/holochain-elements';
+import { SignalWatcher } from '@darksoil-studio/holochain-signals';
 import { AgentPubKey, encodeHashToBase64 } from '@holochain/client';
 import { localized, msg } from '@lit/localize';
 import styles from '@shoelace-style/shoelace/dist/components/textarea/textarea.styles.js';
-import { sharedStyles } from '@darksoil-studio/holochain-elements';
-import { FormField, FormFieldController } from '@darksoil-studio/holochain-elements';
-import { SignalWatcher } from '@darksoil-studio/holochain-signals';
 import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
@@ -126,6 +129,8 @@ export class TextareaWithMentions
 		this.dropdown.open = false;
 	}
 
+	firstUpdated() {}
+
 	render() {
 		// const hasLabelSlot = this.hasSlotController.test('label');
 		// const hasHelpTextSlot = this.hasSlotController.test('help-text');
@@ -174,34 +179,7 @@ export class TextareaWithMentions
 						})}
 					>
 						<div class="column">
-							<div
-								id="textarea"
-								contenteditable
-								@keydown=${(e: KeyboardEvent) => {
-									console.log(e);
-									if (this.dropdown.open) {
-										if (e.key === 'Backspace') {
-											if (this.dropdown.searchFilter!.length === 0) {
-												this.hideDropdown();
-											}
-											this.dropdown.searchFilter =
-												this.dropdown.searchFilter!.slice(
-													0,
-													this.dropdown.searchFilter!.length - 1,
-												);
-										} else if (e.key.startsWith('ArrowDown')) {
-											this.dropdown.focusFirstItem();
-										} else if (e.key.match(/^\w$/gm)) {
-											this.dropdown.searchFilter += e.key;
-										} else {
-											this.hideDropdown();
-										}
-									} else if (e.key === '@') {
-										this.dropdown.open = true;
-										this.dropdown.searchFilter = '';
-									}
-								}}
-							></div>
+							<div id="textarea"></div>
 							<search-user-dropdown
 								@user-selected=${(e: CustomEvent) => {
 									const agents: AgentPubKey[] = e.detail.agents;

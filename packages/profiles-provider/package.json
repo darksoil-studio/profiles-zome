@@ -14,7 +14,12 @@
 		"./locales/*": "./locales/*",
 		"./dist/*": "./dist/*"
 	},
-	"files": ["dist", "README.md", "src", "locales"],
+	"files": [
+		"dist",
+		"README.md",
+		"src",
+		"locales"
+	],
 	"scripts": {
 		"start": "vite --clearScreen false --port $UI_PORT",
 		"build": "pnpm lint && tsc && pnpm localize:build && pnpm analyze",
@@ -35,7 +40,12 @@
 		"@mdi/js": "^7.1.96",
 		"@msgpack/msgpack": "^2.7.0",
 		"@shoelace-style/shoelace": "^2.11.0",
-		"lit": "^3.0.2"
+		"lit": "^3.0.2",
+		"prosemirror-keymap": "^1.2.3",
+		"prosemirror-schema-basic": "^1.2.4",
+		"prosemirror-state": "^1.4.3",
+		"prosemirror-suggest": "^3.0.0",
+		"prosemirror-view": "^1.40.0"
 	},
 	"devDependencies": {
 		"@custom-elements-manifest/analyzer": "^0.10.3",
