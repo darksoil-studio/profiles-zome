@@ -15,7 +15,10 @@ name = "profiles"
 
 [dependencies]
 derive_more = "0"
-serde = "1"
-profiles_integrity = { path = "../integrity" }
+
+holochain_serialized_bytes = { workspace = true }
+serde = { workspace = true }
 hdk = { workspace = true }
+
+profiles_integrity = { path = "../integrity" }
 
