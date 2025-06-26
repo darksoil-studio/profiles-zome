@@ -16,7 +16,8 @@ name = "profiles_integrity"
 
 [dependencies]
 derive_more = "0"
-serde = "1"
+holochain_serialized_bytes = { workspace = true }
+serde = { workspace = true }
 
 hdi = { workspace = true }
 linked_devices_types = { git = "https://github.com/darksoil-studio/linked-devices-zome", branch = "main-0.5" }
