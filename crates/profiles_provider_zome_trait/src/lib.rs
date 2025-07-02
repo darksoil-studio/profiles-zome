@@ -8,7 +8,7 @@ use hdk::prelude::*;
 /// The profile must include at a minimum the nickname of the agent
 /// in order to be able to search for agents by nickname.
 #[hdk_entry_helper]
-#[derive(Clone)]
+#[derive(Clone, PartialEq, Eq)]
 pub struct Profile {
     pub name: String,
     pub avatar: Option<String>,
