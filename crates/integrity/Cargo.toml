@@ -21,3 +21,4 @@ serde = { workspace = true }
 
 hdi = { workspace = true }
 linked_devices_types = { git = "https://github.com/darksoil-studio/linked-devices-zome", branch = "main-0.5" }
+profiles_provider_zome_trait = { path = "../profiles_provider_zome_trait" }

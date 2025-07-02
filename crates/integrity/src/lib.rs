@@ -8,6 +8,7 @@
 //! Read about how to include both this zome and its frontend module in your application [here](https://darksoil.studio/profiles-zome).
 
 use hdi::prelude::*;
+pub use profiles_provider_zome_trait::Profile;
 
 mod agent_to_profile;
 mod linked_devices;

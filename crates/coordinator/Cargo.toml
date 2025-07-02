@@ -20,5 +20,7 @@ holochain_serialized_bytes = { workspace = true }
 serde = { workspace = true }
 hdk = { workspace = true }
 
+profiles_provider_zome_trait = { path = "../profiles_provider_zome_trait" }
 profiles_integrity = { path = "../integrity" }
 
+hc_zome_traits = { git = "https://github.com/holochain-open-dev/zome-traits", branch = "main" }
