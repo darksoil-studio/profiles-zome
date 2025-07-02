@@ -134,7 +134,16 @@
 <a href="#133" id="133">133</a>
 <a href="#134" id="134">134</a>
 <a href="#135" id="135">135</a>
-<a href="#136" id="136">136</a></pre></div><pre class="rust"><code><span class="doccomment">//!
+<a href="#136" id="136">136</a>
+<a href="#137" id="137">137</a>
+<a href="#138" id="138">138</a>
+<a href="#139" id="139">139</a>
+<a href="#140" id="140">140</a>
+<a href="#141" id="141">141</a>
+<a href="#142" id="142">142</a>
+<a href="#143" id="143">143</a>
+<a href="#144" id="144">144</a>
+<a href="#145" id="145">145</a></pre></div><pre class="rust"><code><span class="doccomment">//!
 //! Profiles zome for any Holochain app.
 //!
 //! If you need to manage profiles (nickname, name, avatar, age and other useful personal information)
@@ -142,13 +151,22 @@
 //!
 //! Read about how to include both this zome and its frontend module in your application [here](https://darksoil.studio/profiles-zome).
 
-</span><span class="kw">use </span>hdk::prelude::<span class="kw-2">*</span>;
+</span><span class="kw">use </span>hc_zome_traits::implemented_zome_traits;
+<span class="kw">use </span>hdk::prelude::<span class="kw-2">*</span>;
 
 <span class="kw">use </span>profiles_integrity::<span class="kw-2">*</span>;
+<span class="kw">use </span>profiles_provider::ProfilesProvider;
+<span class="kw">use </span>profiles_provider_zome_trait::ProfilesProviderZomeTrait;
 
 <span class="kw">mod </span>linked_devices;
 <span class="kw">mod </span>profiles;
+<span class="kw">mod </span>profiles_provider;
 <span class="kw">mod </span>search;
+
+<span class="attr">#[implemented_zome_traits]
+</span><span class="kw">pub enum </span>ZomeTraits {
+    ProfilesProvider(ProfilesProvider),
+}
 
 <span class="attr">#[derive(Serialize, Deserialize, Debug)]
 #[serde(tag = <span class="string">"type"</span>)]

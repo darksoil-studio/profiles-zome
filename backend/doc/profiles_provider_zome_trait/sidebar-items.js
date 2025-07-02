@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["PROFILES_PROVIDER_ZOME_TRAIT_HASH"],"struct":["Profile"],"trait":["ProfilesProviderZomeTrait"]};

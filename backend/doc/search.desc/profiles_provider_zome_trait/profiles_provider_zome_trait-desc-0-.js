@@ -1,0 +1,1 @@
+searchState.loadedDescShard("profiles_provider_zome_trait", 0, "Profile entry definition.\nReturns the argument unchanged.\nCalls <code>U::from(self)</code>.")
