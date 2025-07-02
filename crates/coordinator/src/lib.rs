@@ -6,13 +6,22 @@
 //!
 //! Read about how to include both this zome and its frontend module in your application [here](https://darksoil.studio/profiles-zome).
 
+use hc_zome_traits::implemented_zome_traits;
 use hdk::prelude::*;
 
 use profiles_integrity::*;
+use profiles_provider::ProfilesProvider;
+use profiles_provider_zome_trait::ProfilesProviderZomeTrait;
 
 mod linked_devices;
 mod profiles;
+mod profiles_provider;
 mod search;
+
+#[implemented_zome_traits]
+pub enum ZomeTraits {
+    ProfilesProvider(ProfilesProvider),
+}
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(tag = "type")]
