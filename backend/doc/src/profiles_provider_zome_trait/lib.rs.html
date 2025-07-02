@@ -29,7 +29,7 @@
 /// The profile must include at a minimum the nickname of the agent
 /// in order to be able to search for agents by nickname.
 </span><span class="attr">#[hdk_entry_helper]
-#[derive(Clone)]
+#[derive(Clone, PartialEq, Eq)]
 </span><span class="kw">pub struct </span>Profile {
     <span class="kw">pub </span>name: String,
     <span class="kw">pub </span>avatar: <span class="prelude-ty">Option</span>&lt;String&gt;,
