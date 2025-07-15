@@ -11,6 +11,7 @@
     linked-devices-zome.url =
       "github:darksoil-studio/linked-devices-zome/main-0.5";
     linked-devices-zome.inputs.holochain-utils.follows = "holochain-utils";
+    linked-devices-zome.inputs.holonix.follows = "holonix";
   };
 
   nixConfig = {
