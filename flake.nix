@@ -5,15 +5,12 @@
     nixpkgs.follows = "holonix/nixpkgs";
     holonix.url = "github:holochain/holonix/main-0.5";
 
-    holochain-nix-builders.url =
-      "github:darksoil-studio/holochain-nix-builders/main-0.5";
-    scaffolding.url = "github:darksoil-studio/scaffolding/main-0.5";
-    tauri-plugin-holochain.url =
-      "github:darksoil-studio/tauri-plugin-holochain/main-0.5";
-    playground.url = "github:darksoil-studio/holochain-playground/main-0.5";
+    holochain-utils.url = "github:darksoil-studio/holochain-utils/main-0.5";
+    holochain-utils.inputs.holonix.follows = "holonix";
 
     linked-devices-zome.url =
       "github:darksoil-studio/linked-devices-zome/main-0.5";
+    linked-devices-zome.inputs.holochain-utils.follows = "holochain-utils";
   };
 
   nixConfig = {
@@ -34,28 +31,28 @@
         ./crates/integrity/zome.nix
         ./workdir/dna.nix
         ./workdir/happ.nix
-        inputs.holochain-nix-builders.outputs.flakeModules.builders
+        inputs.holochain-utils.outputs.flakeModules.builders
       ];
 
       systems = builtins.attrNames inputs.holonix.devShells;
       perSystem = { inputs', config, pkgs, system, lib, ... }: {
         devShells.default = pkgs.mkShell {
           inputsFrom = [
-            inputs'.scaffolding.devShells.synchronized-pnpm
+            inputs'.holochain-utils.devShells.synchronized-pnpm
             inputs'.holonix.devShells.default
           ];
           packages = [
-            inputs'.holochain-nix-builders.packages.holochain
-            inputs'.scaffolding.packages.hc-scaffold-zome
-            inputs'.tauri-plugin-holochain.packages.hc-pilot
-            inputs'.playground.packages.hc-playground
+            inputs'.holochain-utils.packages.holochain
+            inputs'.holochain-utils.packages.hc-scaffold-zome
+            inputs'.holochain-utils.packages.hc-pilot
+            inputs'.holochain-utils.packages.hc-playground
           ];
         };
-        devShells.npm-ci = inputs'.scaffolding.devShells.synchronized-pnpm;
+        devShells.npm-ci = inputs'.holochain-utils.devShells.synchronized-pnpm;
 
         packages.scaffold = pkgs.symlinkJoin {
           name = "scaffold-remote-zome";
-          paths = [ inputs'.scaffolding.packages.scaffold-remote-zome ];
+          paths = [ inputs'.holochain-utils.packages.scaffold-remote-zome ];
           buildInputs = [ pkgs.makeWrapper ];
           postBuild = ''
             wrapProgram $out/bin/scaffold-remote-zome \
