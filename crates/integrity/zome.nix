@@ -6,8 +6,6 @@
       inputs.holochain-utils.outputs.builders.${system}.rustZome {
         workspacePath = inputs.self.outPath;
         crateCargoToml = ./Cargo.toml;
-        cargoArtifacts =
-          inputs'.holochain-nix-builders.packages.zomeCargoArtifacts;
         zomeEnvironmentVars = {
           LINKED_DEVICES_INTEGRITY_ZOME_NAME =
             linked_devices_integrity_zome_name;
