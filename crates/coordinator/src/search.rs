@@ -13,14 +13,10 @@ pub fn search_profiles(nickname_filter: String) -> ExternResult<Vec<ActionHash>>
 
     let prefix_path = prefix_path(nickname_filter.clone())?;
     let links = get_links(
-        GetLinksInputBuilder::try_new(
-            prefix_path.path_entry_hash()?,
-            LinkTypes::PathToProfile.try_into_filter()?,
-        )?
-        .tag_prefix(LinkTag::new(
-            nickname_filter.to_lowercase().as_bytes().to_vec(),
-        ))
-        .build(),
+        LinkQuery::try_new(prefix_path.path_entry_hash()?, LinkTypes::PathToProfile)?.tag_prefix(
+            LinkTag::new(nickname_filter.to_lowercase().as_bytes().to_vec()),
+        ),
+        GetStrategy::Network,
     )?;
 
     let action_hashes = links
@@ -35,8 +31,8 @@ pub fn search_profiles(nickname_filter: String) -> ExternResult<Vec<ActionHash>>
 #[hdk_extern]
 pub fn get_profile_for_agent(agent_pub_key: AgentPubKey) -> ExternResult<Vec<Link>> {
     get_links(
-        GetLinksInputBuilder::try_new(agent_pub_key, LinkTypes::AgentToProfile.try_into_filter()?)?
-            .build(),
+        LinkQuery::try_new(agent_pub_key, LinkTypes::AgentToProfile)?,
+        GetStrategy::Network,
     )
 }
 
@@ -44,8 +40,8 @@ pub fn get_profile_for_agent(agent_pub_key: AgentPubKey) -> ExternResult<Vec<Lin
 #[hdk_extern]
 pub fn get_agents_for_profile(profile_hash: ActionHash) -> ExternResult<Vec<Link>> {
     get_links(
-        GetLinksInputBuilder::try_new(profile_hash, LinkTypes::ProfileToAgent.try_into_filter()?)?
-            .build(),
+        LinkQuery::try_new(profile_hash, LinkTypes::ProfileToAgent)?,
+        GetStrategy::Network,
     )
 }
 
@@ -59,11 +55,10 @@ pub fn get_all_profiles(_: ()) -> ExternResult<Vec<Link>> {
     let get_links_input: Vec<GetLinksInput> = children
         .into_iter()
         .map(|path| {
-            Ok(GetLinksInputBuilder::try_new(
-                path.path_entry_hash()?,
-                LinkTypes::PathToProfile.try_into_filter()?,
-            )?
-            .build())
+            Ok(GetLinksInput::from_query(
+                LinkQuery::try_new(path.path_entry_hash()?, LinkTypes::PathToProfile)?,
+                GetStrategy::Network,
+            ))
         })
         .collect::<ExternResult<Vec<GetLinksInput>>>()?;
 

@@ -5,6 +5,6 @@ edition = "2024"
 
 [dependencies]
 hc_zome_traits = { git = "https://github.com/holochain-open-dev/zome-traits", branch = "main" }
-hdk = "0.5"
+hdk = { workspace = true }
 holochain_serialized_bytes = "*"
 serde = "1"

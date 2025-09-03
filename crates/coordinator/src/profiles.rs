@@ -67,17 +67,17 @@ pub fn update_profile(input: UpdateProfileInput) -> ExternResult<Record> {
     if previous_profile.name.ne(&input.updated_profile.name) {
         let previous_prefix_path = prefix_path(previous_profile.name)?;
         let links = get_links(
-            GetLinksInputBuilder::try_new(
+            LinkQuery::try_new(
                 previous_prefix_path.path_entry_hash()?,
-                LinkTypes::PathToProfile.try_into_filter()?,
-            )?
-            .build(),
+                LinkTypes::PathToProfile,
+            )?,
+            GetStrategy::Network,
         )?;
 
         for l in links {
             if let Some(profile_hash) = l.target.into_action_hash() {
                 if input.previous_profile_hash.eq(&profile_hash) {
-                    delete_link(l.create_link_hash)?;
+                    delete_link(l.create_link_hash, GetOptions::network())?;
                 }
             }
         }
